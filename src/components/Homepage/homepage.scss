@@ -1,1 +1,50 @@
+.homepage-friendCardsList {
+  background-color: darkslategrey;
+  padding-left: 0.5em;
 
+  .friendsCardsList-header {
+    font-weight: bold;
+  }
+
+  .friendCard-element {
+    position: relative;
+    display: flex;
+    height: 10em;
+    width: 26em;
+
+    .friendCard-picture {
+      position: absolute;
+      top: 0em;
+      border: darkslategrey solid 0.1em;
+    }
+
+    .friendCard-nexusTag {
+      text-align: right;
+      font-weight: bold;
+      font-size: 8em;
+    }
+
+    .friendCard-steamTag {
+      text-align: right;
+    }
+
+    .friendCard-currentMood {
+      text-align: right;
+    }
+
+    .friendCard-button {
+      padding: 0.5em;
+      position: absolute;
+      bottom: 0.3em;
+      right: 0.5em;
+      font-size: 1.2em;
+      background-color: darkslategrey;
+      color: white;
+      
+    }
+  }
+
+
+
+
+}
