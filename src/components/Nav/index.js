@@ -3,23 +3,26 @@ import React from 'react';
 import {
   Menu,
   Input,
-  Icon,
+  Image,
   Popup,
 } from 'semantic-ui-react';
 // import du sous composant pour le popup
 import Profile from './Profile';
 import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
+import Avatar from './avatar.jpg';
 
 const Nav = () => (
-  <Menu stackable className="navbar">
-    <Input placeholder="Search Friends" icon="search" />
+  <Menu stackable id="navbar">
+    <Input placeholder="Search Friends" icon="search" className="nav-search" />
     <Menu.Item
+      className="nav-item"
       name="Accueil"
     >
       Accueil
     </Menu.Item>
     <Menu.Item
+      className="nav-item"
       name="Evenements"
     >
       Evenements
@@ -29,10 +32,9 @@ const Nav = () => (
       // afin d'alléger le code ici
       content={<Profile />}
       on="click"
-      offset={[0, 20]}
-      position="top right"
+      offset={[0, 0]}
       // dans trigger: l'avatar qui est affiché et cliquable
-      trigger={<Icon className="avatar" size="big" name="user circle" />}
+      trigger={<Image className="avatar" src={Avatar} size="tiny" avatar />}
     />
   </Menu>
 );
