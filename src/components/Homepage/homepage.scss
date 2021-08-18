@@ -1,0 +1,97 @@
+//! Ici gestion des couleurs uniquement
+.ui.segments {
+  border-radius: 0;
+  border-color: grey;
+}
+
+.Homepage-profile {
+  border: none;
+  background-color:#171a21;
+  color: #9099a1;
+
+  .Homepage-profile--playerinfo {
+  
+
+    .Homepage-profile--playerinfo--username {
+      color: white;
+    }
+
+    .Homepage-profile--playerinfo--mood {
+
+    }
+
+    .Homepage-profile--playerinfo--steamprofile {
+
+    }
+
+    
+  }
+  .Homepage-profile--playergames {
+    background-color: #1b2838;
+    border: 1px solid #c7d5e0;
+
+    
+  }
+
+  #Homepage-profile--playergames--search {
+      background: grey;
+    }
+
+}
+
+
+
+//! Ici breakpoint pc
+@media only screen and (min-width: 769px){
+  .Homepage-profile {
+    height: 100vh;
+    background-color:#171a21;
+    color: #9099a1;
+
+    .Homepage-profile--playerinfo {
+      height: 30%;
+      padding-left: 2rem;
+
+      
+
+      .Homepage-profile--playerinfo--mood{
+        padding-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        width: 25%;
+      }
+
+      .Homepage-profile--playerinfo--steamprofile{
+        font-weight: normal;
+      }
+
+      
+    }
+    .Homepage-profile--playergames {
+      height: 70%;
+      padding: 1rem;
+
+      
+    }
+
+    #Homepage-profile--playergames--search {
+        margin-bottom: 1rem;
+      }
+
+  }
+}
+//! Ici breakpoint pour iPhone
+
+@media only screen and (max-width: 768px){
+  #user-avatar {
+    display: none;
+  }
+
+  .Homepage-profile--playerinfo {
+    height: 10%;
+  }
+  
+  .Homepage-profile--playerinfo--steamInfo {
+    display: none;
+  }
+}
