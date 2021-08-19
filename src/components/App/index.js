@@ -2,6 +2,7 @@
 import React from 'react';
 import Homepage from 'src/components/Homepage';
 import Nav from 'src/components/Nav';
+import Footer from 'src/components/Footer';
 
 import { Container } from 'semantic-ui-react';
 
@@ -15,6 +16,7 @@ const App = () => (
       <div className="app">
         <Nav />
         <Homepage />
+        <Footer />
       </div>
   </Container>
 );
