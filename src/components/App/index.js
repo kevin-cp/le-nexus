@@ -13,8 +13,8 @@ import './app.scss';
 const App = () => (
   <Container fluid>
       <div className="app">
-        <Homepage />
         <Nav />
+        <Homepage />
       </div>
   </Container>
 );
