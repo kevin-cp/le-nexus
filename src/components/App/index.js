@@ -1,15 +1,22 @@
 // == Import npm
 import React from 'react';
+import Homepage from 'src/components/Homepage';
+import Nav from 'src/components/Nav';
+
+import { Container } from 'semantic-ui-react';
 
 // == Import
-import './styles.css';
-import Nav from 'src/components/Nav';
+
+import './app.scss';
 
 // == Composant
 const App = () => (
-  <div className="app">
-    <Nav />
-  </div>
+  <Container fluid>
+      <div className="app">
+        <Homepage />
+        <Nav />
+      </div>
+  </Container>
 );
 
 // == Export
