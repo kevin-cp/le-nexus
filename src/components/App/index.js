@@ -1,8 +1,9 @@
 // == Import npm
 import React from 'react';
 import Homepage from 'src/components/Homepage';
+import Nav from 'src/components/Nav';
 
-import {Container} from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 
 // == Import
 
@@ -10,9 +11,10 @@ import './app.scss';
 
 // == Composant
 const App = () => (
-  <Container fluid >
+  <Container fluid>
       <div className="app">
         <Homepage />
+        <Nav />
       </div>
   </Container>
 );
