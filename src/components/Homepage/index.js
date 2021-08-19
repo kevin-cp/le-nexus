@@ -14,6 +14,7 @@ const moodOptions = [
 
 const Homepage = () => (
   // Partie de gauche
+  <div className="Homepage">
   <Grid stackable>
     <Grid.Row columns={2}>
       <Grid.Column width={6}>
@@ -183,6 +184,7 @@ const Homepage = () => (
       </Grid.Column>
     </Grid.Row>
   </Grid>
+</div>
 );
 
 export default Homepage;

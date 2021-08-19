@@ -4,6 +4,10 @@
   border-color: grey;
 }
 
+.Homepage {
+  height: 100vh;
+}
+
 .Homepage-profile {
   border: none;
   background-color:#171a21;
@@ -39,6 +43,8 @@
 
 }
 
+//! ========================== Partie de droite =====================================
+
 .homepage-friendCardsList {
   background-color: darkslategrey;
   padding-left: 0.5em;
@@ -52,6 +58,7 @@
     display: flex;
     height: 10em;
     width: 26em;
+  }
 
     .friendCard-picture {
       position: absolute;
@@ -81,10 +88,18 @@
       font-size: 1.2em;
       background-color: darkslategrey;
       color: white;
+    }
+  }
 
-//! Ici breakpoint pc
+//! ================================ Ici breakpoint pc ===============================================
 @media only screen and (min-width: 769px){
   .Homepage-profile {
+    position: fixed;
+    left:0;
+    top: 0;
+    bottom: 0;
+    padding-top: 50px;
+    
     height: 100vh;
     background-color:#171a21;
     color: #9099a1;
@@ -121,8 +136,8 @@
 
   }
 }
-//! Ici breakpoint pour iPhone
 
+//! ============================= Ici breakpoint pour iPhone ============================================
 @media only screen and (max-width: 768px){
   #user-avatar {
     display: none;

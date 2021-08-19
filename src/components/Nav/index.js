@@ -13,7 +13,7 @@ import './nav.scss';
 import Avatar from './avatar.jpg';
 
 const Nav = () => (
-  <Menu stackable id="navbar">
+  <Menu fixed='top' stackable id="navbar">
     <Input placeholder="Search Friends" icon="search" className="nav-search" />
     <Menu.Item
       className="nav-item"
