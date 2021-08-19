@@ -1,4 +1,4 @@
-//! Ici gestion des couleurs uniquement
+//! =================== Ici gestion des couleurs PARTIE GAUCHE uniquement ============================
 .ui.segments {
   border-radius: 0;
   border-color: grey;
@@ -6,6 +6,8 @@
 
 .Homepage {
   height: 100vh;
+  overflow: hidden;
+
 }
 
 .Homepage-profile {
@@ -47,17 +49,19 @@
 
 .homepage-friendCardsList {
   background-color: darkslategrey;
-  padding-left: 0.5em;
+  padding-left: 2em;
+  overflow: auto;
 
-  .friendsCardsList-header {
+  .friendCardsList-header {
     font-weight: bold;
+    color: white;
   }
 
   .friendCard-element {
     position: relative;
     display: flex;
     height: 10em;
-    width: 26em;
+    max-width: 26em;
   }
 
     .friendCard-picture {
@@ -92,17 +96,17 @@
   }
 
 //! ================================ Ici breakpoint pc ===============================================
-@media only screen and (min-width: 769px){
+@media only screen and (min-width: 1008px){
   .Homepage-profile {
     position: fixed;
     left:0;
     top: 0;
     bottom: 0;
     padding-top: 50px;
-    
     height: 100vh;
     background-color:#171a21;
     color: #9099a1;
+    
 
     .Homepage-profile--playerinfo {
       height: 30%;
@@ -120,20 +124,22 @@
       .Homepage-profile--playerinfo--steamprofile{
         font-weight: normal;
       }
-
-      
     }
     .Homepage-profile--playergames {
       height: 70%;
       padding: 1rem;
-
-      
+      overflow: auto;
     }
 
     #Homepage-profile--playergames--search {
         margin-bottom: 1rem;
       }
 
+  }
+
+  .homepage-friendCardsList {
+    padding-top: 75px;
+    height: 100vh;
   }
 }
 
@@ -143,11 +149,28 @@
     display: none;
   }
 
+
+  .Homepage-profile {
+    top: 100px;
+    width: 100%;
+  
   .Homepage-profile--playerinfo {
     height: 10%;
+    
   }
   
   .Homepage-profile--playerinfo--steamInfo {
     display: none;
   }
+
+  .Homepage-profile--playergames {
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+}
+
+.homepage-friendCardsList {
+  position: relative;
+  overflow: auto;
+}
 }
