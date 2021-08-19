@@ -4,7 +4,7 @@ import React from 'react';
 // import Nav from 'src/components/Nav';
 // import Footer from 'src/components/Footer';
 import { Container } from 'semantic-ui-react';
-import SignInForm from '../SignInForm';
+import SignInForm from 'src/containers/SignInForm';
 
 // == Import
 

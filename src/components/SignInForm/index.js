@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {
   Button,
   Checkbox,
@@ -10,30 +12,79 @@ import {
 
 import './signinform.scss';
 
-const SignInForm = () => (
+const SignInForm = ({
+  username,
+  password,
+  email,
+  SteamId,
+  setUsername,
+  setPassword,
+  setEmail,
+  setSteamId,
+}) => (
   <Grid className="signin-container" stackable textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
     <Grid.Column style={{ maxWidth: 600 }}>
       <Header color="grey" size="huge">Inscription</Header>
       <Form className="signin-form">
         <Form.Field>
           <label>Pseudo</label>
-          <input placeholder="Pseudo" />
+          <input
+            placeholder="Pseudo"
+            type="text"
+            value={username}
+            onChange={(event) => {
+              console.log(event.currentTarget.value);
+              setUsername(event.currentTarget.value);
+            }}
+          />
         </Form.Field>
         <Form.Field>
           <label>e-mail</label>
-          <input placeholder="e-mail" />
+          <input
+            placeholder="e-mail"
+            type="text"
+            value={email}
+            onChange={(event) => {
+            // console.log(event.currentTarget.value);
+              setEmail(event.currentTarget.value);
+            }}
+          />
         </Form.Field>
         <Form.Field>
           <label>Mot de passe</label>
-          <input placeholder="Mot de passe" />
+          <input
+            placeholder="Mot de passe"
+            type="password"
+            value={password}
+            onChange={(event) => {
+            // console.log(event.currentTarget.value);
+              setPassword(event.currentTarget.value);
+            }}
+          />
         </Form.Field>
         <Form.Field>
           <label>Confirmer le mot de passe:</label>
-          <input placeholder="confirmer le mot de passe" />
+          <input
+            placeholder="confirmer le mot de passe" 
+            type="password"
+            value={password}
+            onChange={(event) => {
+            // console.log(event.currentTarget.value);
+              setPassword(event.currentTarget.value);
+            }}
+          />
         </Form.Field>
         <Form.Field>
           <label>Steam ID</label>
-          <input placeholder="Steam ID" />
+          <input
+            placeholder="Steam ID"
+            type="number"
+            value={SteamId}
+            onChange={(event) => {
+            // console.log(event.currentTarget.value);
+              setSteamId(event.currentTarget.value);
+            }}
+          />
         </Form.Field>
         <Message info>
           <Message.Header>Pouquoi nous demandons ton ID Steam ?</Message.Header>
@@ -53,5 +104,16 @@ const SignInForm = () => (
     </Grid.Column>
   </Grid>
 );
+
+SignInForm.propTypes = {
+  username: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  SteamId: PropTypes.string.isRequired,
+  setUsername: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setSteamId: PropTypes.func.isRequired,
+};
 
 export default SignInForm;
