@@ -1,0 +1,15 @@
+.profile-popup {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  .avatar {
+    text-align: center;
+    margin-left: 40%;
+  }
+
+  a {
+    font-size: 1.5em;
+    padding: 10px;
+  }
+}
