@@ -6,9 +6,10 @@ import SignInForm from 'src/components/SignInForm';
 import {
   changeUsernameValue,
   changePasswordValue,
+  changeConfirmPasswordValue,
   changeEmailValue,
   changeSteamIdValue,
-  submit, 
+  submit,
 } from '../../actions/SigninForm';
 
 // === mapStateToProps
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => ({
   // nom de la prop à remplir: élément à récupérer dans le state
   username: state.signInReducer.inputUsername,
   password: state.signInReducer.inputPassword,
+  confirmPassword: state.signInReducer.inputConfirmPassword,
   email: state.signInReducer.inputEmail,
   steamid: state.signInReducer.inputSteamId,
 });
@@ -31,6 +33,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   setPassword: (newValue) => {
     dispatch(changePasswordValue(newValue));
+  },
+
+  setConfirmPassword: (newValue) => {
+    dispatch(changeConfirmPasswordValue(newValue));
   },
 
   setEmail: (newValue) => {

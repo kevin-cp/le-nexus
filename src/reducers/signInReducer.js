@@ -1,6 +1,7 @@
 import {
   CHANGE_USERNAME_VALUE,
   CHANGE_PASSWORD_VALUE,
+  CHANGE_CONFIRM_PASSWORD_VALUE,
   CHANGE_EMAIL_VALUE,
   CHANGE_STEAMID_VALUE,
 } from '../actions/SigninForm';
@@ -9,6 +10,7 @@ const initialState = {
   // ici l'état initial
   inputUsername: '',
   inputPassword: '',
+  inputConfirmPassword: '',
   inputEmail: '',
   inputSteamId: null,
 };
@@ -40,6 +42,12 @@ function signInreducer(state = initialState, action = {}) {
         ...state,
         inputSteamId: action.value,
         // on met le contenu de value dans action dans le state inputPassword
+      };
+
+    case CHANGE_CONFIRM_PASSWORD_VALUE:
+      return {
+        ...state,
+        inputConfirmPassword: action.value,
       };
 
     default:

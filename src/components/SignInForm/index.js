@@ -20,6 +20,7 @@ const SignInForm = ({
   SteamId,
   setUsername,
   setPassword,
+  setConfirmPassword,
   setEmail,
   setSteamId,
   handleFormSubmit,
@@ -28,6 +29,7 @@ const SignInForm = ({
     evt.preventDefault();
     handleFormSubmit();
   };
+
   return (
     <Grid className="signin-container" stackable textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 600 }}>
@@ -78,10 +80,10 @@ const SignInForm = ({
               required
               placeholder="confirmer le mot de passe" 
               type="password"
-              value={password}
+              value={confirmPassword}
               onChange={(event) => {
               // console.log(event.currentTarget.value);
-                setPassword(event.currentTarget.value);
+                setConfirmPassword(event.currentTarget.value);
               }}
             />
           </Form.Field>

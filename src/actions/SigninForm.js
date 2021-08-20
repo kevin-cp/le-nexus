@@ -1,5 +1,6 @@
 export const CHANGE_USERNAME_VALUE = 'CHANGE_USERNAME_VALUE';
 export const CHANGE_PASSWORD_VALUE = 'CHANGE_PASSWORD_VALUE';
+export const CHANGE_CONFIRM_PASSWORD_VALUE = 'CHANGE_CONFIRM_PASSWORD_VALUE';
 export const CHANGE_EMAIL_VALUE = 'CHANGE_EMAIL_VALUE';
 export const CHANGE_STEAMID_VALUE = 'CHANGE_STEAMID_VALUE';
 export const SUBMIT = 'SUBMIT';
@@ -11,6 +12,11 @@ export const changeUsernameValue = (value) => ({
 
 export const changePasswordValue = (value) => ({
   type: CHANGE_PASSWORD_VALUE,
+  value: value,
+});
+
+export const changeConfirmPasswordValue = (value) => ({
+  type: CHANGE_CONFIRM_PASSWORD_VALUE,
   value: value,
 });
 
