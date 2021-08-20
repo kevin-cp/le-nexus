@@ -5,14 +5,20 @@ import './loginform.scss';
 
 import NexusLogo from 'src/assets/images/Nexus-logo-big-black.PNG';
 
-const LoginForm = ({ email, password, setEmail, setPassword }) => (
+const LoginForm = ({ email, password, setEmail, setPassword, handleLogin }) => {
 
-  <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleLogin();
+  }
+
+  return (
+    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='teal' textAlign='center'>
         Connectez-vous
       </Header>
-      <Form size='large'>
+      <Form size='large' onSubmit={handleSubmit}>
         <Segment stacked>
           <Form.Input 
             fluid
@@ -46,6 +52,7 @@ const LoginForm = ({ email, password, setEmail, setPassword }) => (
       </Message>
     </Grid.Column>
   </Grid>
-)
+  )
+}
 
 export default LoginForm

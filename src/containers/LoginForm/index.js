@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeEmailInput, changePasswordInput } from 'src/actions/login';
+import { changeEmailInput, changePasswordInput, submitLogin } from 'src/actions/login';
 
 // on importe le composant de présentation
 import LoginForm from 'src/components/LoginForm';
@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changePasswordInput(newPassword));
   },
 
+  handleLogin: () => {
+    dispatch(submitLogin());
+  },
 });
 
 // === création de l'assistant
