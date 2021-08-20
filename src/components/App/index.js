@@ -1,7 +1,7 @@
 // == Import npm
 import React from 'react';
-import Homepage from 'src/components/Homepage';
-import Nav from 'src/components/Nav';
+import Homepage from 'src/containers/Homepage';
+import Nav from 'src/containers/Nav';
 import Footer from 'src/components/Footer';
 
 import { Container } from 'semantic-ui-react';

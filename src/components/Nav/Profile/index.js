@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Image } from 'semantic-ui-react';
 
-import Avatar from '../avatar.jpg';
+
 import './profile.scss';
 
-const Profile = () => (
+const Profile = ({ avatar, pseudo }) => (
   <div className="profile-popup">
-    <Image className="avatar" src={Avatar} avatar />
-    <p className="profile-username">Username</p>
+    <Image className="avatar" src={avatar} avatar />
+    <p className="profile-username">{pseudo}</p>
     <a href="#">Editer le profil</a>
     <Button>Se Déconnecter</Button>
   </div>
