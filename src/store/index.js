@@ -1,12 +1,23 @@
-import { createStore } from 'redux';
-import { devToolsEnhancer } from 'redux-devtools-extension';
-import homepageReducer from 'src/reducers/homepageReducer';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import reducer from 'src/reducers';
+
+import signInMiddleware from '../middlewares/signInMiddleware';
+
+// on combine devTools avec les middlewares
+const enhancers = composeWithDevTools(
+  applyMiddleware(
+    signInMiddleware,
+    // ... d'autres middlewares
+  ),
+);
 
 const store = createStore(
   // reducer
-  homepageReducer,
+  reducer,
   // enhancer
-  devToolsEnhancer(),
+  enhancers,
+  // devToolsEnhancer(),
 );
 
 export default store;
