@@ -3,25 +3,29 @@ import axios from 'axios';
 import { SUBMIT } from '../actions/SigninForm';
 
 const signInMiddleware = (store) => (next) => (action) => {
-  console.log('on a intercepté une action dans le middleware: ', action);
+  // console.log('on a intercepté une action dans le middleware: ', action);
 
   switch (action.type) {
     case SUBMIT: {
       // on va piocher les informations dans le tiroir du state
       const {
-        email,
-        password,
-        username,
-        steamId,
+        inputUsername,
+        inputPassword,
+        inputEmail,
+        inputSteamId,
       } = store.getState().signInReducer;
 
       axios.post(
-        'http://localhost:3001/login',
+        'http://localhost:8000/api/users',
         {
-          email: email,
-          password: password,
-          username: username,
-          steamId: steamId,
+          email: inputEmail,
+          password: inputPassword,
+          pseudo: inputUsername,
+          steamId: parseInt(inputSteamId, 10),
+          isLogged: true,
+          steamUsername: 'test',
+          steamAvatar: 'test',
+          visibilityState: true,
         },
       )
         .then((response) => {

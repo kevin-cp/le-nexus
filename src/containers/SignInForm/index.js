@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 // on importe le composant de présentation
 import SignInForm from 'src/components/SignInForm';
 
-import { 
+import {
   changeUsernameValue,
   changePasswordValue,
   changeEmailValue,
-  changeSteamIdValue 
+  changeSteamIdValue,
+  submit, 
 } from '../../actions/SigninForm';
 
 // === mapStateToProps
@@ -38,6 +39,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   setSteamId: (newValue) => {
     dispatch(changeSteamIdValue(newValue));
+  },
+
+  handleFormSubmit: () => {
+    dispatch(submit());
   },
 });
 

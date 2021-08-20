@@ -10,7 +10,7 @@ const initialState = {
   inputUsername: '',
   inputPassword: '',
   inputEmail: '',
-  inputSteamId: '',
+  inputSteamId: null,
 };
 
 function signInreducer(state = initialState, action = {}) {
