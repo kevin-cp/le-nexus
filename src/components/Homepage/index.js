@@ -1,9 +1,9 @@
 import React from 'react';
 
 // semantic ui import
-import { Grid, Segment, Header, Card, Image, Dropdown, For, Form, Button } from 'semantic-ui-react';
+import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button } from 'semantic-ui-react';
 
-import Avatar from './intel.jpg'
+import Avatar from './intel.jpg';
 
 import './homepage.scss';
 
