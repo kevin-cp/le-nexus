@@ -7,9 +7,9 @@ import Homepage from 'src/components/Homepage';
 // si j'ai besoin de lire des informations dans le state
 const mapStateToProps = (state) => ({
   // nom de la prop à remplir: élément à récupérer dans le state
-  pseudo: state.pseudo,
-  steamUsername: state.steamUsername,
-  steamAvatar: state.steamAvatar,
+  pseudo: state.homepage.pseudo,
+  steamUsername: state.homepage.steamUsername,
+  steamAvatar: state.homepage.steamAvatar,
 });
 
 // === mapDispatchToProps

@@ -1,5 +1,6 @@
 import React from 'react';
 // import de composants semantic-ui
+import { NavLink } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -22,18 +23,47 @@ const Nav = ({ steamAvatar, pseudo }) => (
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
     </Menu.Item>
     <Input placeholder="Search Friends" icon="search" className="nav-search" />
-    <Menu.Item
-      className="nav-item"
-      name="Accueil"
+    <NavLink
+      to="/"
+      exact
     >
-      Accueil
-    </Menu.Item>
-    <Menu.Item
-      className="nav-item"
-      name="Evenements"
+      <Menu.Item
+        className="nav-item"
+        name="Accueil"
+      >
+        Accueil
+      </Menu.Item>
+    </NavLink>
+    <NavLink
+      to="/events"
     >
-      Evenements
-    </Menu.Item>
+      <Menu.Item
+        className="nav-item"
+        name="Evenements"
+      >
+        Evenements
+      </Menu.Item>
+    </NavLink>
+    <NavLink
+      to="/signin"
+    >
+      <Menu.Item
+        className="nav-item"
+        name="Inscription"
+      >
+        Inscription
+      </Menu.Item>
+    </NavLink>
+    <NavLink
+      to="/login"
+    >
+      <Menu.Item
+        className="nav-item"
+        name="Login"
+      >
+        Login
+      </Menu.Item>
+    </NavLink>
     <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
