@@ -18,7 +18,7 @@ import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
 
 const Nav = ({ steamAvatar, pseudo }) => (
-  <Menu fixed='top' stackable id="navbar">
+  <Menu fixed="top" stackable id="navbar">
     <Menu.Item>
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
     </Menu.Item>

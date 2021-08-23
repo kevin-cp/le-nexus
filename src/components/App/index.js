@@ -1,6 +1,8 @@
 // == Import npm
 import React from 'react';
 import Homepage from 'src/containers/Homepage';
+import Profilepage from 'src/containers/Profilepage';
+import Eventpage from 'src/components/Eventpage';
 import Nav from 'src/containers/Nav';
 import Footer from 'src/components/Footer';
 import { Container } from 'semantic-ui-react';
@@ -17,14 +19,20 @@ const App = () => (
     <div className="app">
       {/* <SignInForm /> */}
       <Nav />
-        <Switch>
-          <Route path="/signin">
-            <SignInForm />
-          </Route>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route path="/events">
+          <Eventpage />
+        </Route>
+        <Route path="/profile">
+          <Profilepage />
+        </Route>
+        <Route path="/signin">
+          <SignInForm />
+        </Route>
+        <Route path="/" exact>
+          <Homepage />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   </Container>

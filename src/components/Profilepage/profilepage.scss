@@ -1,5 +1,7 @@
 .Profilepage-main {
-  height:100vh;
+  height: 100vh;
+  padding-top: 5em;
+  
   
   .Profilepage-NexusUsername {
     color: lightgray;
@@ -10,13 +12,16 @@
   .Profilepage-avatar {
     position: relative;
     margin: 3em;
+    height: 17em;
+    width: 17em;
+    margin-left: 5.5em;
 
   }
 
   .Profilepage-avatar--button {
     position: absolute;
-    left: 45em;
-    bottom: 17em;
+    left: 15em;
+    bottom: 15em;
   }
 
   .Profilepage-NexusUsername {
@@ -25,15 +30,96 @@
     font-weight: lighter;
     text-align: center;
   }
-  
-  
+
+}  
+
+  //! ============================= Ici breakpoint pour iPhone ============================================
+  @media only screen and (max-width: 765px){
+    .Profilepage-main {
+      height: 100vh;
+      margin-top: 18em;
+      margin-bottom: 3em;
+      
+      
+      .Profilepage-NexusUsername {
+        
+      }
+    
+      .Profilepage-avatar {
+        position: relative;
+    
+      }
+    
+      .Profilepage-avatar--button {
+        position: absolute;
+      }
+    
+      .Profilepage-NexusUsername {
+        
+      }
+    
+    }  
+   }
+
+   //! ============================= Ici breakpoint pour iPhone ============================================
+  @media only screen and (max-width: 750px){
+    .Profilepage-main {
+      height: 100vh;
+      margin-top: 11em;
+      margin-bottom: 3em;
+      
+      
+      .Profilepage-NexusUsername {
+        
+      }
+    
+      .Profilepage-avatar {
+        position: relative;
+    
+      }
+    
+      .Profilepage-avatar--button {
+        position: absolute;
+      }
+    
+      .Profilepage-NexusUsername {
+        
+      }
+    
+    }  
+   }
+
+   //! ============================= Ici breakpoint pour iPhone ============================================
+  @media only screen and (max-width: 450px){
+    .Profilepage-main {
+      height: 100vh;
+      margin-top: 11em;
+      margin-bottom: 3em;
+      
+      
+      .Profilepage-NexusUsername {
+        
+      }
+    
+      .Profilepage-avatar {
+        position: relative;
+        height: 12em;
+        width: 12em;
+        margin-left: 7em;
+        margin-bottom: 1em;
+      }
+    
+      .Profilepage-avatar--button {
+        position: absolute;
+        left: 11em;
+        bottom: 9.5em;
+      }
+    
+      .Profilepage-NexusUsername {
+        
+      }
+    
+    }  
+   }
 
   
-
-  
-
-
-
-
-
-}
