@@ -4,6 +4,7 @@ import {
   CHANGE_CONFIRM_PASSWORD_VALUE,
   CHANGE_EMAIL_VALUE,
   CHANGE_STEAMID_VALUE,
+  EMAIL_ERROR,
 } from '../actions/SigninForm';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   inputConfirmPassword: '',
   inputEmail: '',
   inputSteamId: null,
+  emailError: false,
 };
 
 function signInreducer(state = initialState, action = {}) {
@@ -48,6 +50,12 @@ function signInreducer(state = initialState, action = {}) {
       return {
         ...state,
         inputConfirmPassword: action.value,
+      };
+
+    case EMAIL_ERROR:
+      return {
+        ...state,
+        emailError: true,
       };
 
     default:

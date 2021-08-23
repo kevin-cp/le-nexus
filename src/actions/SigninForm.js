@@ -4,6 +4,7 @@ export const CHANGE_CONFIRM_PASSWORD_VALUE = 'CHANGE_CONFIRM_PASSWORD_VALUE';
 export const CHANGE_EMAIL_VALUE = 'CHANGE_EMAIL_VALUE';
 export const CHANGE_STEAMID_VALUE = 'CHANGE_STEAMID_VALUE';
 export const SUBMIT = 'SUBMIT';
+export const EMAIL_ERROR = 'EMAIL_ERROR';
 
 export const changeUsernameValue = (value) => ({
   type: CHANGE_USERNAME_VALUE,
@@ -32,4 +33,8 @@ export const changeSteamIdValue = (value) => ({
 
 export const submit = () => ({
   type: SUBMIT,
+});
+
+export const emailError = () => ({
+  type: EMAIL_ERROR,
 });

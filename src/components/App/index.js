@@ -17,14 +17,14 @@ const App = () => (
     <div className="app">
       {/* <SignInForm /> */}
       <Nav />
-        <Switch>
-          <Route path="/signin">
-            <SignInForm />
-          </Route>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
-        </Switch>
+      <Switch>
+        <Route path="/signin">
+          <SignInForm />
+        </Route>
+        <Route path="/" exact>
+          <Homepage />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   </Container>

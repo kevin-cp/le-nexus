@@ -21,7 +21,7 @@ const signInMiddleware = (store) => (next) => (action) => {
           email: inputEmail,
           password: inputPassword,
           pseudo: inputUsername,
-          steamId: parseInt(inputSteamId, 10),
+          steamId: inputSteamId,
           isLogged: true,
           steamUsername: 'test',
           steamAvatar: 'test',
