@@ -7,6 +7,7 @@ import { Container } from 'semantic-ui-react';
 import { Switch, Route } from 'react-router-dom';
 import SignInForm from 'src/containers/SignInForm';
 import Contact from 'src/components/Contact';
+import Team from 'src/components/Team';
 
 // == Import
 
@@ -22,8 +23,11 @@ const App = () => (
         <Route path="/signin">
           <SignInForm />
         </Route>
-        <Route>
+        <Route path="/contact" exact>
           <Contact />
+        </Route>
+        <Route path="/team" exact>
+          <Team />
         </Route>
         <Route path="/" exact>
           <Homepage />
