@@ -13,11 +13,10 @@ import LoginForm from 'src/containers/LoginForm';
 import './app.scss';
 
 // == Composant
-const App = () => (
+const App = ( isLogged ) => (
   <Container fluid>
     <div className="app">
       {/* <SignInForm /> */}
-      <Nav />
         <Switch>
           <Route path="/signin">
             <SignInForm />
@@ -25,11 +24,16 @@ const App = () => (
           <Route path="/login">
             <LoginForm />
           </Route>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
+          {isLogged && (
+          <>
+            <Nav />
+            <Route path="/" exact>
+              <Homepage />
+            </Route>
+            <Footer />
+          </>
+          )}
         </Switch>
-      <Footer />
     </div>
   </Container>
 );
