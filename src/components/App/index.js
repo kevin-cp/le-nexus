@@ -17,6 +17,7 @@ const App = ( isLogged ) => (
   <Container fluid>
     <div className="app">
       {/* <SignInForm /> */}
+      <Nav />
         <Switch>
           <Route path="/signin">
             <SignInForm />
@@ -24,16 +25,11 @@ const App = ( isLogged ) => (
           <Route path="/login">
             <LoginForm />
           </Route>
-          {isLogged && (
-          <>
-            <Nav />
             <Route path="/" exact>
               <Homepage />
             </Route>
-            <Footer />
-          </>
-          )}
         </Switch>
+      <Footer />
     </div>
   </Container>
 );

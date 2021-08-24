@@ -12,6 +12,7 @@ export const CHANGE_STEAMAVATAR = "CHANGE_STEAMAVATAR";
 export const CHANGE_STEAMUSERNAME= "CHANGE_STEAMUSERNAME";
 export const CHANGE_VISIBILITY_STATE = "CHANGE_VISIBILITY_STATE";
 export const CHANGE_TOKEN = "CHANGE_TOKEN";
+export const UPDATE_LIBRARY = "UPDATE_LIBRARY";
 
 
 export const changeEmailInput = (newEmail) => ({
@@ -80,5 +81,8 @@ export const changeVisibilityState = (newVisibilityState) => ({
 });
 
 // TODO Libraries
-
+export const updateLibrary = (newLibrary) => ({
+  type: UPDATE_LIBRARY,
+  newLibrary,
+});
 

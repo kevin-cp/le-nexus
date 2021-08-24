@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
   pseudo: state.homepage.pseudo,
   steamUsername: state.homepage.steamUsername,
   steamAvatar: state.homepage.steamAvatar,
+  steamLibrary: state.homepage.library,
 });
 
 // === mapDispatchToProps

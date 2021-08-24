@@ -14,9 +14,12 @@ const moodOptions = [
   { key: 2, text: 'Chill', value: 2, color: 'yellow' },
 ];
 
-const Homepage = ({ pseudo, steamUsername, steamAvatar }) => (
-  // Partie de gauche
-  <div className="Homepage">
+const Homepage = ({ pseudo, steamUsername, steamAvatar, steamLibrary }) => {
+  const size=20;
+  const slicedSteamLibrary = steamLibrary.slice(0, size);
+
+  return (
+    <div className="Homepage">
     <Grid stackable>
       <Grid.Row columns={2}>
         <Grid.Column width={6}>
@@ -42,30 +45,16 @@ const Homepage = ({ pseudo, steamUsername, steamAvatar }) => (
                 </Form.Field>
               </Form>
               <Card.Group itemsPerRow={3}>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
+
+                {slicedSteamLibrary.map((game) => (
+                  <Card>
+                    <Image src={game.game.picture} wrapped />
+                    <Card.Content>
+                      <Card.Header>{game.game.name}</Card.Header>
+                    </Card.Content>
+                  </Card>
+                ))}
+
               </Card.Group>
             </Segment.Group>
             {/* Fin liste des jeux */}
@@ -181,7 +170,8 @@ const Homepage = ({ pseudo, steamUsername, steamAvatar }) => (
       </Grid.Row>
     </Grid>
   </div>
-);
+  )
+}
 
 Homepage.propTypes = {
   pseudo: PropTypes.string.isRequired,

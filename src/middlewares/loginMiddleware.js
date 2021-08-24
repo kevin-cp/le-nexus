@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 import axios from 'axios';
 
-import { SUBMIT_LOGIN, getUserData, GET_USER_DATA, changePseudo, changeSteamId, changeSteamAvatar, changeSteamUsername, changeToken, changeVisibilityState, isLogged } from '../actions/login';
+import { SUBMIT_LOGIN, getUserData, GET_USER_DATA, changePseudo, changeSteamId, changeSteamAvatar, changeSteamUsername, changeToken, changeVisibilityState, isLogged, updateLibrary } from '../actions/login';
 
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
@@ -14,6 +14,8 @@ const loginMiddleware = (store) => (next) => (action) => {
         email,
         password,
       } = store.getState().homepage;
+
+      // let url = `${process.env.REACT_APP_API_URL}/api/login_check`;
 
       axios.post(
         'http://localhost:8000/api/login_check',
@@ -51,9 +53,9 @@ const loginMiddleware = (store) => (next) => (action) => {
         steamId,
       } = store.getState().homepage;
 
-      axios.get(
-        `http://localhost:8000/api/users/${steamId}`,
-      )
+      // let url = `${process.env.REACT_APP_API_URL}/api/users/${steamId}`;
+
+      axios.get(`http://localhost:8000/api/users/${steamId}`)
         .then((response)=> {
           console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
@@ -61,7 +63,9 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(changeSteamAvatar(response.data.steamAvatar));
           store.dispatch(changeSteamUsername(response.data.steamUsername));
           store.dispatch(changeVisibilityState(response.data.visibilityState));
+          store.dispatch(updateLibrary(response.data.libraries));
           store.dispatch(isLogged());
+
           // TODO Redirection une fois logged in
 
         })

@@ -15,6 +15,8 @@ const signInMiddleware = (store) => (next) => (action) => {
         inputSteamId,
       } = store.getState().signInReducer;
 
+      // let url = `${process.env.REACT_APP_API_URL}/api/users`;
+
       axios.post(
         'http://localhost:8000/api/users',
         {

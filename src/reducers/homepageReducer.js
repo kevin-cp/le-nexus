@@ -1,4 +1,4 @@
-import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED } from "../actions/login";
+import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED, UPDATE_LIBRARY } from "../actions/login";
 
 const initialState = {
   // ici l'état initial
@@ -11,6 +11,7 @@ const initialState = {
   visibilityState: true,
   isLogged: false,
   token: null,
+  library: [],
 };
 
 function homepageReducer(state = initialState, action = {}) {
@@ -67,6 +68,12 @@ function homepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         isLogged: true,
+      };
+
+    case UPDATE_LIBRARY:
+      return {
+        ...state,
+        library: action.newLibrary,
       };
 
     case USER_DISCONNECTED:
