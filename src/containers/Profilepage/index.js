@@ -7,6 +7,9 @@ import {
   changeUsernameValue,
   changeEmailValue,
   changeConfirmEmailValue,
+  changeCurrentPasswordValue,
+  changeNewPasswordValue,
+  changeConfirmPasswordValue,
   submit,
 } from 'src/actions/Profilepage';
 
@@ -17,6 +20,10 @@ const mapStateToProps = (state) => ({
   newUsername: state.inputUsername,
   newEmail: state.inputEmail,
   confirmEmail: state.inputConfirmEmail,
+  currentPassword: state.inputCurrentPassword,
+  newPassword: state.inputNewPassword,
+  confirmPassword: state.inputConfirmPassword,
+  usernameError: state.usernameError,
 });
 
 // === mapDispatchToProps
@@ -33,6 +40,18 @@ const mapDispatchToProps = (dispatch) => ({
 
   setConfirmEmail: (newValue) => {
     dispatch(changeConfirmEmailValue(newValue));
+  },
+
+  setCurrentPassword: (newValue) => {
+    dispatch(changeCurrentPasswordValue(newValue));
+  },
+
+  setNewPassword: (newValue) => {
+    dispatch(changeNewPasswordValue(newValue));
+  },
+
+  setConfirmPassword: (newValue) => {
+    dispatch(changeConfirmPasswordValue(newValue));
   },
 
   handleFormSubmit: () => {

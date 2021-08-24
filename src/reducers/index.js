@@ -7,7 +7,7 @@ import homepageReducer from './homepageReducer';
 const rootReducer = combineReducers({
   homepage: homepageReducer,
   signInReducer: signInReducer,
-  profilepageReducer:profilepageReducer,
+  profilepageReducer: profilepageReducer,
 });
 
 export default rootReducer;

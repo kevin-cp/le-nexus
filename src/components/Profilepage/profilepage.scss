@@ -7,6 +7,7 @@
     color: lightgray;
     font-style: oblique;
     padding-top: 0.5em;
+    text-align: center;
   }
 
   .Profilepage-avatar {
@@ -16,21 +17,56 @@
     width: 17em;
     margin-left: 5.5em;
 
+    .Profilepage-avatar--button {
+      position: absolute;
+      left: 15em;
+      bottom: 15em;
+    }
+
   }
 
-  .Profilepage-avatar--button {
-    position: absolute;
-    left: 15em;
-    bottom: 15em;
-  }
+  
 
-  .Profilepage-NexusUsername {
-    color: lightgray;
-    font-style: italic;
-    font-weight: lighter;
-    text-align: center;
-  }
+  .Profilepage-form {
+    
+    .Profilepage-email{
+      
+      .Profilepage-email--input {
+        margin-bottom: 0.7em;
+      }
+    }
 
+    .Profilepage-buttonsgroup {
+
+      .Password-modal {
+        .Password-form {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        height: 20em;
+        justify-content: space-around;
+        align-items: center;
+        
+        .Password-form--input {
+          width: 17em;
+          height: 2em;
+          border-radius: 0.7em;
+          font-size: 1.2em;
+        }
+      
+        .Password-form--button {
+          max-width: 20em;
+          border-radius: 0.7em;
+      
+        }
+      }
+    }
+      }
+
+      
+    
+  }
+  
 }  
 
   //! ============================= Ici breakpoint pour iPhone ============================================

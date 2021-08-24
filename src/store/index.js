@@ -3,11 +3,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from 'src/reducers';
 
 import signInMiddleware from '../middlewares/signInMiddleware';
+import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
 
 // on combine devTools avec les middlewares
 const enhancers = composeWithDevTools(
   applyMiddleware(
     signInMiddleware,
+    profileInfoMiddleware,
     // ... d'autres middlewares
   ),
 );
