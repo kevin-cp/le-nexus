@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 // import de composants semantic-ui
 import { NavLink } from 'react-router-dom';
@@ -17,7 +18,7 @@ import Profile from './Profile';
 import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
 
-const Nav = ({ steamAvatar, pseudo }) => (
+const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
   <Menu fixed='top' stackable id="navbar">
     <Menu.Item>
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
@@ -67,7 +68,7 @@ const Nav = ({ steamAvatar, pseudo }) => (
     <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
-      content={<Profile avatar={steamAvatar} pseudo={pseudo} />}
+      content={<Profile avatar={steamAvatar} pseudo={pseudo} handleDisconnection={handleDisconnection} />}
       on="click"
       offset={[0, 0]}
       // dans trigger: l'avatar qui est affiché et cliquable

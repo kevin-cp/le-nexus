@@ -4,12 +4,12 @@ import { Button, Image } from 'semantic-ui-react';
 
 import './profile.scss';
 
-const Profile = ({ avatar, pseudo }) => (
+const Profile = ({ avatar, pseudo, handleDisconnection }) => (
   <div className="profile-popup">
     <Image className="avatar" src={avatar} avatar />
     <p className="profile-username">{pseudo}</p>
     <a href="#">Editer le profil</a>
-    <Button>Se Déconnecter</Button>
+    <Button onClick={handleDisconnection}>Se Déconnecter</Button>
   </div>
 
 );

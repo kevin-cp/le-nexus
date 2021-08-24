@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from 'src/reducers';
+import loginMiddleware from '../middlewares/loginMiddleware';
 
 import signInMiddleware from '../middlewares/signInMiddleware';
 
@@ -8,6 +9,7 @@ import signInMiddleware from '../middlewares/signInMiddleware';
 const enhancers = composeWithDevTools(
   applyMiddleware(
     signInMiddleware,
+    loginMiddleware,
     // ... d'autres middlewares
   ),
 );

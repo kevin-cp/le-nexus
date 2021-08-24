@@ -15,13 +15,15 @@ const signInMiddleware = (store) => (next) => (action) => {
         inputSteamId,
       } = store.getState().signInReducer;
 
+      // let url = `${process.env.REACT_APP_API_URL}/api/users`;
+
       axios.post(
         'http://localhost:8000/api/users',
         {
           email: inputEmail,
           password: inputPassword,
           pseudo: inputUsername,
-          steamId: parseInt(inputSteamId, 10),
+          steamId: inputSteamId,
           isLogged: true,
           steamUsername: 'test',
           steamAvatar: 'test',

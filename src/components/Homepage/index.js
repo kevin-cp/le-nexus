@@ -1,7 +1,10 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 // semantic ui import
 import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button } from 'semantic-ui-react';
+
+import { Redirect } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
@@ -14,9 +17,36 @@ const moodOptions = [
   { key: 2, text: 'Chill', value: 2, color: 'yellow' },
 ];
 
-const Homepage = ({ pseudo, steamUsername, steamAvatar }) => (
-  // Partie de gauche
-  <div className="Homepage">
+const Homepage = ({ 
+  pseudo,
+  steamUsername,
+  steamAvatar,
+  steamLibrary,
+  gameSearch,
+  searchGame,
+  isLogged,
+}) => {
+  //! De base la librairie affichera les 20 premiers jeux de la liste
+
+  let filteredSteamLibrary = steamLibrary.slice(0, 20);
+
+  //! Sinon la librairie affichera les jeux contenants les caractères de la recherche ET on slice pour limiter les recherches
+  if (gameSearch.length !== 0) {
+    filteredSteamLibrary = steamLibrary.filter((game) => {
+      const inputSearchLowered = gameSearch.toLowerCase();
+      const gameNameLowered = game.game.name.toLowerCase();
+
+      return gameNameLowered.includes(inputSearchLowered);
+    }).slice(0, 20);
+  }
+
+  // Si non connecté, renvoie vers la page de login
+  if (!isLogged) {
+    return <Redirect to="/login" />
+  }
+
+  return (
+    <div className="Homepage">
     <Grid stackable>
       <Grid.Row columns={2}>
         <Grid.Column width={6}>
@@ -38,34 +68,25 @@ const Homepage = ({ pseudo, steamUsername, steamAvatar }) => (
             <Segment.Group className="Homepage-profile--playergames">
               <Form>
                 <Form.Field>
-                  <input id="Homepage-profile--playergames--search" placeholder="Search Games"/>
+                  <input
+                    id="Homepage-profile--playergames--search"
+                    placeholder="Search Games"
+                    value={gameSearch}
+                    onChange={(evt) => {
+                      searchGame(evt.currentTarget.value);
+                    }}
+                  />
                 </Form.Field>
               </Form>
               <Card.Group itemsPerRow={3}>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
-                <Card>
-                  <Image src="http://media.steampowered.com/steamcommunity/public/images/apps/440/07385eb55b5ba974aebbe74d3c99626bda7920b8.jpg" wrapped />
-                  <Card.Content>
-                    <Card.Header>Team Fortress 2</Card.Header>
-                  </Card.Content>
-                </Card>
+                {filteredSteamLibrary.map((game) => (
+                  <Card key={game.game.id}>
+                    <Image src={game.game.picture} wrapped />
+                    <Card.Content>
+                      <Card.Header>{game.game.name}</Card.Header>
+                    </Card.Content>
+                  </Card>
+                ))}
               </Card.Group>
             </Segment.Group>
             {/* Fin liste des jeux */}
@@ -181,7 +202,8 @@ const Homepage = ({ pseudo, steamUsername, steamAvatar }) => (
       </Grid.Row>
     </Grid>
   </div>
-);
+  )
+}
 
 Homepage.propTypes = {
   pseudo: PropTypes.string.isRequired,

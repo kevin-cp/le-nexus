@@ -6,26 +6,34 @@ import Footer from 'src/components/Footer';
 import { Container } from 'semantic-ui-react';
 import { Switch, Route } from 'react-router-dom';
 import SignInForm from 'src/containers/SignInForm';
+import LoginForm from 'src/containers/LoginForm';
 
 // == Import
 
 import './app.scss';
 
 // == Composant
-const App = () => (
+const App = ( isLogged ) => (
   <Container fluid>
     <div className="app">
       {/* <SignInForm /> */}
-      <Nav />
         <Switch>
           <Route path="/signin">
             <SignInForm />
           </Route>
-          <Route path="/" exact>
-            <Homepage />
+          <Route path="/login">
+            <LoginForm />
           </Route>
+          {isLogged && (
+            <>
+              <Nav />
+              <Route path="/" exact>
+                <Homepage />
+              </Route>
+              <Footer />
+            </>
+          )}
         </Switch>
-      <Footer />
     </div>
   </Container>
 );

@@ -20,3 +20,14 @@
   “receivedRequests”: [],
   “friends”: []
 }
+
+
+json login: 
+endpoint: http://localhost:8000/api/login_check
+{
+    "username": "test5@test.com",
+    "password": "pass5"
+}
+
+token à stocker
+console.log token
