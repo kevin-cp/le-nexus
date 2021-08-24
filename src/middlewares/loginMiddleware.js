@@ -65,9 +65,6 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(changeVisibilityState(response.data.visibilityState));
           store.dispatch(updateLibrary(response.data.libraries));
           store.dispatch(isLogged());
-
-          // TODO Redirection une fois logged in
-          store.dispatch(loginSuccessfull());
         })
         .catch((error) =>{
           console.log(error);
