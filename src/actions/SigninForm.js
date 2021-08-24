@@ -8,6 +8,8 @@ export const PASSWORD_ERROR = 'PASSWORD_ERROR';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
 export const USERNAME_ERROR = 'USERNAME_ERROR';
 export const STEAM_ID_ERROR = 'STEAM_ID_ERROR';
+export const IS_CHECKED = 'IS_CHECKED';
+export const TOGGLE_PASSWORD_ERROR = 'TOGGLE_PASSWORD_ERROR';
 
 export const changeUsernameValue = (value) => ({
   type: CHANGE_USERNAME_VALUE,
@@ -52,4 +54,12 @@ export const usernameError = () => ({
 
 export const steamIdError = () => ({
   type: STEAM_ID_ERROR,
+});
+
+export const isChecked = () => ({
+  type: IS_CHECKED,
+});
+
+export const togglePasswordError = () => ({
+  type: TOGGLE_PASSWORD_ERROR,
 });

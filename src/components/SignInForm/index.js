@@ -33,12 +33,16 @@ const SignInForm = ({
   emailError,
   usernameError,
   steamIdError,
+  isChecked,
+  handleIsChecked,
+  togglePasswordError,
 }) => {
   // dans le handleSubmit je fais une comparaison de mot de passe
   // si le mdp et la confirmation sont différents on aura un message sinon c'est ok
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    if (password === confirmPassword) {
+    if (password === confirmPassword && isChecked === true) {
+      togglePasswordError();
       handleFormSubmit();
     }
     else {
@@ -152,8 +156,13 @@ const SignInForm = ({
             </p>
           </Message>
           <Form.Field required>
-            <Checkbox required label="J'accepte les CGU" />
+            <Checkbox onClick={handleIsChecked} required label="J'accepte les CGU" />
           </Form.Field>
+          {!isChecked && (
+            <Message negative>
+              <Message.Header>Veuillez cocher les conditions</Message.Header>
+            </Message>
+          )}
           <Button className="button-submit" type="submit">Confirmer</Button>
           <Button className="button-cancel">Annuler</Button>
         </Form>

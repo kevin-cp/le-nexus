@@ -8,6 +8,10 @@ import {
   EMAIL_ERROR,
   USERNAME_ERROR,
   STEAM_ID_ERROR,
+  IS_CHECKED,
+  isChecked,
+  TOGGLE_PASSWORD_ERROR,
+  passwordError,
 } from '../actions/SigninForm';
 
 const initialState = {
@@ -21,6 +25,7 @@ const initialState = {
   usernameError: false,
   emailError: false,
   steamIdError: false,
+  isChecked: false,
 };
 
 function signInreducer(state = initialState, action = {}) {
@@ -80,6 +85,18 @@ function signInreducer(state = initialState, action = {}) {
       return {
         ...state,
         steamIdError: true,
+      };
+
+    case IS_CHECKED:
+      return {
+        ...state,
+        isChecked: true,
+      };
+
+    case TOGGLE_PASSWORD_ERROR:
+      return {
+        ...state,
+        passwordError: !passwordError,
       };
 
     default:

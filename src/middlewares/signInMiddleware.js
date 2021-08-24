@@ -44,6 +44,11 @@ const signInMiddleware = (store) => (next) => (action) => {
             store.dispatch(newAction);
           }
 
+          if (!error.response.data.errors.detail.includes('pseudo')) {
+            const newAction = usernameError(!true);
+            store.dispatch(newAction);
+          }
+
           if (error.response.data.errors.detail.includes('email')) {
             const newAction = emailError(true);
             store.dispatch(newAction);
