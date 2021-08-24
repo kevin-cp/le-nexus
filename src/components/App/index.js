@@ -1,6 +1,8 @@
 // == Import npm
 import React from 'react';
 import Homepage from 'src/containers/Homepage';
+import Profilepage from 'src/containers/Profilepage';
+import Eventpage from 'src/components/Eventpage';
 import Nav from 'src/containers/Nav';
 import Footer from 'src/components/Footer';
 import { Container } from 'semantic-ui-react';
@@ -17,6 +19,7 @@ const App = ( isLogged ) => (
   <Container fluid>
     <div className="app">
       {/* <SignInForm /> */}
+<<<<<<< HEAD
         <Switch>
           <Route path="/signin">
             <SignInForm />
@@ -34,6 +37,24 @@ const App = ( isLogged ) => (
             </>
           )}
         </Switch>
+=======
+      <Nav />
+      <Switch>
+        <Route path="/events">
+          <Eventpage />
+        </Route>
+        <Route path="/profile">
+          <Profilepage />
+        </Route>
+        <Route path="/signin">
+          <SignInForm />
+        </Route>
+        <Route path="/" exact>
+          <Homepage />
+        </Route>
+      </Switch>
+      <Footer />
+>>>>>>> origin/Armand-Profilepage-updated
     </div>
   </Container>
 );

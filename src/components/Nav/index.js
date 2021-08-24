@@ -18,8 +18,13 @@ import Profile from './Profile';
 import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
 
+<<<<<<< HEAD
 const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
   <Menu fixed='top' stackable id="navbar">
+=======
+const Nav = ({ steamAvatar, pseudo }) => (
+  <Menu fixed="top" stackable id="navbar">
+>>>>>>> origin/Armand-Profilepage-updated
     <Menu.Item>
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
     </Menu.Item>

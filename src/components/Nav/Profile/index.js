@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Image } from 'semantic-ui-react';
-
+import { NavLink } from 'react-router-dom';
 
 import './profile.scss';
 
