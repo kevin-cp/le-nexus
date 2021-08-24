@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-import { SUBMIT } from '../actions/SigninForm';
+import {
+  SUBMIT,
+  usernameError,
+  emailError,
+  steamIdError,
+} from '../actions/SigninForm';
 
 const signInMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
@@ -34,7 +39,27 @@ const signInMiddleware = (store) => (next) => (action) => {
           console.log(response);
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data.errors);
+
+          if (error.response.data.errors.detail.includes('pseudo')) {
+            const newAction = usernameError(true);
+            store.dispatch(newAction);
+          }
+
+          if (!error.response.data.errors.detail.includes('pseudo')) {
+            const newAction = usernameError(!true);
+            store.dispatch(newAction);
+          }
+
+          if (error.response.data.errors.detail.includes('email')) {
+            const newAction = emailError(true);
+            store.dispatch(newAction);
+          }
+
+          if (error.response.data.errors.detail.includes('steamId')) {
+            const newAction = steamIdError(true);
+            store.dispatch(newAction);
+          }
         });
       break;
     }

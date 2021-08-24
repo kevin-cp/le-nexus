@@ -4,6 +4,14 @@ import {
   CHANGE_CONFIRM_PASSWORD_VALUE,
   CHANGE_EMAIL_VALUE,
   CHANGE_STEAMID_VALUE,
+  PASSWORD_ERROR,
+  EMAIL_ERROR,
+  USERNAME_ERROR,
+  STEAM_ID_ERROR,
+  IS_CHECKED,
+  isChecked,
+  TOGGLE_PASSWORD_ERROR,
+  passwordError,
 } from '../actions/SigninForm';
 
 const initialState = {
@@ -13,6 +21,11 @@ const initialState = {
   inputConfirmPassword: '',
   inputEmail: '',
   inputSteamId: null,
+  passwordError: false,
+  usernameError: false,
+  emailError: false,
+  steamIdError: false,
+  isChecked: false,
 };
 
 function signInreducer(state = initialState, action = {}) {
@@ -48,6 +61,42 @@ function signInreducer(state = initialState, action = {}) {
       return {
         ...state,
         inputConfirmPassword: action.value,
+      };
+
+    case PASSWORD_ERROR:
+      return {
+        ...state,
+        passwordError: true,
+      };
+
+    case EMAIL_ERROR:
+      return {
+        ...state,
+        emailError: true,
+      };
+
+    case USERNAME_ERROR:
+      return {
+        ...state,
+        usernameError: true,
+      };
+
+    case STEAM_ID_ERROR:
+      return {
+        ...state,
+        steamIdError: true,
+      };
+
+    case IS_CHECKED:
+      return {
+        ...state,
+        isChecked: true,
+      };
+
+    case TOGGLE_PASSWORD_ERROR:
+      return {
+        ...state,
+        passwordError: !passwordError,
       };
 
     default:

@@ -1,13 +1,23 @@
 import React from 'react';
+// import de composants semantic-ui
+import { NavLink } from 'react-router-dom';
 import './footer.scss';
 
 const Footer = () => (
   <footer className="footer">
     <ul className="footer-list">
-      <li className="footer-list-item"><a>CGU</a></li>
-      <li className="footer-list-item"><a>L'équipe</a></li>
-      <li className="footer-list-item"><a>Contact</a></li>
-      <li className="footer-list-item"><a>FAQ</a></li>
+      <NavLink to="">
+        <li className="footer-list-item">CGU</li>
+      </NavLink>
+      <NavLink to="/team">
+        <li className="footer-list-item">L'équipe</li>
+      </NavLink>
+      <NavLink to="/contact" exact>
+        <li className="footer-list-item">Contact</li>
+      </NavLink>
+      <NavLink to="">
+        <li className="footer-list-item">FAQ</li>
+      </NavLink>
     </ul>
   </footer>
 );

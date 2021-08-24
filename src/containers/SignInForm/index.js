@@ -10,6 +10,9 @@ import {
   changeEmailValue,
   changeSteamIdValue,
   submit,
+  passwordError,
+  isChecked,
+  togglePasswordError,
 } from '../../actions/SigninForm';
 
 // === mapStateToProps
@@ -21,6 +24,11 @@ const mapStateToProps = (state) => ({
   confirmPassword: state.signInReducer.inputConfirmPassword,
   email: state.signInReducer.inputEmail,
   steamid: state.signInReducer.inputSteamId,
+  passwordError: state.signInReducer.passwordError,
+  emailError: state.signInReducer.emailError,
+  usernameError: state.signInReducer.usernameError,
+  steamIdError: state.signInReducer.steamIdError,
+  isChecked: state.signInReducer.isChecked,
 });
 
 // === mapDispatchToProps
@@ -49,6 +57,18 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleFormSubmit: () => {
     dispatch(submit());
+  },
+
+  handlePasswordError: () => {
+    dispatch(passwordError());
+  },
+
+  handleIsChecked: () => {
+    dispatch(isChecked());
+  },
+
+  togglePasswordError: () => {
+    dispatch(togglePasswordError());
   },
 });
 
