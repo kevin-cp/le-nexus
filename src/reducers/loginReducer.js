@@ -3,7 +3,6 @@ import { loginError, LOGIN_ERROR, LOGIN_SUCCESSFULL } from "../actions/login";
 const initialState = {
   // ici l'état initial
   loginError: false,
-  loginSuccessfull: false,
 };
 
 function loginReducer(state = initialState, action = {}) {
@@ -12,12 +11,6 @@ function loginReducer(state = initialState, action = {}) {
       return {
         ...state,
         loginError: true,
-      };
-
-    case LOGIN_SUCCESSFULL:
-      return {
-        ...state,
-        loginSuccessfull: true,
       };
 
     default:

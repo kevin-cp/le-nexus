@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   steamAvatar: state.homepage.steamAvatar,
   steamLibrary: state.homepage.library,
   gameSearch: state.homepage.gameSearch,
+  isLogged: state.homepage.isLogged,
 });
 
 // === mapDispatchToProps

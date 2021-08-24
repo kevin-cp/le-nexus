@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
   email: state.homepage.email,
   password: state.homepage.password,
   loginError: state.login.loginError,
-  loginSuccessfull: state.login.loginSuccessfull,
+  isLogged: state.homepage.isLogged,
 });
 
 // === mapDispatchToProps

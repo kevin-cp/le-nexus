@@ -9,7 +9,14 @@ import NexusLogo from 'src/assets/images/Nexus-logo-big-black.PNG';
 
 
 
-const LoginForm = ({ email, password, setEmail, setPassword, handleLogin, loginError, loginSuccessfull }) => {
+const LoginForm = ({ email,
+  password,
+  setEmail,
+  setPassword,
+  handleLogin,
+  loginError,
+  isLogged
+}) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -17,7 +24,7 @@ const LoginForm = ({ email, password, setEmail, setPassword, handleLogin, loginE
   };
 
   // SI login correct, donc changement state pour loginsuccessfull alors on redirige vers page principale
-if (loginSuccessfull) {
+if (isLogged) {
   return <Redirect to="/" />;
 }
 

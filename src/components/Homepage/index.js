@@ -4,6 +4,8 @@ import React from 'react';
 // semantic ui import
 import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button } from 'semantic-ui-react';
 
+import { Redirect } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 import Avatar from './intel.jpg';
@@ -22,6 +24,7 @@ const Homepage = ({
   steamLibrary,
   gameSearch,
   searchGame,
+  isLogged,
 }) => {
   //! De base la librairie affichera les 20 premiers jeux de la liste
 
@@ -35,6 +38,11 @@ const Homepage = ({
 
       return gameNameLowered.includes(inputSearchLowered);
     }).slice(0, 20);
+  }
+
+  // Si non connecté, renvoie vers la page de login
+  if (!isLogged) {
+    return <Redirect to="/login" />
   }
 
   return (
@@ -71,16 +79,14 @@ const Homepage = ({
                 </Form.Field>
               </Form>
               <Card.Group itemsPerRow={3}>
-
                 {filteredSteamLibrary.map((game) => (
-                  <Card>
+                  <Card key={game.game.id}>
                     <Image src={game.game.picture} wrapped />
                     <Card.Content>
                       <Card.Header>{game.game.name}</Card.Header>
                     </Card.Content>
                   </Card>
                 ))}
-
               </Card.Group>
             </Segment.Group>
             {/* Fin liste des jeux */}
