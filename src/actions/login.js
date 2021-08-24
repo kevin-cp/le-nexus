@@ -4,6 +4,8 @@ export const SUBMIT_LOGIN = "SUBMIT_LOGIN";
 export const GET_USER_DATA= "GET_USER_DATA";
 export const IS_LOGGED = "USER_LOGGED";
 export const USER_DISCONNECTED = "USER_DISCONNECTED";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+export const LOGIN_SUCCESSFULL = "LOGIN_SUCCESSFULL";
 
 // state modification
 export const CHANGE_PSEUDO = "CHANGE_PSEUDO";
@@ -36,6 +38,14 @@ export const getUserData = () => ({
 
 export const userDisconnected = () => ({
   type: USER_DISCONNECTED,
+});
+
+export const loginError = () => ({
+  type: LOGIN_ERROR,
+});
+
+export const loginSuccessfull = () => ({
+  type: LOGIN_SUCCESSFULL,
 });
 
 

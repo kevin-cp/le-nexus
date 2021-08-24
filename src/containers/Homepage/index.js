@@ -25,5 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+
+
 // === création de l'assistant
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

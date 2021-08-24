@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 // semantic ui import
@@ -26,7 +27,7 @@ const Homepage = ({
 
   let filteredSteamLibrary = steamLibrary.slice(0, 20);
 
-  //! Sinon la librairie affichera les jeux contenants les caractères de la recherche
+  //! Sinon la librairie affichera les jeux contenants les caractères de la recherche ET on slice pour limiter les recherches
   if (gameSearch.length !== 0) {
     filteredSteamLibrary = steamLibrary.filter((game) => {
       const inputSearchLowered = gameSearch.toLowerCase();

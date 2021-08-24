@@ -10,6 +10,8 @@ const mapStateToProps = (state) => ({
   // nom de la prop à remplir: élément à récupérer dans le state
   email: state.homepage.email,
   password: state.homepage.password,
+  loginError: state.login.loginError,
+  loginSuccessfull: state.login.loginSuccessfull,
 });
 
 // === mapDispatchToProps
