@@ -28,8 +28,11 @@ const SignInForm = ({
   setEmail,
   setSteamId,
   handleFormSubmit,
+  passwordError,
+  handlePasswordError,
   emailError,
-  handleEmailError,
+  usernameError,
+  steamIdError,
 }) => {
   // dans le handleSubmit je fais une comparaison de mot de passe
   // si le mdp et la confirmation sont différents on aura un message sinon c'est ok
@@ -39,7 +42,7 @@ const SignInForm = ({
       handleFormSubmit();
     }
     else {
-      handleEmailError();
+      handlePasswordError();
     }
   };
 
@@ -62,6 +65,12 @@ const SignInForm = ({
               }}
             />
           </Form.Field>
+          {/* Message qui s'affiche uniquement si le pseudo est déjà existant */}
+          {usernameError && (
+            <Message negative>
+              <Message.Header>Pseudo déjà existant</Message.Header>
+            </Message>
+          )}
           <Form.Field>
             <label>e-mail</label>
             <input
@@ -75,6 +84,12 @@ const SignInForm = ({
               }}
             />
           </Form.Field>
+          {/* Message qui s'affiche uniquement si l'email est déjà existant */}
+          {emailError && (
+            <Message negative>
+              <Message.Header>E-mail déjà existant</Message.Header>
+            </Message>
+          )}
           <Form.Field>
             <label>Mot de passe</label>
             <input
@@ -102,7 +117,7 @@ const SignInForm = ({
             />
           </Form.Field>
           {/* Message qui s'affiche uniquement si un des deux mots de passes sont erronés */}
-          {emailError && (
+          {passwordError && (
           <Message negative>
             <Message.Header>Les mots de passe doivent être identiques</Message.Header>
           </Message>
@@ -120,6 +135,12 @@ const SignInForm = ({
               }}
             />
           </Form.Field>
+          {/* Message qui s'affiche uniquement si le steamId est déjà existant */}
+          {steamIdError && (
+            <Message negative>
+              <Message.Header>SteamId déjà existant ou invalide</Message.Header>
+            </Message>
+          )}
           {/* message explicatif pour la récupératuion d'id */}
           <Message info>
             <Message.Header>Pourquoi nous demandons ton ID Steam ?</Message.Header>
@@ -145,16 +166,20 @@ SignInForm.propTypes = {
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  SteamId: PropTypes.number.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  SteamId: PropTypes.number,
   setUsername: PropTypes.func.isRequired,
   setPassword: PropTypes.func.isRequired,
   setEmail: PropTypes.func.isRequired,
   setSteamId: PropTypes.func.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
-  confirmPassword: PropTypes.func.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
   setConfirmPassword: PropTypes.func.isRequired,
   emailError: PropTypes.bool.isRequired,
-  handleEmailError: PropTypes.func.isRequired,
+  handlePasswordError: PropTypes.func.isRequired,
+  usernameError: PropTypes.bool.isRequired,
+  passwordError: PropTypes.bool.isRequired,
+  steamIdError: PropTypes.bool.isRequired,
 };
 
 export default SignInForm;

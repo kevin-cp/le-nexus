@@ -10,7 +10,7 @@ import {
   changeEmailValue,
   changeSteamIdValue,
   submit,
-  emailError,
+  passwordError,
 } from '../../actions/SigninForm';
 
 // === mapStateToProps
@@ -22,8 +22,10 @@ const mapStateToProps = (state) => ({
   confirmPassword: state.signInReducer.inputConfirmPassword,
   email: state.signInReducer.inputEmail,
   steamid: state.signInReducer.inputSteamId,
-  errorPassword: state.signInReducer.errorPassword,
+  passwordError: state.signInReducer.passwordError,
   emailError: state.signInReducer.emailError,
+  usernameError: state.signInReducer.usernameError,
+  steamIdError: state.signInReducer.steamIdError,
 });
 
 // === mapDispatchToProps
@@ -54,8 +56,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(submit());
   },
 
-  handleEmailError: () => {
-    dispatch(emailError());
+  handlePasswordError: () => {
+    dispatch(passwordError());
   },
 });
 
