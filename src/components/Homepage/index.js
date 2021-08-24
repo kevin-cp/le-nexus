@@ -14,9 +14,27 @@ const moodOptions = [
   { key: 2, text: 'Chill', value: 2, color: 'yellow' },
 ];
 
-const Homepage = ({ pseudo, steamUsername, steamAvatar, steamLibrary }) => {
-  const size=20;
-  const slicedSteamLibrary = steamLibrary.slice(0, size);
+const Homepage = ({ 
+  pseudo,
+  steamUsername,
+  steamAvatar,
+  steamLibrary,
+  gameSearch,
+  searchGame,
+}) => {
+  //! De base la librairie affichera les 20 premiers jeux de la liste
+
+  let filteredSteamLibrary = steamLibrary.slice(0, 20);
+
+  //! Sinon la librairie affichera les jeux contenants les caractères de la recherche
+  if (gameSearch.length !== 0) {
+    filteredSteamLibrary = steamLibrary.filter((game) => {
+      const inputSearchLowered = gameSearch.toLowerCase();
+      const gameNameLowered = game.game.name.toLowerCase();
+
+      return gameNameLowered.includes(inputSearchLowered);
+    }).slice(0, 20);
+  }
 
   return (
     <div className="Homepage">
@@ -41,12 +59,19 @@ const Homepage = ({ pseudo, steamUsername, steamAvatar, steamLibrary }) => {
             <Segment.Group className="Homepage-profile--playergames">
               <Form>
                 <Form.Field>
-                  <input id="Homepage-profile--playergames--search" placeholder="Search Games"/>
+                  <input
+                    id="Homepage-profile--playergames--search"
+                    placeholder="Search Games"
+                    value={gameSearch}
+                    onChange={(evt) => {
+                      searchGame(evt.currentTarget.value);
+                    }}
+                  />
                 </Form.Field>
               </Form>
               <Card.Group itemsPerRow={3}>
 
-                {slicedSteamLibrary.map((game) => (
+                {filteredSteamLibrary.map((game) => (
                   <Card>
                     <Image src={game.game.picture} wrapped />
                     <Card.Content>

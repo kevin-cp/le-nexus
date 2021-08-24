@@ -1,3 +1,4 @@
+import { CHANGE_GAMESEARCH_INPUT } from 'src/actions/homepage';
 import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED, UPDATE_LIBRARY } from "../actions/login";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   isLogged: false,
   token: null,
   library: [],
+  gameSearch: '',
 };
 
 function homepageReducer(state = initialState, action = {}) {
@@ -27,6 +29,12 @@ function homepageReducer(state = initialState, action = {}) {
         ...state,
         password: action.newPassword,
       };
+
+    case CHANGE_GAMESEARCH_INPUT:
+      return {
+        ...state,
+        gameSearch: action.newSearch,
+      }
 
     case CHANGE_PSEUDO:
       return {
