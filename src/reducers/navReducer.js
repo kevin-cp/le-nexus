@@ -14,6 +14,7 @@ function navReducer(state = initialState, action = {}) {
         ...state,
         inputSearch: action.value,
       };
+
     default:
       return state;
   }

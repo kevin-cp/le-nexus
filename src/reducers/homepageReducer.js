@@ -1,5 +1,19 @@
 import { CHANGE_GAMESEARCH_INPUT } from 'src/actions/homepage';
-import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED, UPDATE_LIBRARY } from "../actions/login";
+import {
+
+  CHANGE_EMAIL_INPUT,
+  CHANGE_PASSWORD_INPUT,
+  CHANGE_PSEUDO,
+  CHANGE_STEAMAVATAR,
+  CHANGE_STEAMUSERNAME,
+  CHANGE_STEAMID,
+  CHANGE_TOKEN,
+  CHANGE_VISIBILITY_STATE,
+  IS_LOGGED,
+  USER_DISCONNECTED,
+  UPDATE_LIBRARY,
+  UPDATE_USER_LIST,
+} from '../actions/login';
 
 const initialState = {
   // ici l'état initial
@@ -14,11 +28,13 @@ const initialState = {
   token: null,
   library: [],
   gameSearch: '',
+  userList: [],
 };
 
 function homepageReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case CHANGE_EMAIL_INPUT:
+    case
+      CHANGE_EMAIL_INPUT:
       return {
         ...state,
         email: action.newEmail,
@@ -82,6 +98,12 @@ function homepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         library: action.newLibrary,
+      };
+
+    case UPDATE_USER_LIST:
+      return {
+        ...state,
+        userList: action.newList,
       };
 
     case USER_DISCONNECTED:

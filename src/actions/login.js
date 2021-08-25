@@ -1,21 +1,21 @@
-export const CHANGE_EMAIL_INPUT = "CHANGE_EMAIL_INPUT";
-export const CHANGE_PASSWORD_INPUT = "CHANGE_PASSWORD_INPUT";
-export const SUBMIT_LOGIN = "SUBMIT_LOGIN";
-export const GET_USER_DATA= "GET_USER_DATA";
-export const IS_LOGGED = "USER_LOGGED";
-export const USER_DISCONNECTED = "USER_DISCONNECTED";
-export const LOGIN_ERROR = "LOGIN_ERROR";
-export const LOGIN_SUCCESSFULL = "LOGIN_SUCCESSFULL";
+export const CHANGE_EMAIL_INPUT = 'CHANGE_EMAIL_INPUT';
+export const CHANGE_PASSWORD_INPUT = 'CHANGE_PASSWORD_INPUT';
+export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
+export const GET_USER_DATA = 'GET_USER_DATA';
+export const IS_LOGGED = 'USER_LOGGED';
+export const USER_DISCONNECTED = 'USER_DISCONNECTED';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_SUCCESSFULL = 'LOGIN_SUCCESSFULL';
 
 // state modification
-export const CHANGE_PSEUDO = "CHANGE_PSEUDO";
-export const CHANGE_STEAMID = "CHANGE_STEAMID";
-export const CHANGE_STEAMAVATAR = "CHANGE_STEAMAVATAR";
-export const CHANGE_STEAMUSERNAME= "CHANGE_STEAMUSERNAME";
-export const CHANGE_VISIBILITY_STATE = "CHANGE_VISIBILITY_STATE";
-export const CHANGE_TOKEN = "CHANGE_TOKEN";
-export const UPDATE_LIBRARY = "UPDATE_LIBRARY";
-
+export const CHANGE_PSEUDO = 'CHANGE_PSEUDO';
+export const CHANGE_STEAMID = 'CHANGE_STEAMID';
+export const CHANGE_STEAMAVATAR = 'CHANGE_STEAMAVATAR';
+export const CHANGE_STEAMUSERNAME = 'CHANGE_STEAMUSERNAME';
+export const CHANGE_VISIBILITY_STATE = 'CHANGE_VISIBILITY_STATE';
+export const CHANGE_TOKEN = 'CHANGE_TOKEN';
+export const UPDATE_LIBRARY = 'UPDATE_LIBRARY';
+export const UPDATE_USER_LIST = 'UPDATE_USER_LIST';
 
 export const changeEmailInput = (newEmail) => ({
   type: CHANGE_EMAIL_INPUT,
@@ -35,7 +35,6 @@ export const getUserData = () => ({
   type: GET_USER_DATA,
 });
 
-
 export const userDisconnected = () => ({
   type: USER_DISCONNECTED,
 });
@@ -48,8 +47,7 @@ export const loginSuccessfull = () => ({
   type: LOGIN_SUCCESSFULL,
 });
 
-
-// ! ========================================CHANGEMENT STATE HOMEPAGE===================================================
+// ! =================================CHANGEMENT STATE HOMEPAGE====================================
 
 // Pseudo
 export const changePseudo = (newPseudo) => ({
@@ -96,3 +94,7 @@ export const updateLibrary = (newLibrary) => ({
   newLibrary,
 });
 
+export const updateUserList = (newList) => ({
+  type: UPDATE_USER_LIST,
+  newList,
+});

@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
   steamLibrary: state.homepage.library,
   gameSearch: state.homepage.gameSearch,
   isLogged: state.homepage.isLogged,
+  userList: state.homepage.userList,
 });
 
 // === mapDispatchToProps

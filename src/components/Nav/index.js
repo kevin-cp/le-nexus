@@ -7,9 +7,9 @@ import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
 import {
   Menu,
-  Search,
   Image,
   Popup,
+  Search,
 } from 'semantic-ui-react';
 
 import PropTypes from 'prop-types';
@@ -18,7 +18,7 @@ import Profile from './Profile';
 import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
 
-const Nav = ({ steamAvatar, pseudo, handleDisconnection, inputSearch, setInputSearch }) => (
+const Nav = ({ steamAvatar, pseudo, handleDisconnection, inputSearch, setInputSearch, userList }) => (
   <Menu fixed='top' stackable id="navbar">
     <Menu.Item>
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
@@ -31,8 +31,6 @@ const Nav = ({ steamAvatar, pseudo, handleDisconnection, inputSearch, setInputSe
       onSearchChange={(event) => {
         setInputSearch(event.currentTarget.value);
       }}
-      results='t'
-      onResultSelect='title'
     />
     <NavLink
       to="/"
