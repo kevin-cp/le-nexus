@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
 import { userDisconnected } from 'src/actions/login';
-
 // on importe le composant de présentation
 import Nav from 'src/components/Nav';
+import { changeSearchValue } from '../../actions/nav';
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
   // nom de la prop à remplir: élément à récupérer dans le state
   steamAvatar: state.homepage.steamAvatar,
   pseudo: state.homepage.pseudo,
+  inputSearch: state.navReducer.inputSearch,
 });
 
 // === mapDispatchToProps
@@ -19,6 +20,10 @@ const mapDispatchToProps = (dispatch) => ({
   // nom de la prop à remplir: fonction qui dispatch l'action
   handleDisconnection: () => {
     dispatch(userDisconnected());
+  },
+
+  setInputSearch: (newValue) => {
+    dispatch(changeSearchValue(newValue));
   },
 });
 

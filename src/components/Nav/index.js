@@ -7,7 +7,7 @@ import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
 import {
   Menu,
-  Input,
+  Search,
   Image,
   Popup,
 } from 'semantic-ui-react';
@@ -18,12 +18,22 @@ import Profile from './Profile';
 import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
 
-const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
+const Nav = ({ steamAvatar, pseudo, handleDisconnection, inputSearch, setInputSearch }) => (
   <Menu fixed='top' stackable id="navbar">
     <Menu.Item>
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
     </Menu.Item>
-    <Input placeholder="Search Friends" icon="search" className="nav-search" />
+    <Search
+      placeholder="Search Friends"
+      icon="search"
+      className="nav-search"
+      value={inputSearch}
+      onSearchChange={(event) => {
+        setInputSearch(event.currentTarget.value);
+      }}
+      results='t'
+      onResultSelect='title'
+    />
     <NavLink
       to="/"
       exact
@@ -45,7 +55,7 @@ const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
         Evenements
       </Menu.Item>
     </NavLink>
-    <NavLink
+    {/* <NavLink
       to="/signin"
     >
       <Menu.Item
@@ -64,7 +74,7 @@ const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
       >
         Login
       </Menu.Item>
-    </NavLink>
+    </NavLink> */}
     <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
