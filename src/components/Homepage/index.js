@@ -2,7 +2,7 @@
 import React from 'react';
 
 // semantic ui import
-import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button } from 'semantic-ui-react';
+import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button, Icon } from 'semantic-ui-react';
 
 import { Redirect } from 'react-router-dom';
 
@@ -41,6 +41,9 @@ const Homepage = ({
     }).slice(0, 20);
   }
 
+  const handleGameClick = () => {
+    console.log('click');
+  }
   // Si non connecté, renvoie vers la page de login
   if (!isLogged) {
     return <Redirect to="/login" />
@@ -57,7 +60,7 @@ const Homepage = ({
               <Header className="Homepage-profile--playerinfo--username" as="h2" textAlign="center">{pseudo}</Header>
               <Image id="user-avatar" src={steamAvatar} size="small" floated="left" rounded />
               <Segment basic className='Homepage-profile--playerinfo--steamInfo'>
-                <div>Pseudo Steam: {steamUsername}</div>
+                <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
                 <div>Status: Online </div>
                 <div className='Homepage-profile--playerinfo--mood'>Humeur
                   <Dropdown clearable options={moodOptions} floating selection />
@@ -81,7 +84,7 @@ const Homepage = ({
               </Form>
               <Card.Group itemsPerRow={3}>
                 {filteredSteamLibrary.map((game) => (
-                  <Card key={game.game.id}>
+                  <Card key={game.game.id} onClick={handleGameClick}>
                     <Image src={game.game.picture} wrapped />
                     <Card.Content>
                       <Card.Header>{game.game.name}</Card.Header>
@@ -111,7 +114,7 @@ const Homepage = ({
                       src={friend.steamAvatar}
                     />
                     <Card.Header className="friendCard-nexusTag">{friend.pseudo}</Card.Header>
-                    <Card.Meta className="friendCard-steamTag">{friend.steamUsername}</Card.Meta>
+                    <Card.Meta className="friendCard-steamTag"><Icon name="steam" color="black" /> : {friend.steamUsername}</Card.Meta>
                     <Card.Meta className="friendCard-currentMood"> Mood séléctionné</Card.Meta>
                     <Button className="friendCard-button">
                       Proposer une partie
