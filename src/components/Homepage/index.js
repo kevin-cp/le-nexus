@@ -24,6 +24,7 @@ const Homepage = ({
   steamLibrary,
   gameSearch,
   searchGame,
+  friendsList,
   isLogged,
 }) => {
   //! De base la librairie affichera les 20 premiers jeux de la liste
@@ -100,102 +101,24 @@ const Homepage = ({
           <div className="homepage-friendCardsList">
             <Header className="friendCardsList-header" as="h2" textAlign="center" content="Amis possédants ce jeu : " />
             <Card.Group stackable itemsPerRow={3}>
-                <Card className="friendCard-element">
+              {friendsList.map((friend) => (
+                <Card className="friendCard-element" key={friend.id}>
                   <Card.Content>
                     <Image
                       className="friendCard-picture"
                       floated="left"
                       size="tiny"
-                      src={Avatar}
+                      src={friend.steamAvatar}
                     />
-                    <Card.Header className="friendCard-nexusTag">Nexus gamer tag</Card.Header>
-                    <Card.Meta className="friendCard-steamTag">Steam gamer tag</Card.Meta>
+                    <Card.Header className="friendCard-nexusTag">{friend.pseudo}</Card.Header>
+                    <Card.Meta className="friendCard-steamTag">{friend.steamUsername}</Card.Meta>
                     <Card.Meta className="friendCard-currentMood"> Mood séléctionné</Card.Meta>
                     <Button className="friendCard-button">
                       Proposer une partie
                     </Button>
                   </Card.Content>
                 </Card>
-                <Card className="friendCard-element">
-                  <Card.Content>
-                    <Image
-                      className="friendCard-picture"
-                      floated="left"
-                      size="tiny"
-                      src={Avatar}
-                    />
-                    <Card.Header className="friendCard-nexusTag">Nexus gamer tag</Card.Header>
-                    <Card.Meta className="friendCard-steamTag">Steam gamer tag</Card.Meta>
-                    <Card.Meta className="friendCard-currentMood"> Mood séléctionné</Card.Meta>                 
-                    <Button className="friendCard-button">
-                      Proposer une partie
-                    </Button>
-                  </Card.Content>
-                </Card>
-                <Card className="friendCard-element">
-                  <Card.Content>
-                    <Image
-                      className="friendCard-picture"
-                      floated="left"
-                      size="tiny"
-                      src={Avatar}
-                    />
-                    <Card.Header className="friendCard-nexusTag">Nexus gamer tag</Card.Header>
-                    <Card.Meta className="friendCard-steamTag">Steam gamer tag</Card.Meta>
-                    <Card.Meta className="friendCard-currentMood"> Mood séléctionné</Card.Meta>                 
-                    <Button className="friendCard-button">
-                      Proposer une partie
-                    </Button>
-                  </Card.Content>
-                </Card>
-                <Card className="friendCard-element">
-                  <Card.Content>
-                    <Image
-                      className="friendCard-picture"
-                      floated="left"
-                      size="tiny"
-                      src={Avatar}
-                    />
-                    <Card.Header className="friendCard-nexusTag">Nexus gamer tag</Card.Header>
-                    <Card.Meta className="friendCard-steamTag">Steam gamer tag</Card.Meta>
-                    <Card.Meta className="friendCard-currentMood"> Mood séléctionné</Card.Meta>                 
-                    <Button className="friendCard-button">
-                      Proposer une partie
-                    </Button>
-                  </Card.Content>
-                </Card>
-                <Card className="friendCard-element">
-                  <Card.Content>
-                    <Image
-                      className="friendCard-picture"
-                      floated="left"
-                      size="tiny"
-                      src={Avatar}
-                    />
-                    <Card.Header className="friendCard-nexusTag">Nexus gamer tag</Card.Header>
-                    <Card.Meta className="friendCard-steamTag">Steam gamer tag</Card.Meta>
-                    <Card.Meta className="friendCard-currentMood"> Mood séléctionné</Card.Meta>                 
-                    <Button className="friendCard-button">
-                      Proposer une partie
-                    </Button>
-                  </Card.Content>
-                </Card>
-                <Card className="friendCard-element">
-                  <Card.Content>
-                    <Image
-                      className="friendCard-picture"
-                      floated="left"
-                      size="tiny"
-                      src={Avatar}
-                    />
-                    <Card.Header className="friendCard-nexusTag">Nexus gamer tag</Card.Header>
-                    <Card.Meta className="friendCard-steamTag">Steam gamer tag</Card.Meta>
-                    <Card.Meta className="friendCard-currentMood"> Mood séléctionné</Card.Meta>                 
-                    <Button className="friendCard-button">
-                      Proposer une partie
-                    </Button>
-                  </Card.Content>
-                </Card>
+              ))}
             </Card.Group>
           </div>
         </Grid.Column>

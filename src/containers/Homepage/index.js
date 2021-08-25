@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   steamAvatar: state.homepage.steamAvatar,
   steamLibrary: state.homepage.library,
   gameSearch: state.homepage.gameSearch,
+  friendsList: state.homepage.friendsList,
   isLogged: state.homepage.isLogged,
 });
 

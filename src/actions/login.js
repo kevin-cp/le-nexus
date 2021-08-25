@@ -6,6 +6,7 @@ export const IS_LOGGED = "USER_LOGGED";
 export const USER_DISCONNECTED = "USER_DISCONNECTED";
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_SUCCESSFULL = "LOGIN_SUCCESSFULL";
+export const GET_USER_FRIENDS = "GET_USER_FRIENDS";
 
 // state modification
 export const CHANGE_PSEUDO = "CHANGE_PSEUDO";
@@ -15,6 +16,7 @@ export const CHANGE_STEAMUSERNAME= "CHANGE_STEAMUSERNAME";
 export const CHANGE_VISIBILITY_STATE = "CHANGE_VISIBILITY_STATE";
 export const CHANGE_TOKEN = "CHANGE_TOKEN";
 export const UPDATE_LIBRARY = "UPDATE_LIBRARY";
+export const UPDATE_FRIENDSLIST = "UPDATE_FRIENDSLIST";
 
 
 export const changeEmailInput = (newEmail) => ({
@@ -35,6 +37,9 @@ export const getUserData = () => ({
   type: GET_USER_DATA,
 });
 
+export const getUserFriends = () => ({
+  type: GET_USER_FRIENDS,
+})
 
 export const userDisconnected = () => ({
   type: USER_DISCONNECTED,
@@ -96,3 +101,9 @@ export const updateLibrary = (newLibrary) => ({
   newLibrary,
 });
 
+
+// TODO FRIENDSLIST
+export const updateFriendsList = (newFriendsList) => ({
+  type: UPDATE_FRIENDSLIST,
+  newFriendsList,
+});

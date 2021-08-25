@@ -10,11 +10,7 @@ import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
 const enhancers = composeWithDevTools(
   applyMiddleware(
     signInMiddleware,
-<<<<<<< HEAD
     loginMiddleware,
-=======
-    profileInfoMiddleware,
->>>>>>> origin/Armand-Profilepage-updated
     // ... d'autres middlewares
   ),
 );

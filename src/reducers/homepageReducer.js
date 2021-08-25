@@ -1,5 +1,5 @@
 import { CHANGE_GAMESEARCH_INPUT } from 'src/actions/homepage';
-import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED, UPDATE_LIBRARY } from "../actions/login";
+import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED, UPDATE_LIBRARY, UPDATE_FRIENDSLIST } from "../actions/login";
 
 const initialState = {
   // ici l'état initial
@@ -13,7 +13,9 @@ const initialState = {
   isLogged: false,
   token: null,
   library: [],
+  friendsList: [],
   gameSearch: '',
+
 };
 
 function homepageReducer(state = initialState, action = {}) {
@@ -82,6 +84,12 @@ function homepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         library: action.newLibrary,
+      };
+
+    case UPDATE_FRIENDSLIST:
+      return {
+        ...state,
+        friendsList: action.newFriendsList,
       };
 
     case USER_DISCONNECTED:
