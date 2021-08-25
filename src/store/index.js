@@ -4,17 +4,14 @@ import reducer from 'src/reducers';
 import loginMiddleware from '../middlewares/loginMiddleware';
 
 import signInMiddleware from '../middlewares/signInMiddleware';
-import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
+// import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
 
 // on combine devTools avec les middlewares
 const enhancers = composeWithDevTools(
   applyMiddleware(
     signInMiddleware,
-<<<<<<< HEAD
+    // profileInfoMiddleware,
     loginMiddleware,
-=======
-    profileInfoMiddleware,
->>>>>>> origin/Armand-Profilepage-updated
     // ... d'autres middlewares
   ),
 );

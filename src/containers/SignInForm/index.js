@@ -29,6 +29,7 @@ const mapStateToProps = (state) => ({
   usernameError: state.signInReducer.usernameError,
   steamIdError: state.signInReducer.steamIdError,
   isChecked: state.signInReducer.isChecked,
+  isCreated: state.signInReducer.isCreated,
 });
 
 // === mapDispatchToProps

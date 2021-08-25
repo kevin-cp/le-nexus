@@ -8,7 +8,7 @@ const Profile = ({ avatar, pseudo, handleDisconnection }) => (
   <div className="profile-popup">
     <Image className="avatar" src={avatar} avatar />
     <p className="profile-username">{pseudo}</p>
-    <a href="#">Editer le profil</a>
+    <NavLink to="/profile">Editer le profil</NavLink>
     <Button onClick={handleDisconnection}>Se Déconnecter</Button>
   </div>
 

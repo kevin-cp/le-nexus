@@ -9,9 +9,9 @@ import {
   USERNAME_ERROR,
   STEAM_ID_ERROR,
   IS_CHECKED,
-  isChecked,
   TOGGLE_PASSWORD_ERROR,
   passwordError,
+  IS_CREATED,
 } from '../actions/SigninForm';
 
 const initialState = {
@@ -26,6 +26,7 @@ const initialState = {
   emailError: false,
   steamIdError: false,
   isChecked: false,
+  isCreated: '',
 };
 
 function signInreducer(state = initialState, action = {}) {
@@ -97,6 +98,12 @@ function signInreducer(state = initialState, action = {}) {
       return {
         ...state,
         passwordError: !passwordError,
+      };
+
+    case IS_CREATED:
+      return {
+        ...state,
+        isCreated: action.value,
       };
 
     default:

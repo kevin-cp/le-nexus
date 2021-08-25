@@ -10,6 +10,7 @@ export const USERNAME_ERROR = 'USERNAME_ERROR';
 export const STEAM_ID_ERROR = 'STEAM_ID_ERROR';
 export const IS_CHECKED = 'IS_CHECKED';
 export const TOGGLE_PASSWORD_ERROR = 'TOGGLE_PASSWORD_ERROR';
+export const IS_CREATED = 'IS_CREATED';
 
 export const changeUsernameValue = (value) => ({
   type: CHANGE_USERNAME_VALUE,
@@ -62,4 +63,9 @@ export const isChecked = () => ({
 
 export const togglePasswordError = () => ({
   type: TOGGLE_PASSWORD_ERROR,
+});
+
+export const isCreated = (value) => ({
+  type: IS_CREATED,
+  value: value,
 });
