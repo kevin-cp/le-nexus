@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 // on importe le composant de présentation
 import Homepage from 'src/components/Homepage';
-import { handleSearchGame } from '../../actions/homepage';
+import { addFriendToFilter, displayAllFriends, handleSearchGame, resetFriendList } from '../../actions/homepage';
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
@@ -14,6 +14,7 @@ const mapStateToProps = (state) => ({
   steamLibrary: state.homepage.library,
   gameSearch: state.homepage.gameSearch,
   friendsList: state.homepage.friendsList,
+  filteredFriends: state.homepage.filteredFriends,
   isLogged: state.homepage.isLogged,
 });
 
@@ -24,6 +25,18 @@ const mapDispatchToProps = (dispatch) => ({
 // nom de la prop à remplir: fonction qui dispatch l'action
   searchGame: (newSearch) => {
     dispatch(handleSearchGame(newSearch));
+  },
+
+  resetFriendList: () => {
+    dispatch(resetFriendList());
+  },
+
+  addFriendToFilter: (friend) => {
+    dispatch(addFriendToFilter(friend));
+  },
+
+  displayAllFriends: () => {
+    dispatch(displayAllFriends());
   },
 });
 

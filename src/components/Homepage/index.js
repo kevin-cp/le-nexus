@@ -1,5 +1,6 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useRef, componentDidUpdate } from 'react';
 
 // semantic ui import
 import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button, Icon } from 'semantic-ui-react';
@@ -17,19 +18,27 @@ const moodOptions = [
   { key: 2, text: 'Chill', value: 2, color: 'yellow' },
 ];
 
+
+
 const Homepage = ({ 
   pseudo,
   steamUsername,
   steamAvatar,
   steamLibrary,
+  filteredFriends,
+  resetFriendList,
+  addFriendToFilter,
+  displayAllFriends,
   gameSearch,
   searchGame,
   friendsList,
   isLogged,
 }) => {
+  //! ========================FILTRE JEUX====================================
   //! De base la librairie affichera les 20 premiers jeux de la liste
 
   let filteredSteamLibrary = steamLibrary.slice(0, 20);
+  
 
   //! Sinon la librairie affichera les jeux contenants les caractères de la recherche ET on slice pour limiter les recherches
   if (gameSearch.length !== 0) {
@@ -40,15 +49,42 @@ const Homepage = ({
       return gameNameLowered.includes(inputSearchLowered);
     }).slice(0, 20);
   }
+//! =========================================================================
+//! =============================FILTRE AMIS=====================================
+  const filteredFriendsList = filteredFriends;
 
-  const handleGameClick = () => {
-    console.log('click');
-  }
+  const handleGameClick = (evt) => {
+    // ON commence par reset la friendList pour que l'affichage soit dynamique
+    resetFriendList();
+    const gameName = evt.currentTarget.querySelector(".header").innerText;
+    // On cherche dans les librairies de chaque ami...
+    //! Pour chaque ami...
+    for (const friend of friendsList) {
+      // On obtient 4 objets friend contenant les données dont librairies de chaque ami
+      // Je veux dans chacune de ces librairies chercher (find) s'il y a gameName dans le nom d'un jeu (game.game.name)
+      const found = friend.libraries.find((game) => game.game.name == gameName );
+      if (typeof found !== 'undefined') {
+        // SI TROUVÉ, ON AJOUTE L'AMI A LA LISTE FILTEREDFRIENDS APRES AVOIR RESET LA LISTE D'AMIS POUR EVITER LES DOUBLONS
+        addFriendToFilter(friend);
+      }
+    }
+  };
+
+  //! ============================AFFICHER TOUS LES AMIS==========================================
+
+  const showAllFriends = () => {
+    // On reset la liste d'amis
+    resetFriendList();
+    // On ajoute TOUS les amis à la liste d'amis actuelle pour les afficher
+    displayAllFriends();
+  };
+  //! ===========================REDIRECTION================================
   // Si non connecté, renvoie vers la page de login
   if (!isLogged) {
     return <Redirect to="/login" />
   }
 
+  //! ======================================================================
   return (
     <div className="Homepage">
     <Grid stackable>
@@ -62,6 +98,7 @@ const Homepage = ({
               <Segment basic className='Homepage-profile--playerinfo--steamInfo'>
                 <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
                 <div>Status: Online </div>
+                <Button onClick={showAllFriends}>Afficher tous les amis</Button>
                 <div className='Homepage-profile--playerinfo--mood'>Humeur
                   <Dropdown clearable options={moodOptions} floating selection />
                 </div>
@@ -104,7 +141,7 @@ const Homepage = ({
           <div className="homepage-friendCardsList">
             <Header className="friendCardsList-header" as="h2" textAlign="center" content="Amis possédants ce jeu : " />
             <Card.Group stackable itemsPerRow={3}>
-              {friendsList.map((friend) => (
+              {filteredFriendsList.map((friend) => (
                 <Card className="friendCard-element" key={friend.id}>
                   <Card.Content>
                     <Image
