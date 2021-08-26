@@ -9,7 +9,10 @@ import {
   Menu,
   Image,
   Popup,
-  Search,
+  Input,
+  Button,
+  Icon,
+  List,
 } from 'semantic-ui-react';
 
 import PropTypes from 'prop-types';
@@ -18,20 +21,48 @@ import Profile from './Profile';
 import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
 
-const Nav = ({ steamAvatar, pseudo, handleDisconnection, inputSearch, setInputSearch, userList }) => (
-  <Menu fixed='top' stackable id="navbar">
+const Nav = ({
+  steamAvatar,
+  pseudo,
+  handleDisconnection,
+  inputSearch,
+  setInputSearch,
+  userList,
+  isSearching,
+  handleIsSearching,
+  handleIsNotSearching,
+}) => (
+  <Menu fixed="top" stackable id="navbar">
     <Menu.Item>
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
     </Menu.Item>
-    <Search
+    <Input
       placeholder="Search Friends"
       icon="search"
       className="nav-search"
       value={inputSearch}
-      onSearchChange={(event) => {
+      onChange={(event) => {
         setInputSearch(event.currentTarget.value);
       }}
+      onFocus={handleIsSearching}
+      onBlur={handleIsNotSearching}
     />
+    {isSearching && (
+    <div className="test">
+      <List divided>
+        {userList.map((user) => (
+          <List.Item className="listItem" fluid>
+            <Image floated="left" size="mini" circular src={user.steamAvatar} />
+            <List.Content>
+              <List.Header>{user.pseudo}</List.Header>
+              <Icon name="steam" /> {user.steamUsername}
+              <Button floated="right" className="addFriend" circular inverted color="blue" size="tiny" icon="add user" />
+            </List.Content>
+          </List.Item>
+        ))}
+      </List>
+    </div>
+    )}
     <NavLink
       to="/"
       exact
@@ -88,6 +119,13 @@ const Nav = ({ steamAvatar, pseudo, handleDisconnection, inputSearch, setInputSe
 Nav.propTypes = {
   steamAvatar: PropTypes.string.isRequired,
   pseudo: PropTypes.string.isRequired,
+  handleDisconnection: PropTypes.func.isRequired,
+  inputSearch: PropTypes.string.isRequired,
+  setInputSearch: PropTypes.func.isRequired,
+  userList: PropTypes.array.isRequired,
+  isSearching: PropTypes.bool.isRequired,
+  handleIsSearching: PropTypes.func.isRequired,
+  handleIsNotSearching: PropTypes.func.isRequired,
 };
 
 export default Nav;

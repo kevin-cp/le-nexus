@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { userDisconnected } from 'src/actions/login';
 // on importe le composant de présentation
 import Nav from 'src/components/Nav';
-import { changeSearchValue } from '../../actions/nav';
+import { changeSearchValue, isNotSearching, isSearching } from '../../actions/nav';
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
@@ -12,6 +12,9 @@ const mapStateToProps = (state) => ({
   steamAvatar: state.homepage.steamAvatar,
   pseudo: state.homepage.pseudo,
   inputSearch: state.navReducer.inputSearch,
+  userList: state.homepage.userList,
+  results: state.navReducer.results,
+  isSearching: state.navReducer.isSearching,
 });
 
 // === mapDispatchToProps
@@ -24,6 +27,14 @@ const mapDispatchToProps = (dispatch) => ({
 
   setInputSearch: (newValue) => {
     dispatch(changeSearchValue(newValue));
+  },
+
+  handleIsSearching: () => {
+    dispatch(isSearching());
+  },
+
+  handleIsNotSearching: () => {
+    dispatch(isNotSearching());
   },
 });
 
