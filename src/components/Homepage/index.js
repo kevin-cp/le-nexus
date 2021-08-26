@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable max-len */
-import React, { useRef, componentDidUpdate } from 'react';
+import React, { useRef } from 'react';
 
 // semantic ui import
 import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button, Icon } from 'semantic-ui-react';
@@ -18,8 +18,6 @@ const moodOptions = [
   { key: 2, text: 'Chill', value: 2, color: 'yellow' },
 ];
 
-
-
 const Homepage = ({ 
   pseudo,
   steamUsername,
@@ -29,16 +27,20 @@ const Homepage = ({
   resetFriendList,
   addFriendToFilter,
   displayAllFriends,
+  noFriendsFound,
+  foundFriends,
+  didntFindFriends,
   gameSearch,
   searchGame,
   friendsList,
   isLogged,
 }) => {
+  const friendHeaderRef = useRef(null)
+
   //! ========================FILTRE JEUX====================================
   //! De base la librairie affichera les 20 premiers jeux de la liste
 
   let filteredSteamLibrary = steamLibrary.slice(0, 20);
-  
 
   //! Sinon la librairie affichera les jeux contenants les caractères de la recherche ET on slice pour limiter les recherches
   if (gameSearch.length !== 0) {
@@ -57,6 +59,8 @@ const Homepage = ({
     // ON commence par reset la friendList pour que l'affichage soit dynamique
     resetFriendList();
     const gameName = evt.currentTarget.querySelector(".header").innerText;
+    // On définit le message de base si on ne trouve rien
+    friendHeaderRef.current.innerText = `Aucun de vos amis ne possède ${gameName}`;
     // On cherche dans les librairies de chaque ami...
     //! Pour chaque ami...
     for (const friend of friendsList) {
@@ -66,7 +70,16 @@ const Homepage = ({
       if (typeof found !== 'undefined') {
         // SI TROUVÉ, ON AJOUTE L'AMI A LA LISTE FILTEREDFRIENDS APRES AVOIR RESET LA LISTE D'AMIS POUR EVITER LES DOUBLONS
         addFriendToFilter(friend);
+        // On change le header de la liste d'amis
+        friendHeaderRef.current.innerText = `Amis possédant ${gameName}`;
       }
+    }
+    if (friendHeaderRef.current.innerText === `Aucun de vos amis ne possède ${gameName}`) {
+      // Fonction qui change le header de la page d'amis
+      didntFindFriends();
+    }
+    else {
+      foundFriends();
     }
   };
 
@@ -77,6 +90,9 @@ const Homepage = ({
     resetFriendList();
     // On ajoute TOUS les amis à la liste d'amis actuelle pour les afficher
     displayAllFriends();
+
+    // On change le header amis
+    friendHeaderRef.current.innerText = "Liste d'amis : ";
   };
   //! ===========================REDIRECTION================================
   // Si non connecté, renvoie vers la page de login
@@ -98,7 +114,7 @@ const Homepage = ({
               <Segment basic className='Homepage-profile--playerinfo--steamInfo'>
                 <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
                 <div>Status: Online </div>
-                <Button onClick={showAllFriends}>Afficher tous les amis</Button>
+                <Button basic inverted onClick={showAllFriends}>Afficher tous les amis</Button>
                 <div className='Homepage-profile--playerinfo--mood'>Humeur
                   <Dropdown clearable options={moodOptions} floating selection />
                 </div>
@@ -137,9 +153,11 @@ const Homepage = ({
         {/* Partie de droite */}
 
         <Grid.Column width={10}>
-
           <div className="homepage-friendCardsList">
-            <Header className="friendCardsList-header" as="h2" textAlign="center" content="Amis possédants ce jeu : " />
+            <Header className="friendCardsList-header" as="h2" textAlign="center"><span ref={friendHeaderRef}> </span></Header>
+            {noFriendsFound && (
+            <div className="notFound">:'(</div>
+            )}
             <Card.Group stackable itemsPerRow={3}>
               {filteredFriendsList.map((friend) => (
                 <Card className="friendCard-element" key={friend.id}>

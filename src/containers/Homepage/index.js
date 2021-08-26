@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 // on importe le composant de présentation
 import Homepage from 'src/components/Homepage';
-import { addFriendToFilter, displayAllFriends, handleSearchGame, resetFriendList } from '../../actions/homepage';
+import { addFriendToFilter, displayAllFriends, friendsFound, handleSearchGame, noFriendsFound, resetFriendList } from '../../actions/homepage';
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
   friendsList: state.homepage.friendsList,
   filteredFriends: state.homepage.filteredFriends,
   isLogged: state.homepage.isLogged,
+  noFriendsFound: state.homepage.noFriendsFound,
 });
 
 // === mapDispatchToProps
@@ -37,6 +38,14 @@ const mapDispatchToProps = (dispatch) => ({
 
   displayAllFriends: () => {
     dispatch(displayAllFriends());
+  },
+
+  didntFindFriends: () => {
+    dispatch(noFriendsFound());
+  },
+
+  foundFriends: () => {
+    dispatch(friendsFound());
   },
 });
 

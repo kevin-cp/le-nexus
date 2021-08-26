@@ -1,5 +1,5 @@
 import { CHANGE_GAMESEARCH_INPUT } from 'src/actions/homepage';
-import { ADD_FRIEND_TO_FILTER, RESET_FRIEND_LIST, DISPLAY_ALL_FRIENDS } from '../actions/homepage';
+import { ADD_FRIEND_TO_FILTER, RESET_FRIEND_LIST, DISPLAY_ALL_FRIENDS, NO_FRIEND_FOUND, FRIENDS_FOUND } from '../actions/homepage';
 import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED, UPDATE_LIBRARY, UPDATE_FRIENDSLIST } from "../actions/login";
 
 const initialState = {
@@ -16,6 +16,7 @@ const initialState = {
   library: [],
   friendsList: [],
   filteredFriends: [],
+  noFriendsFound: false,
   gameSearch: '',
 
 };
@@ -112,6 +113,19 @@ function homepageReducer(state = initialState, action = {}) {
         ...state,
         filteredFriends: state.friendsList,
       };
+
+    case NO_FRIEND_FOUND:
+      return {
+        ...state,
+        noFriendsFound: true,
+      };
+
+    case FRIENDS_FOUND:
+      return {
+        ...state,
+        noFriendsFound: false,
+      };
+
   // ! ==========================================================
     case USER_DISCONNECTED:
       return {
