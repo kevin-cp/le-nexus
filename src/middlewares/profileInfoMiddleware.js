@@ -1,25 +1,31 @@
 import axios from 'axios';
 
-import { SUBMIT } from '../actions/SigninForm';
+import { PROFILE_SUBMIT, PASSWORD_SUBMIT } from 'src/actions/Profilepage';
 
-const signInMiddleware = (store) => (next) => (action) => {
-  // console.log('on a intercepté une action dans le middleware: ', action);
+const profileInfoMiddleware = (store) => (next) => (action) => {
+  console.log('on a intercepté une action dans le middleware: ', action);
 
   switch (action.type) {
-    case SUBMIT: {
-      // on va piocher les informations dans le tiroir du state
+    case PROFILE_SUBMIT: {
+      const {
+        steamId,
+      } = store.getState().homepage;
+
       const {
         inputUsername,
-      } = store.getState().signInReducer;
+        inputEmail,
+      } = store.getState().profilepageReducer;
 
-      axios.post(
-        'http://localhost:8000/api/users',
+      axios.patch(
+        `http://localhost:8000/api/users/${steamId}`,
         {
-          userName: inputUsername,
+          pseudo: inputUsername,
+          email: inputEmail,
         },
       )
+
         .then((response) => {
-          console.log(response);
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -27,11 +33,34 @@ const signInMiddleware = (store) => (next) => (action) => {
       break;
     }
 
-    default:
+    case PASSWORD_SUBMIT: {
+      const {
+        steamId,
+      } = store.getState().homepage;
+
+      const {
+        inputNewPassword,
+      } = store.getState().profilepageReducer;
+
+      axios.patch(
+        `http://localhost:8000/api/users/${steamId}`,
+        {
+          password: inputNewPassword,
+        },
+      )
+
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    } default:
   }
 
   // on passe l'action au suivant (middleware suivant ou reducer)
   next(action);
 };
 
-export default signInMiddleware;
+export default profileInfoMiddleware;

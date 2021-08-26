@@ -1,7 +1,21 @@
 /* eslint-disable default-case */
 import axios from 'axios';
 
-import { SUBMIT_LOGIN, getUserData, GET_USER_DATA, changePseudo, changeSteamId, changeSteamAvatar, changeSteamUsername, changeToken, changeVisibilityState, isLogged, updateLibrary, loginError, loginSuccessfull } from '../actions/login';
+import {
+  SUBMIT_LOGIN,
+  getUserData,
+  GET_USER_DATA,
+  changePseudo,
+  changeSteamId,
+  changeSteamAvatar,
+  changeSteamUsername,
+  changeToken,
+  changeVisibilityState,
+  isLogged,
+  updateLibrary,
+  loginError,
+  loginSuccessfull 
+} from '../actions/login';
 
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);

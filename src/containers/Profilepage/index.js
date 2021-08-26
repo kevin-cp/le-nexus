@@ -10,20 +10,25 @@ import {
   changeCurrentPasswordValue,
   changeNewPasswordValue,
   changeConfirmPasswordValue,
-  submit,
+  profileSubmit,
+  passwordSubmit,
 } from 'src/actions/Profilepage';
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
 const mapStateToProps = (state) => ({
   // nom de la prop à remplir: élément à récupérer dans le state
-  newUsername: state.inputUsername,
-  newEmail: state.inputEmail,
-  confirmEmail: state.inputConfirmEmail,
-  currentPassword: state.inputCurrentPassword,
-  newPassword: state.inputNewPassword,
-  confirmPassword: state.inputConfirmPassword,
-  usernameError: state.usernameError,
+  newUsername: state.profilepageReducer.inputUsername,
+  newEmail: state.profilepageReducer.inputEmail,
+  confirmEmail: state.profilepageReducer.inputConfirmEmail,
+  currentPassword: state.profilepageReducer.inputCurrentPassword,
+  newPassword: state.profilepageReducer.inputNewPassword,
+  confirmPassword: state.profilepageReducer.inputConfirmPassword,
+  usernameError: state.profilepageReducer.usernameError,
+  steamId: state.homepage.steamId,
+  usernameToDisplay: state.homepage.pseudo,
+  avatarToDisplay: state.homepage.steamAvatar,
+  emailToDisplay: state.homepage.email,
 });
 
 // === mapDispatchToProps
@@ -55,7 +60,11 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   handleFormSubmit: () => {
-    dispatch(submit());
+    dispatch(profileSubmit());
+  },
+
+  handlePasswordSubmit: () => {
+    dispatch(passwordSubmit());
   },
 });
 
