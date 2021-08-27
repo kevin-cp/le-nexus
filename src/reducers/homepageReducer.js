@@ -1,6 +1,5 @@
 import { CHANGE_GAMESEARCH_INPUT } from 'src/actions/homepage';
 import {
-
   CHANGE_EMAIL_INPUT,
   CHANGE_PASSWORD_INPUT,
   CHANGE_PSEUDO,
@@ -17,15 +16,15 @@ import {
 
 const initialState = {
   // ici l'état initial
-  email: '',
-  password: '',
+  email: 'kevin@gmail.com',
+  password: '123',
   pseudo: 'Monsieur Yoyo',
   steamId: '',
   steamUsername: 'Tartalognon',
   steamAvatar: 'https://avatarfiles.alphacoders.com/161/161326.png',
   visibilityState: true,
   isLogged: false,
-  token: null,
+  token: '',
   library: [],
   gameSearch: '',
   userList: [],
@@ -50,7 +49,7 @@ function homepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         gameSearch: action.newSearch,
-      }
+      };
 
     case CHANGE_PSEUDO:
       return {

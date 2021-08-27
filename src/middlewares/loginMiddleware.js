@@ -28,6 +28,7 @@ const loginMiddleware = (store) => (next) => (action) => {
       const {
         email,
         password,
+        token,
       } = store.getState().homepage;
 
       // let url = `${process.env.REACT_APP_API_URL}/api/login_check`;
@@ -44,7 +45,7 @@ const loginMiddleware = (store) => (next) => (action) => {
           // isLogged = true
           // store.dispatch(userLogged());
           // requête des récupérations de données
-          store.dispatch(changeToken(response.data.token));
+          store.dispatch(changeToken(response.data.payload.token));
           store.dispatch(changeSteamId(response.data.authenticatedUserId));
           store.dispatch(getUserData());
         })
@@ -81,12 +82,12 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(updateLibrary(response.data.libraries));
           store.dispatch(isLogged());
         })
-        .catch((error) =>{
+        .catch((error) => {
           console.log(error);
         });
 
       axios.get('http://localhost:8000/api/users')
-        .then((response)=> {
+        .then((response) => {
           console.log(response.data);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(updateUserList(response.data));
