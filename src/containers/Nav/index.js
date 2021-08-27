@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import { userDisconnected } from 'src/actions/login';
 // on importe le composant de présentation
 import Nav from 'src/components/Nav';
-import { changeSearchValue, isNotSearching, isSearching, searchFriendProfile } from '../../actions/nav';
+import {
+  changeSearchValue,
+  friendRequest,
+  isNotSearching,
+  isSearching,
+  searchFriendProfile,
+  friendToRequest,
+} from '../../actions/nav';
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
@@ -16,6 +23,7 @@ const mapStateToProps = (state) => ({
   results: state.navReducer.results,
   isSearching: state.navReducer.isSearching,
   resultList: state.navReducer.searchResult,
+  friendToRequest: state.navReducer.friendToRequest,
 });
 
 // === mapDispatchToProps
@@ -40,7 +48,15 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleFriendSearch: () => {
     dispatch(searchFriendProfile());
- },
+  },
+
+  handleFriendRequest: () => {
+    dispatch(friendRequest());
+  },
+
+  handleFriendToRequestId: (newValue) => {
+    dispatch(friendToRequest(newValue));
+  },
 });
 
 // === création de l'assistant

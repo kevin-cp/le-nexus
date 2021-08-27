@@ -16,6 +16,7 @@ import {
   loginError,
   loginSuccessfull,
   updateUserList,
+  changeId,
 } from '../actions/login';
 
 const loginMiddleware = (store) => (next) => (action) => {
@@ -28,7 +29,6 @@ const loginMiddleware = (store) => (next) => (action) => {
       const {
         email,
         password,
-        token,
       } = store.getState().homepage;
 
       // let url = `${process.env.REACT_APP_API_URL}/api/login_check`;
@@ -67,11 +67,16 @@ const loginMiddleware = (store) => (next) => (action) => {
     case GET_USER_DATA: {
       const {
         steamId,
+        token,
       } = store.getState().homepage;
 
       // let url = `${process.env.REACT_APP_API_URL}/api/users/${steamId}`;
 
-      axios.get(`http://localhost:8000/api/users/${steamId}`)
+      axios.get(`http://localhost:8000/api/users/${steamId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then((response)=> {
           console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
@@ -81,18 +86,9 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(changeVisibilityState(response.data.visibilityState));
           store.dispatch(updateLibrary(response.data.libraries));
           store.dispatch(isLogged());
+          store.dispatch(changeId(response.data.id));
         })
         .catch((error) => {
-          console.log(error);
-        });
-
-      axios.get('http://localhost:8000/api/users')
-        .then((response) => {
-          console.log(response.data);
-          // Maintenant il faut appeler toutes les fonctions qui modifient le state
-          store.dispatch(updateUserList(response.data));
-        })
-        .catch((error) =>{
           console.log(error);
         });
     }

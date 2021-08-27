@@ -4,6 +4,8 @@ import {
   IS_NOT_SEARCHING,
   SEARCH_FRIEND_PROFILE,
   DISPLAY_RESULTS,
+  FRIEND_REQUEST,
+  FRIEND_TO_REQUEST,
 } from 'src/actions/nav';
 
 const initialState = {
@@ -11,6 +13,7 @@ const initialState = {
   inputSearch: '',
   isSearching: false,
   searchResult: [],
+  friendToRequest: '',
 };
 
 function navReducer(state = initialState, action = {}) {
@@ -40,6 +43,17 @@ function navReducer(state = initialState, action = {}) {
       return {
         ...state,
         searchResult: action.resultList,
+      };
+
+    case FRIEND_REQUEST:
+      return {
+        ...state,
+      };
+
+    case FRIEND_TO_REQUEST:
+      return {
+        ...state,
+        friendToRequest: action.friendId,
       };
 
     default:

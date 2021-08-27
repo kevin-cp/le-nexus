@@ -8,6 +8,7 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGIN_SUCCESSFULL = 'LOGIN_SUCCESSFULL';
 
 // state modification
+export const CHANGE_ID = 'CHANGE_ID';
 export const CHANGE_PSEUDO = 'CHANGE_PSEUDO';
 export const CHANGE_STEAMID = 'CHANGE_STEAMID';
 export const CHANGE_STEAMAVATAR = 'CHANGE_STEAMAVATAR';
@@ -48,6 +49,11 @@ export const loginSuccessfull = () => ({
 });
 
 // ! =================================CHANGEMENT STATE HOMEPAGE====================================
+// Id
+export const changeId = (newId) => ({
+  type: CHANGE_ID,
+  newId,
+});
 
 // Pseudo
 export const changePseudo = (newPseudo) => ({

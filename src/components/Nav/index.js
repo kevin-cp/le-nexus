@@ -29,12 +29,13 @@ const Nav = ({
   handleDisconnection,
   inputSearch,
   setInputSearch,
-  userList,
   isSearching,
   handleIsSearching,
   handleIsNotSearching,
   handleFriendSearch,
   resultList,
+  handleFriendRequest,
+  handleFriendToRequestId,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
   if (inputSearch.length > 0) {
@@ -43,6 +44,14 @@ const Nav = ({
   else {
     handleIsNotSearching();
   }
+
+  const handleAddFriendClick = (id) => {
+    handleFriendToRequestId(id);
+  };
+
+  const handleSendFriendRequest = () => {
+    handleFriendRequest();
+  };
 
   return (
     <Menu fixed="top" stackable id="navbar">
@@ -66,7 +75,7 @@ const Nav = ({
         <div className="test">
           <List divided>
             {resultList.map((user) => (
-              <List.Item className="listItem">
+              <List.Item key={user.id} className="listItem">
                 <Image floated="left" size="mini" circular src={user.steamAvatar} />
                 <List.Content>
                   <List.Header>{user.pseudo}</List.Header>
@@ -89,14 +98,20 @@ const Nav = ({
                       <Modal.Description>
                         <Header>{user.pseudo}</Header>
                         <Icon size="big" name="steam" /> {user.steamUsername}
-                        <p>Voulez-vous ajouter cet utilisateur en ami ?</p>
+                        <p>Voulez-vous ajouter {user.pseudo} en ami ?</p>
                       </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
                       <Button color="red">
                         <Icon name="remove" /> Non
                       </Button>
-                      <Button color="green">
+                      <Button
+                        color="green"
+                        onClick={() => {
+                          handleAddFriendClick(user.id);
+                          handleSendFriendRequest();
+                        }}
+                      >
                         <Icon name="checkmark" /> Oui
                       </Button>
                     </Modal.Actions>
@@ -169,12 +184,12 @@ Nav.propTypes = {
   handleDisconnection: PropTypes.func.isRequired,
   inputSearch: PropTypes.string.isRequired,
   setInputSearch: PropTypes.func.isRequired,
-  userList: PropTypes.array.isRequired,
   isSearching: PropTypes.bool.isRequired,
   handleIsSearching: PropTypes.func.isRequired,
   handleIsNotSearching: PropTypes.func.isRequired,
   handleFriendSearch: PropTypes.func.isRequired,
   resultList: PropTypes.array.isRequired,
+  handleFriendRequest: PropTypes.func.isRequired,
 };
 
 export default Nav;

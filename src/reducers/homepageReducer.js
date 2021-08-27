@@ -12,11 +12,13 @@ import {
   USER_DISCONNECTED,
   UPDATE_LIBRARY,
   UPDATE_USER_LIST,
+  CHANGE_ID,
 } from '../actions/login';
 
 const initialState = {
   // ici l'état initial
-  email: 'kevin@gmail.com',
+  id: '',
+  email: 'armand@gmail.com',
   password: '123',
   pseudo: 'Monsieur Yoyo',
   steamId: '',
@@ -117,7 +119,12 @@ function homepageReducer(state = initialState, action = {}) {
         steamUsername: '',
         token: null,
         visibilityState: false,
+      };
 
+    case CHANGE_ID:
+      return {
+        ...state,
+        id: action.newId,
       };
 
     default:
