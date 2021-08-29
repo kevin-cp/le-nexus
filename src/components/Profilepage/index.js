@@ -33,49 +33,52 @@ const Profilepage = ({
   handlePasswordSubmit,
   usernameError,
 }) => {
-  const handleSubmit = (evt) => {
+  const handleSubmitForm = (evt) => {
     evt.preventDefault();
     handleFormSubmit();
+  };
+
+  const handleSubmitPassword = (evt) => {
+    evt.preventDefault();
     handlePasswordSubmit();
   };
 
   return (
-
-    <Grid centered>
-      <div className="Profilepage-main">
-        <h2 className="Profilepage-NexusUsername">
+    <Grid className="main" centered>
+      <div className="main">
+        <h2 className="nexusUsername">
           {usernameToDisplay}
         </h2>
-        <div className="Profilepage-avatar">
-          <Image src={avatarToDisplay} circular />
+        <div className="avatar">
+          <Image className="avatar-image" src={avatarToDisplay} size="small" centered circular />
           <Popup
-            className="Profilepage-popup--import"
+            className="avatar-popup"
             content={(
-              <Form.Field>
+              <Form className="avatar-popup--form" onSubmit="">
                 <label>Nouvel avatar</label>
-                <input className="Profilepage-popup--input" placeholder="chemin d'importation" />
-                <Button className="Profilepage-popup--button" type="submit">Importer</Button>
-              </Form.Field>
+                <input className="popup-form--input" placeholder="chemin d'importation" />
+                <Button className="popup-form--button" type="submit">Importer</Button>
+              </Form>
           )}
             on="click"
             offset={[0, 0]}
-            trigger={<Button className="Profilepage-avatar--button" type="button" circular icon="settings" />}
+            trigger={<Button className="popup-avatar--button" type="button" circular icon="settings" />}
           />
         </div>
         <Form
-          className="Profilepage-form"
-          onSubmit={handleSubmit}
+          className="mainform"
+          onSubmit={handleSubmitForm}
         >
-          {usernameError && (
+          {/* {usernameError && (
           <Message negative>
             <Message.Header>Pseudo déjà existant</Message.Header>
           </Message>
-          )}
-          <Form.Field className="Profilepage-username">
+          )} */}
+          <Form.Field className="mainform-username">
             <label>Nouvel identifiant Nexus</label>
             <input
               type="text"
-              className="Profilepage-username--input"
+              className="mainform-username--input"
               placeholder={usernameToDisplay}
               value={newUsername}
               onChange={(event) => {
@@ -84,10 +87,10 @@ const Profilepage = ({
               }}
             />
           </Form.Field>
-          <Form.Field className="Profilepage-email">
+          <Form.Field className="mainform-email">
             <label>Email</label>
             <input
-              className="Profilepage-email--input"
+              className="mainform-email--input"
               type="email"
               placeholder={emailToDisplay}
               value={newEmail}
@@ -97,9 +100,9 @@ const Profilepage = ({
               }}
             />
             <input
-              className="Profilepage-email--inputConfirm"
+              className="mainform-email--inputConfirm"
               type="email"
-              placeholder="Confirm Nouvelle adresse mail"
+              placeholder="Confirmer Nouvelle adresse mail"
               value={confirmEmail}
               onChange={(event) => {
               // console.log(event.currentTarget.value);
@@ -112,16 +115,16 @@ const Profilepage = ({
           <Button type="submit">Enregistrer</Button>
         </Form>
         <Modal
-          className="Password-modal"
+          className="password-modal"
           header="Changement de mot de passe"
           trigger={<Button>Changer le mot de passe</Button>}
           content={(
             <Form
-              className="Password-form"
-              onSubmit={handleSubmit}
+              className="password-form"
+              onSubmit={handleSubmitPassword}
             >
               <input
-                className="Password-form--input"
+                className="password-form--input"
                 type="password"
                 placeholder="Mot de passe actuel"
                 value={currentPassword}
@@ -131,7 +134,7 @@ const Profilepage = ({
                 }}
               />
               <input
-                className="Password-form--input"
+                className="password-form--input"
                 type="password"
                 placeholder="Nouveau mot de passe"
                 value={newPassword}
@@ -141,7 +144,7 @@ const Profilepage = ({
                 }}
               />
               <input
-                className="Password-form--input"
+                className="password-form--input"
                 type="password"
                 placeholder="Confirmer nouveau mot de passe"
                 value={confirmPassword}
@@ -150,7 +153,7 @@ const Profilepage = ({
                   setConfirmPassword(event.currentTarget.value);
                 }}
               />
-              <Button className="Password-form--button" type="submit">Enregistrer</Button>
+              <Button type="submit">Enregistrer</Button>
             </Form>
             )}
           actions={['Cancel']}

@@ -34,7 +34,7 @@ function homepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         gameSearch: action.newSearch,
-      }
+      };
 
     case CHANGE_PSEUDO:
       return {
