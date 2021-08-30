@@ -24,7 +24,7 @@ const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
       <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
     </Menu.Item>
     <Input placeholder="Search Friends" icon="search" className="nav-search" />
-    <NavLink
+    {/* <NavLink
       to="/"
       exact
     >
@@ -64,7 +64,7 @@ const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
       >
         Login
       </Menu.Item>
-    </NavLink>
+    </NavLink> */}
     <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici

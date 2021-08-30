@@ -15,7 +15,9 @@
 
   .Homepage-profile--playerinfo {
   
-
+    .Homepage-profile-displayFriends-button {
+      width: 40%;
+    }
     .Homepage-profile--playerinfo--username {
       color: white;
     }
@@ -34,21 +36,16 @@
     background-color: #1b2838;
   }
 
+  
   #Homepage-profile--playergames--search {
-      background: grey;
+      background-color: grey;
     }
 
 }
 
 //! ========================== Partie de droite =====================================
 
-.notFound {
-  line-height: 50vh;
-  height: 50vh;
-  color: grey;
-  font-size: 20rem;
-  text-align: center;
-}
+
 
 .homepage-friendCardsList {
   background-color: #1b2838;
@@ -63,14 +60,13 @@
   .friendCard-element {
     position: relative;
     display: flex;
-    height: 10em;
+    height: 6em;
     max-width: 26em;
   }
 
     .friendCard-picture {
       position: absolute;
       top: 0em;
-      border: darkslategrey solid 0.1em;
     }
 
     .friendCard-nexusTag {
@@ -100,6 +96,14 @@
 
 //! ================================ Ici breakpoint pc ===============================================
 @media only screen and (min-width: 1008px){
+  .notFound {
+    line-height: 50vh;
+    height: 50vh;
+    color: grey;
+    font-size: 20rem;
+    text-align: center;
+  }
+  
   .Homepage-profile {
     position: fixed;
     left:0;
@@ -145,35 +149,82 @@
 }
 
 //! ============================= Ici breakpoint pour iPhone ============================================
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 1007px){
   #user-avatar {
     display: none;
   }
 
 
-  .Homepage-profile {
-    top: 100px;
-    width: 100%;
-    height: 30vh;
+  .ui.segments.Homepage-profile {
+    top: 10vh;
+    max-height: 40vh;
   
   .Homepage-profile--playerinfo {
-    height: 5vh;
+   display: none;
   }
   
+  .Homepage-profile--playerinfo--username {
+  }
+
   .Homepage-profile--playerinfo--steamInfo {
     display: none;
   }
 
-  .Homepage-profile--playergames {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    display: inline;
-    box-shadow: none;
+  .ui.segments.Homepage-profile--playergames {
+    height: 35vh;
+  }
+
+  .ui.three.cards.Homepage-profile--playergames--gamelist{
+    height: 24vh;
+    overflow-x: auto;
+    margin-top: 0.2rem;
+    padding-left: 1rem;
+    margin-right: none;
+  }
+
+  .Homepage-profile--playergames--game{
+    width: 20px;
+  }
+
+  .ui.card.Homepage-profile--playergames--game{
+    width: 40%;
+    height: fit-content;
+  }
+
+  .ui.card>.content {
+    display: none;
+  }
+
+  #Homepage-profile--playergames--search{
+    margin: 1rem;
+    width: fit-content;
   }
 }
-
-.homepage-friendCardsList {
+.ten.wide.column.homepage-friendCardsList {
+  height: 50vh;
+  top: 5rem;
   overflow: auto;
-  height: 60vh;
+  border-radius: .28571429rem;
+  border-left: 1rem solid #1b2838;
+
+  .friendCardsList-header {
+    padding-bottom: 1rem;
+  }
+
+  .friendCard-element {
+
+  }
+
+    .friendCard-picture {
+    width: 70px;
+    height: auto;
+  }
+
+  .notFound {
+    line-height: 25vh;
+    color: grey;
+    font-size: 10rem;
+    text-align: center;
+  }
 }
 }

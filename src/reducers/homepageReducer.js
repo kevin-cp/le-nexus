@@ -4,15 +4,15 @@ import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMA
 
 const initialState = {
   // ici l'état initial
-  email: '',
-  password: '',
+  email: 'storyni@hotmail.fr',
+  password: 'calypso',
   pseudo: 'Monsieur Yoyo',
   steamId: '',
   steamUsername: 'Tartalognon',
   steamAvatar: 'https://avatarfiles.alphacoders.com/161/161326.png',
   visibilityState: true,
   isLogged: false,
-  token: null,
+  token: '',
   library: [],
   friendsList: [],
   filteredFriends: [],

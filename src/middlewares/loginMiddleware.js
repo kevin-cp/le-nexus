@@ -29,7 +29,7 @@ const loginMiddleware = (store) => (next) => (action) => {
           // isLogged = true
           // store.dispatch(userLogged());
           // requête des récupérations de données
-          store.dispatch(changeToken(response.data.token));
+          store.dispatch(changeToken(response.data.payload.token));
           store.dispatch(changeSteamId(response.data.authenticatedUserId));
           store.dispatch(getUserData());
         })
