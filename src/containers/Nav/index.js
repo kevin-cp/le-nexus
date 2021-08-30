@@ -11,6 +11,10 @@ import {
   searchFriendProfile,
   friendToRequest,
   checkNotification,
+  acceptFriendRequest,
+  denyFriendRequest,
+  updateRequestId,
+  hasNoNotification,
 } from '../../actions/nav';
 
 // === mapStateToProps
@@ -27,6 +31,7 @@ const mapStateToProps = (state) => ({
   friendToRequest: state.navReducer.friendToRequest,
   hasNotification: state.navReducer.hasNotification,
   friendRequests: state.navReducer.senderId,
+  requestId: state.navReducer.requestId,
 });
 
 // === mapDispatchToProps
@@ -64,6 +69,22 @@ const mapDispatchToProps = (dispatch) => ({
   handleSearchNotification: () => {
     dispatch(checkNotification());
   },
+
+  handleAcceptFriendRequest: () => {
+    dispatch(acceptFriendRequest());
+  },
+
+  handleDenyFriendRequest: () => {
+    dispatch(denyFriendRequest());
+  },
+
+  handleRequestId: (newValue) => {
+    dispatch(updateRequestId(newValue));
+  },
+
+  handleHasNoNotification: () => {
+    dispatch(hasNoNotification());
+},
 });
 
 // === création de l'assistant

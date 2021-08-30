@@ -1,6 +1,12 @@
 /* eslint-disable default-case */
 import axios from 'axios';
 
+// import {
+//   CHECK_NOTIFICATION,
+//   updateSenderId,
+//   hasNotification,
+// } from 'src/actions/nav';
+
 import {
   SUBMIT_LOGIN,
   getUserData,
@@ -14,18 +20,10 @@ import {
   isLogged,
   updateLibrary,
   loginError,
-  loginSuccessfull,
-  updateUserList,
+  // loginSuccessfull,
+  // updateUserList,
   changeId,
 } from '../actions/login';
-
-// import de l'action pour vérifier les notifications au login
-import {
-  CHECK_NOTIFICATION,
-  updateSenderId,
-  hasNotification,
-  checkNotification,
-} from '../actions/nav';
 
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
@@ -49,7 +47,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           // isLogged = true
           // store.dispatch(userLogged());
           // requête des récupérations de données
@@ -60,12 +58,7 @@ const loginMiddleware = (store) => (next) => (action) => {
 
         .catch((error) => {
           console.log(error);
-          console.log(error.response);
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-
-          if (error.response.data.message == 'Invalid credentials.') {
+          if (error.response.data.message === 'Invalid credentials.') {
             store.dispatch(loginError());
           }
         });
@@ -86,7 +79,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(changePseudo(response.data.pseudo));
           store.dispatch(changeSteamAvatar(response.data.steamAvatar));
@@ -95,38 +88,49 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(updateLibrary(response.data.libraries));
           store.dispatch(isLogged());
           store.dispatch(changeId(response.data.id));
-          store.dispatch(checkNotification());
         })
         .catch((error) => {
           console.log(error);
         });
       break;
     }
-    case CHECK_NOTIFICATION: {
-      const {
-        token,
-        id,
-      } = store.getState().homepage;
+    // case CHECK_NOTIFICATION: {
+    //   const {
+    //     token,
+    //   } = store.getState().homepage;
 
-      axios.get(
-        `http://localhost:8000/api/users/${id}/requests`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      )
-        .then((response) => {
-          console.log(response);
-          if ((response.data).length !== 0) {
-            store.dispatch(updateSenderId(response.data));
-            store.dispatch(hasNotification());
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      break;
-    }
+    //   const {
+    //     id,
+    //   } = store.getState().homepage;
+
+    //   axios.get(
+    //     `http://localhost:8000/api/users/${id}/requests`, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     },
+    //   )
+    //     .then((response) => {
+    //       console.log(response.data);
+
+    //       const isDeclined = response.data.map((request) => request.declinedAt);
+    //       const isAccepted = response.data.map((request) => request.acceptedAt);
+    //       console.log(isAccepted);
+    //       console.log(isDeclined);
+
+    //       if (isAccepted[0] === null && isDeclined[0] === null) {
+    //         store.dispatch(hasNotification());
+    //       }
+
+    //       if ((response.data).length !== 0) {
+    //         store.dispatch(updateSenderId(response.data));
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    //   break;
+    // }
   }
 
   // on passe l'action au suivant (middleware suivant ou reducer)

@@ -3,9 +3,11 @@ import {
   SEARCH_FRIEND_PROFILE,
   displayResults,
   FRIEND_REQUEST,
-  CHECK_NOTIFICATION,
-  updateSenderId,
-  hasNotification,
+  // CHECK_NOTIFICATION,
+  // updateSenderId,
+  // hasNotification,
+  ACCEPT_FRIEND_REQUEST,
+  DENY_FRIEND_REQUEST,
 } from 'src/actions/nav';
 
 const navMiddleware = (store) => (next) => (action) => {
@@ -71,17 +73,60 @@ const navMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
-    case CHECK_NOTIFICATION: {
+    // case CHECK_NOTIFICATION: {
+    //   const {
+    //     token,
+    //   } = store.getState().homepage;
+
+    //   const {
+    //     id,
+    //   } = store.getState().homepage;
+
+    //   axios.get(
+    //     `http://localhost:8000/api/users/${id}/requests`, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`,
+    //       },
+    //     },
+    //   )
+    //     .then((response) => {
+    //       console.log(response.data);
+
+    //       if ((response.data).length !== 0) {
+    //         store.dispatch(updateSenderId(response.data));
+    //       }
+
+    //       const isDeclined = response.data.map((request) => request.declinedAt);
+    //       const isAccepted = response.data.map((request) => request.acceptedAt);
+    //       console.log(isAccepted);
+    //       console.log(isDeclined);
+
+    //       if (isAccepted[0] === null && isDeclined[0] === null) {
+    //         store.dispatch(hasNotification());
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.log(error);
+    //     });
+    //   break;
+    // }
+    case ACCEPT_FRIEND_REQUEST: {
       const {
         token,
       } = store.getState().homepage;
 
       const {
-        id,
-      } = store.getState().homepage;
+        requestId,
+      } = store.getState().navReducer;
 
-      axios.get(
-        `http://localhost:8000/api/users/${id}/requests`, {
+      axios.patch(
+        `http://localhost:8000/api/request/${requestId}`,
+        // données
+        {
+          acceptedAt: (new Date()).toJSON(),
+        },
+        // options (tokens)
+        {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -89,10 +134,36 @@ const navMiddleware = (store) => (next) => (action) => {
       )
         .then((response) => {
           console.log(response);
-          if ((response.data).length !== 0) {
-            store.dispatch(updateSenderId(response.data));
-            store.dispatch(hasNotification());
-          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    }
+    case DENY_FRIEND_REQUEST: {
+      const {
+        token,
+      } = store.getState().homepage;
+
+      const {
+        requestId,
+      } = store.getState().navReducer;
+
+      axios.patch(
+        `http://localhost:8000/api/request/${requestId}`,
+        // données
+        {
+          declinedAt: (new Date()).toJSON(),
+        },
+        // options (tokens)
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+        .then((response) => {
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);

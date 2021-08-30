@@ -1,5 +1,3 @@
-import { Header } from "semantic-ui-react";
-
 export const CHANGE_SEARCH_VALUE = 'CHANGE_SEARCH_VALUE';
 export const IS_SEARCHING = 'IS_SEARCHING';
 export const IS_NOT_SEARCHING = 'IS_NOT_SEARCHING';
@@ -10,6 +8,11 @@ export const FRIEND_TO_REQUEST = 'FRIEND_TO_REQUEST';
 export const CHECK_NOTIFICATION = 'CHECK_NOTIFICATION';
 export const UPDATE_SENDER_ID = 'UPDATE_SENDER_ID';
 export const HAS_NOTIFICATION = 'HAS_NOTIFICATION';
+// pour le refus ou l'acceptation d'ami
+export const ACCEPT_FRIEND_REQUEST = 'ACCEPT_FRIEND_REQUEST';
+export const DENY_FRIEND_REQUEST = 'DENY_FRIEND_REQUEST';
+export const UPDATE_REQUEST_ID = 'UPDATE_REQUEST_ID';
+export const HAS_NO_NOTIFICATION = 'HAS_NO_NOTIFICATION';
 
 export const changeSearchValue = (value) => ({
   type: CHANGE_SEARCH_VALUE,
@@ -53,4 +56,23 @@ export const updateSenderId = (senderId) => ({
 
 export const hasNotification = () => ({
   type: HAS_NOTIFICATION,
+});
+
+export const hasNoNotification = () => ({
+  type: HAS_NO_NOTIFICATION,
+});
+
+// pour le refus ou l'acceptation d'ami
+
+export const acceptFriendRequest = () => ({
+  type: ACCEPT_FRIEND_REQUEST,
+});
+
+export const denyFriendRequest = () => ({
+  type: DENY_FRIEND_REQUEST,
+});
+
+export const updateRequestId = (requestId) => ({
+  type: UPDATE_REQUEST_ID,
+  requestId,
 });

@@ -41,6 +41,10 @@ const Nav = ({
   handleSearchNotification,
   hasNotification,
   friendRequests,
+  handleAcceptFriendRequest,
+  handleDenyFriendRequest,
+  handleRequestId,
+  handleHasNoNotification,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
   if (inputSearch.length > 0) {
@@ -164,7 +168,19 @@ const Nav = ({
       <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
-        content={<Profile avatar={steamAvatar} pseudo={pseudo} hasNotif={hasNotification} friendRequest={friendRequests} handleDisconnection={handleDisconnection} />}
+        content={(
+          <Profile
+            avatar={steamAvatar}
+            pseudo={pseudo}
+            acceptRequest={handleAcceptFriendRequest}
+            denyRequest={handleDenyFriendRequest}
+            hasNotif={hasNotification}
+            friendRequest={friendRequests}
+            handleDisconnection={handleDisconnection}
+            requestId={handleRequestId}
+            handleHasNoNotification={handleHasNoNotification}
+          />
+)}
         on="click"
         offset={[0, 0]}
       // dans trigger: l'avatar qui est affiché et cliquable
@@ -173,12 +189,12 @@ const Nav = ({
       {hasNotification && (
         <Label className="notification-label" circular color="red" empty key="red" />
       )}
-      <Button
+      {/* <Button
         icon
         onClick={handleSearchNotification}
-        >
+      >
         <Icon name="sync" />
-      </Button>
+      </Button> */}
     </Menu>
   );
 };

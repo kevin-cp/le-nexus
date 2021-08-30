@@ -11,23 +11,56 @@ const Profile = ({
   handleDisconnection,
   friendRequest,
   hasNotif,
-}) => (
-  <div className="profile-popup">
-    <Image className="avatar" src={avatar} avatar />
-    <p className="profile-username">{pseudo}</p>
-    {hasNotif
+  acceptRequest,
+  denyRequest,
+  requestId,
+  handleHasNoNotification,
+}) => {
+  const handleAcceptFriendRequest = () => {
+    acceptRequest();
+  };
+
+  const handleDenyFriendRequest = () => {
+    denyRequest();
+  };
+
+  const handleNoNotif = () => {
+    handleHasNoNotification();
+  };
+
+  const handleRequestId = (id) => {
+    requestId(id);
+  };
+  return (
+    <div className="profile-popup">
+      <Image className="avatar" src={avatar} avatar />
+      <p className="profile-username">{pseudo}</p>
+      {/* {hasNotif
       && friendRequest.map((request) => (
         <div key={request.id} className="friend-request">
           <p>Demande en ami de <b>{request.sender.pseudo}</b> :</p>
-          <Button>Accepter</Button>
-          <Button>Refuser</Button>
+          <Button onClick={() => {
+            handleRequestId(request.id);
+            handleAcceptFriendRequest();
+            handleNoNotif();
+          }}
+          >Accepter
+          </Button>
+          <Button onClick={() => {
+            handleRequestId(request.id);
+            handleDenyFriendRequest();
+            handleNoNotif();
+          }}
+          >
+            Refuser
+          </Button>
         </div>
-      ))}
-    <NavLink to="/profile">Editer le profil</NavLink>
-    <Button onClick={handleDisconnection}>Se Déconnecter</Button>
-  </div>
-
-);
+      ))} */}
+      <NavLink to="/profile">Editer le profil</NavLink>
+      <Button onClick={handleDisconnection}>Se Déconnecter</Button>
+    </div>
+  );
+};
 
 Profile.propTypes = {
   avatar: PropTypes.string.isRequired,
