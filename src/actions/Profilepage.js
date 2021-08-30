@@ -5,7 +5,8 @@ export const CHANGE_CURRENT_PASSWORD_VALUE = 'CHANGE_CURRENT_PASSWORD_VALUE';
 export const CHANGE_NEW_PASSWORD_VALUE = 'CHANGE_NEW_PASSWORD_VALUE';
 export const CHANGE_CONFIRM_PASSWORD_VALUE = 'CHANGE_CONFIRM_PASSWORD_VALUE';
 export const USERNAME_ERROR = 'USERNAME_ERROR';
-export const PROFILE_SUBMIT = 'PROFILE_SUBMIT';
+export const USERNAME_SUBMIT = 'USERNAME_SUBMIT';
+export const EMAIL_SUBMIT = 'EMAIL_SUBMIT';
 export const PASSWORD_SUBMIT = 'PASSWORD_SUBMIT';
 export const FETCH_DATA = 'FETCH_DATA';
 
@@ -43,8 +44,12 @@ export const usernameError = () => ({
   type: USERNAME_ERROR,
 });
 
-export const profileSubmit = () => ({
-  type: PROFILE_SUBMIT,
+export const usernameSubmit = () => ({
+  type: USERNAME_SUBMIT,
+});
+
+export const emailSubmit = () => ({
+  type: EMAIL_SUBMIT,
 });
 
 export const passwordSubmit = () => ({

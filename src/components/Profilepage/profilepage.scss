@@ -1,18 +1,27 @@
 .main {
+  height: 100vh;
+  border: solid 0.3em lightgray;
+  padding: 1.5em;
+  border-radius: 1em;
+  box-shadow: inset 0 0 1em gold, 0 0 2em red;
   
-  .nexusUsername {
-
-
-  }
 
   .avatar {
 
-    .avatar-image {
+    .nexusUsername {
+      color: lightgray;
 
     }
 
-    .avatar-popup {
+    .avatar-image {
+      box-shadow: inset 0 0 1em gold, 0 0 2em red;
+      padding: 0.2em;
+      margin-bottom: 1em;
+      border: solid 0.2em lightgray;
+    }
 
+    .avatar-popup {
+      position: sticky;
       .avatar-popup--form {
 
         .popup-form--input {

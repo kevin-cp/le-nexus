@@ -10,7 +10,8 @@ import {
   changeCurrentPasswordValue,
   changeNewPasswordValue,
   changeConfirmPasswordValue,
-  profileSubmit,
+  usernameSubmit,
+  emailSubmit,
   passwordSubmit,
 } from 'src/actions/Profilepage';
 
@@ -59,8 +60,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeConfirmPasswordValue(newValue));
   },
 
-  handleFormSubmit: () => {
-    dispatch(profileSubmit());
+  handleUsernameSubmit: () => {
+    dispatch(usernameSubmit());
+  },
+
+  handleEmailSubmit: () => {
+    dispatch(emailSubmit());
   },
 
   handlePasswordSubmit: () => {

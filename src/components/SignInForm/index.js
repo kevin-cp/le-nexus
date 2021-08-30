@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect, NavLink } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -17,7 +18,7 @@ import {
 import './signinform.scss';
 
 const SignInForm = ({
-  newUsername,
+  username,
   password,
   confirmPassword,
   email,
@@ -36,6 +37,7 @@ const SignInForm = ({
   isChecked,
   handleIsChecked,
   togglePasswordError,
+  isCreated,
 }) => {
   // dans le handleSubmit je fais une comparaison de mot de passe
   // si le mdp et la confirmation sont différents on aura un message sinon c'est ok
@@ -50,116 +52,131 @@ const SignInForm = ({
     }
   };
 
+  if (isCreated) {
+    return <Redirect to="/" />;
+  }
+
   return (
-    <Container className="Profilepage-container">
-      <Grid className="Profilepage-main">
-        <h2 className="Profilepage-NexusUsername">
-          {usernameToDisplay}
-        </h2>
-        <div className="Profilepage-avatar">
-          <Image centered src={avatarToDisplay} circular />
-          <Popup
-            className="Profilepage-popup--import"
-            content={(
-              <Form>
-                <label>Nouvel avatar</label>
-                <input className="Profilepage-popup--input" placeholder="chemin d'importation" />
-                <Button className="Profilepage-popup--button" type="submit">Importer</Button>
-              </Form>
-)}
-            on="click"
-            offset={[0, 0]}
-            trigger={<Button className="Profilepage-avatar--button" type="button" circular icon="settings" />}
-          />
-        </div>
-        <Form
-          className="Profilepage-form"
-          onSubmit={handleSubmitForm}
-        >
-          <Form.Field className="Profilepage-username">
-            <label>Nouvel identifiant Nexus</label>
+    <Grid className="signin-container" stackable textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
+      <Grid.Column style={{ maxWidth: 600 }}>
+        <Form className="signin-form" onSubmit={handleSubmit}>
+          <Image className="logo" src={NexuslogoNav} />
+          <Header color="grey" size="huge">Inscription</Header>
+          <Form.Field>
+            <label>Pseudo</label>
             <input
+              required
+              placeholder="Pseudo"
               type="text"
-              className="Profilepage-username--input"
-              placeholder={usernameToDisplay}
-              value={newUsername}
+              value={username}
               onChange={(event) => {
                 // console.log(event.currentTarget.value);
-                setNewUsername(event.currentTarget.value);
+                setUsername(event.currentTarget.value);
               }}
             />
           </Form.Field>
-          <Form.Field className="Profilepage-email">
-            <label>Email</label>
+          {/* Message qui s'affiche uniquement si le pseudo est déjà existant */}
+          {usernameError && (
+            <Message negative>
+              <Message.Header>Pseudo déjà existant</Message.Header>
+            </Message>
+          )}
+          <Form.Field>
+            <label>e-mail</label>
             <input
-              className="Profilepage-email--input"
+              required
+              placeholder="e-mail"
               type="email"
-              placeholder={emailToDisplay}
-              value={newEmail}
+              value={email}
               onChange={(event) => {
-                // console.log(event.currentTarget.value);
-                setNewEmail(event.currentTarget.value);
-              }}
-            />
-            <input
-              className="Profilepage-email--inputConfirm"
-              type="email"
-              placeholder="Confirm Nouvelle adresse mail"
-              value={confirmEmail}
-              onChange={(event) => {
-                // console.log(event.currentTarget.value);
-                setConfirmEmail(event.currentTarget.value);
+              // console.log(event.currentTarget.value);
+                setEmail(event.currentTarget.value);
               }}
             />
           </Form.Field>
-          <Button type="submit">Enregistrer</Button>
+          {/* Message qui s'affiche uniquement si l'email est déjà existant */}
+          {emailError && (
+            <Message negative>
+              <Message.Header>E-mail déjà existant</Message.Header>
+            </Message>
+          )}
+          <Form.Field>
+            <label>Mot de passe</label>
+            <input
+              required
+              placeholder="Mot de passe"
+              type="password"
+              value={password}
+              onChange={(event) => {
+              // console.log(event.currentTarget.value);
+                setPassword(event.currentTarget.value);
+              }}
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Confirmer le mot de passe:</label>
+            <input
+              required
+              placeholder="confirmer le mot de passe"
+              type="password"
+              value={confirmPassword}
+              onChange={(event) => {
+              // console.log(event.currentTarget.value);
+                setConfirmPassword(event.currentTarget.value);
+              }}
+            />
+          </Form.Field>
+          {/* Message qui s'affiche uniquement si un des deux mots de passes sont erronés */}
+          {passwordError && (
+          <Message negative>
+            <Message.Header>Les mots de passe doivent être identiques</Message.Header>
+          </Message>
+          )}
+          <Form.Field>
+            <label>Steam ID</label>
+            <input
+              required
+              placeholder="Steam ID"
+              type="number"
+              value={SteamId}
+              onChange={(event) => {
+              // console.log(event.currentTarget.value);
+                setSteamId(event.currentTarget.value);
+              }}
+            />
+          </Form.Field>
+          {/* Message qui s'affiche uniquement si le steamId est déjà existant */}
+          {steamIdError && (
+            <Message negative>
+              <Message.Header>SteamId déjà existant ou invalide</Message.Header>
+            </Message>
+          )}
+          {/* message explicatif pour la récupératuion d'id */}
+          <Message info>
+            <Message.Header>Pourquoi nous demandons ton ID Steam ?</Message.Header>
+            <p>Cela va nous permettre d'afficher la liste de jeux de ta bibliothèque etc..</p>
+            <Message.Header>Comment faire ?</Message.Header>
+            <p>C'est simple, sur le client Steam clique sur ton profil
+              en haut a droite et sur <b>"Détails du compte"</b>.
+              Juste en dessous du nom de ton compte se trouve l'ID !
+            </p>
+          </Message>
+          <Form.Field required>
+            <Checkbox onClick={handleIsChecked} required label="J'accepte les CGU" />
+          </Form.Field>
+          {!isChecked && (
+            <Message negative>
+              <Message.Header>Veuillez cocher les conditions</Message.Header>
+            </Message>
+          )}
+          <Button className="button-submit" type="submit">Confirmer</Button>
+          <Button className="button-cancel">Annuler</Button>
+          <Message>
+            Déjà inscrit ? <a href="/">Connectez-vous</a>
+          </Message>
         </Form>
-        <Modal
-          className="Password-modal"
-          header="Changement de mot de passe"
-          trigger={<Button>Changer le mot de passe</Button>}
-          content={(
-            <Form
-              className="Password-form"
-              onSubmit={handleSubmitPassword}
-            >
-              <input
-                className="Password-form--input"
-                type="password"
-                placeholder="Mot de passe actuel"
-                value={currentPassword}
-                onChange={(event) => {
-                  // console.log(event.currentTarget.value);
-                  setCurrentPassword(event.currentTarget.value);
-                }}
-              />
-              <input
-                className="Password-form--input"
-                type="password"
-                placeholder="Nouveau mot de passe"
-                value={newPassword}
-                onChange={(event) => {
-                  // console.log(event.currentTarget.value);
-                  setNewPassword(event.currentTarget.value);
-                }}
-              />
-              <input
-                className="Password-form--input"
-                type="password"
-                placeholder="Confirmer nouveau mot de passe"
-                value={confirmPassword}
-                onChange={(event) => {
-                  // console.log(event.currentTarget.value);
-                  setConfirmPassword(event.currentTarget.value);
-                }}
-              />
-              <Button className="Password-form--button" type="submit">Enregistrer</Button>
-            </Form>
-)}
-          actions={['Cancel']}
-        />
-      </Grid>
-    </Container>
+      </Grid.Column>
+    </Grid>
   );
 };
 
@@ -181,6 +198,10 @@ SignInForm.propTypes = {
   usernameError: PropTypes.bool.isRequired,
   passwordError: PropTypes.bool.isRequired,
   steamIdError: PropTypes.bool.isRequired,
+  isChecked: PropTypes.bool.isRequired,
+  handleIsChecked: PropTypes.func.isRequired,
+  togglePasswordError: PropTypes.func.isRequired,
+  isCreated: PropTypes.string.isRequired,
 };
 
 export default SignInForm;
