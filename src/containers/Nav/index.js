@@ -10,6 +10,7 @@ import {
   isSearching,
   searchFriendProfile,
   friendToRequest,
+  checkNotification,
 } from '../../actions/nav';
 
 // === mapStateToProps
@@ -24,6 +25,8 @@ const mapStateToProps = (state) => ({
   isSearching: state.navReducer.isSearching,
   resultList: state.navReducer.searchResult,
   friendToRequest: state.navReducer.friendToRequest,
+  hasNotification: state.navReducer.hasNotification,
+  friendRequests: state.navReducer.senderId,
 });
 
 // === mapDispatchToProps
@@ -56,6 +59,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleFriendToRequestId: (newValue) => {
     dispatch(friendToRequest(newValue));
+  },
+
+  handleSearchNotification: () => {
+    dispatch(checkNotification());
   },
 });
 

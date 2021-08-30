@@ -15,6 +15,8 @@ import {
   List,
   Modal,
   Header,
+  Form,
+  Label,
 } from 'semantic-ui-react';
 
 import PropTypes from 'prop-types';
@@ -36,6 +38,9 @@ const Nav = ({
   resultList,
   handleFriendRequest,
   handleFriendToRequestId,
+  handleSearchNotification,
+  hasNotification,
+  friendRequests,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
   if (inputSearch.length > 0) {
@@ -45,6 +50,7 @@ const Nav = ({
     handleIsNotSearching();
   }
 
+  // je créé ces 2 fonctions afin de pouvoir les utiliser dans un seul onclick
   const handleAddFriendClick = (id) => {
     handleFriendToRequestId(id);
   };
@@ -102,18 +108,28 @@ const Nav = ({
                       </Modal.Description>
                     </Modal.Content>
                     <Modal.Actions>
-                      <Button color="red">
-                        <Icon name="remove" /> Non
-                      </Button>
-                      <Button
-                        color="green"
-                        onClick={() => {
-                          handleAddFriendClick(user.id);
-                          handleSendFriendRequest();
-                        }}
+                      <Form onSubmit={() => {
+                        handleAddFriendClick(user.id);
+                        handleSendFriendRequest();
+                        handleIsNotSearching();
+                      }}
                       >
-                        <Icon name="checkmark" /> Oui
-                      </Button>
+                        <Button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            handleIsNotSearching();
+                          }}
+                          color="red"
+                        >
+                          <Icon name="remove" /> Non
+                        </Button>
+                        <Button
+                          type="submit"
+                          color="green"
+                        >
+                          <Icon name="checkmark" /> Oui
+                        </Button>
+                      </Form>
                     </Modal.Actions>
                   </Modal>
 
@@ -145,35 +161,24 @@ const Nav = ({
           Evenements
         </Menu.Item>
       </NavLink>
-      {/* <NavLink
-      to="/signin"
-    >
-      <Menu.Item
-        className="nav-item"
-        name="Inscription"
-      >
-        Inscription
-      </Menu.Item>
-    </NavLink>
-    <NavLink
-      to="/login"
-    >
-      <Menu.Item
-        className="nav-item"
-        name="Login"
-      >
-        Login
-      </Menu.Item>
-    </NavLink> */}
       <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
-        content={<Profile avatar={steamAvatar} pseudo={pseudo} handleDisconnection={handleDisconnection} />}
+        content={<Profile avatar={steamAvatar} pseudo={pseudo} hasNotif={hasNotification} friendRequest={friendRequests} handleDisconnection={handleDisconnection} />}
         on="click"
         offset={[0, 0]}
       // dans trigger: l'avatar qui est affiché et cliquable
         trigger={<Image className="avatar" src={steamAvatar} size="tiny" avatar />}
       />
+      {hasNotification && (
+        <Label className="notification-label" circular color="red" empty key="red" />
+      )}
+      <Button
+        icon
+        onClick={handleSearchNotification}
+        >
+        <Icon name="sync" />
+      </Button>
     </Menu>
   );
 };

@@ -18,7 +18,7 @@ import {
 const initialState = {
   // ici l'état initial
   id: '',
-  email: 'armand@gmail.com',
+  email: 'kevin@gmail.com',
   password: '123',
   pseudo: 'Monsieur Yoyo',
   steamId: '',
@@ -113,7 +113,7 @@ function homepageReducer(state = initialState, action = {}) {
         isLogged: false,
         email: '',
         pseudo: '',
-        password: '',
+        password: '123',
         steamId: '',
         steamAvatar: '',
         steamUsername: '',

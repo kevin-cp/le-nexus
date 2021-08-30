@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { SEARCH_FRIEND_PROFILE, displayResults, FRIEND_REQUEST } from 'src/actions/nav';
+import {
+  SEARCH_FRIEND_PROFILE,
+  displayResults,
+  FRIEND_REQUEST,
+  CHECK_NOTIFICATION,
+  updateSenderId,
+  hasNotification,
+} from 'src/actions/nav';
 
 const navMiddleware = (store) => (next) => (action) => {
   // je peux réagir au cas par cas suivant l'action,
@@ -36,12 +43,17 @@ const navMiddleware = (store) => (next) => (action) => {
         token,
         id,
       } = store.getState().homepage;
+
+      const {
+        friendToRequest,
+      } = store.getState().navReducer;
+
       axios.post(
         'http://localhost:8000/api/request',
         // données
         {
           sender: id,
-          target: 70,
+          target: friendToRequest,
           type: 'friend',
         },
         // options (tokens)
@@ -53,6 +65,34 @@ const navMiddleware = (store) => (next) => (action) => {
       )
         .then((response) => {
           console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    }
+    case CHECK_NOTIFICATION: {
+      const {
+        token,
+      } = store.getState().homepage;
+
+      const {
+        id,
+      } = store.getState().homepage;
+
+      axios.get(
+        `http://localhost:8000/api/users/${id}/requests`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+        .then((response) => {
+          console.log(response);
+          if ((response.data).length !== 0) {
+            store.dispatch(updateSenderId(response.data));
+            store.dispatch(hasNotification());
+          }
         })
         .catch((error) => {
           console.log(error);

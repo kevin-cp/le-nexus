@@ -6,6 +6,9 @@ import {
   DISPLAY_RESULTS,
   FRIEND_REQUEST,
   FRIEND_TO_REQUEST,
+  CHECK_NOTIFICATION,
+  UPDATE_SENDER_ID,
+  HAS_NOTIFICATION,
 } from 'src/actions/nav';
 
 const initialState = {
@@ -13,7 +16,11 @@ const initialState = {
   inputSearch: '',
   isSearching: false,
   searchResult: [],
+  // states pour les dedmandes d'amis
   friendToRequest: '',
+  hasNotification: false,
+  senderId: '',
+
 };
 
 function navReducer(state = initialState, action = {}) {
@@ -54,6 +61,23 @@ function navReducer(state = initialState, action = {}) {
       return {
         ...state,
         friendToRequest: action.friendId,
+      };
+
+    case CHECK_NOTIFICATION:
+      return {
+        ...state,
+      };
+
+    case UPDATE_SENDER_ID:
+      return {
+        ...state,
+        senderId: action.senderId,
+      };
+
+    case HAS_NOTIFICATION:
+      return {
+        ...state,
+        hasNotification: true,
       };
 
     default:

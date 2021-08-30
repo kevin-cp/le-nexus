@@ -19,6 +19,14 @@ import {
   changeId,
 } from '../actions/login';
 
+// import de l'action pour vérifier les notifications au login
+import {
+  CHECK_NOTIFICATION,
+  updateSenderId,
+  hasNotification,
+  checkNotification,
+} from '../actions/nav';
+
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
 
@@ -77,7 +85,7 @@ const loginMiddleware = (store) => (next) => (action) => {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((response)=> {
+        .then((response) => {
           console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(changePseudo(response.data.pseudo));
@@ -87,10 +95,37 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(updateLibrary(response.data.libraries));
           store.dispatch(isLogged());
           store.dispatch(changeId(response.data.id));
+          store.dispatch(checkNotification());
         })
         .catch((error) => {
           console.log(error);
         });
+      break;
+    }
+    case CHECK_NOTIFICATION: {
+      const {
+        token,
+        id,
+      } = store.getState().homepage;
+
+      axios.get(
+        `http://localhost:8000/api/users/${id}/requests`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+        .then((response) => {
+          console.log(response);
+          if ((response.data).length !== 0) {
+            store.dispatch(updateSenderId(response.data));
+            store.dispatch(hasNotification());
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
     }
   }
 
