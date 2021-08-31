@@ -3,9 +3,9 @@ import {
   SEARCH_FRIEND_PROFILE,
   displayResults,
   FRIEND_REQUEST,
-  // CHECK_NOTIFICATION,
-  // updateSenderId,
-  // hasNotification,
+  CHECK_NOTIFICATION,
+  updateSenderId,
+  hasNotification,
   ACCEPT_FRIEND_REQUEST,
   DENY_FRIEND_REQUEST,
 } from 'src/actions/nav';
@@ -73,43 +73,38 @@ const navMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
-    // case CHECK_NOTIFICATION: {
-    //   const {
-    //     token,
-    //   } = store.getState().homepage;
+    case CHECK_NOTIFICATION: {
+      const {
+        token,
+        id,
+        steamId
+      } = store.getState().homepage;
 
-    //   const {
-    //     id,
-    //   } = store.getState().homepage;
+      axios.get(
+        `http://localhost:8000/api/users/${steamId}/requests`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(updateSenderId(response.data));
 
-    //   axios.get(
-    //     `http://localhost:8000/api/users/${id}/requests`, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     },
-    //   )
-    //     .then((response) => {
-    //       console.log(response.data);
+          const isDeclined = response.data.map((request) => request.declinedAt);
+          const isAccepted = response.data.map((request) => request.acceptedAt);
+          const targetId = response.data.map((request) => request.target.id);
+          console.log(targetId);
 
-    //       if ((response.data).length !== 0) {
-    //         store.dispatch(updateSenderId(response.data));
-    //       }
-
-    //       const isDeclined = response.data.map((request) => request.declinedAt);
-    //       const isAccepted = response.data.map((request) => request.acceptedAt);
-    //       console.log(isAccepted);
-    //       console.log(isDeclined);
-
-    //       if (isAccepted[0] === null && isDeclined[0] === null) {
-    //         store.dispatch(hasNotification());
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    //   break;
-    // }
+          if (isAccepted[0] === null && isDeclined[0] === null && targetId == id) {
+            store.dispatch(hasNotification());
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      break;
+    }
     case ACCEPT_FRIEND_REQUEST: {
       const {
         token,

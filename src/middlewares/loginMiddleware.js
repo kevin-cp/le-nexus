@@ -1,12 +1,6 @@
 /* eslint-disable default-case */
 import axios from 'axios';
 
-// import {
-//   CHECK_NOTIFICATION,
-//   updateSenderId,
-//   hasNotification,
-// } from 'src/actions/nav';
-
 import {
   SUBMIT_LOGIN,
   getUserData,
@@ -94,43 +88,6 @@ const loginMiddleware = (store) => (next) => (action) => {
         });
       break;
     }
-    // case CHECK_NOTIFICATION: {
-    //   const {
-    //     token,
-    //   } = store.getState().homepage;
-
-    //   const {
-    //     id,
-    //   } = store.getState().homepage;
-
-    //   axios.get(
-    //     `http://localhost:8000/api/users/${id}/requests`, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`,
-    //       },
-    //     },
-    //   )
-    //     .then((response) => {
-    //       console.log(response.data);
-
-    //       const isDeclined = response.data.map((request) => request.declinedAt);
-    //       const isAccepted = response.data.map((request) => request.acceptedAt);
-    //       console.log(isAccepted);
-    //       console.log(isDeclined);
-
-    //       if (isAccepted[0] === null && isDeclined[0] === null) {
-    //         store.dispatch(hasNotification());
-    //       }
-
-    //       if ((response.data).length !== 0) {
-    //         store.dispatch(updateSenderId(response.data));
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    //   break;
-    // }
   }
 
   // on passe l'action au suivant (middleware suivant ou reducer)

@@ -189,12 +189,12 @@ const Nav = ({
       {hasNotification && (
         <Label className="notification-label" circular color="red" empty key="red" />
       )}
-      {/* <Button
+      <Button
         icon
         onClick={handleSearchNotification}
       >
         <Icon name="sync" />
-      </Button> */}
+      </Button>
     </Menu>
   );
 };

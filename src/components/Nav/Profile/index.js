@@ -35,7 +35,7 @@ const Profile = ({
     <div className="profile-popup">
       <Image className="avatar" src={avatar} avatar />
       <p className="profile-username">{pseudo}</p>
-      {/* {hasNotif
+      {hasNotif
       && friendRequest.map((request) => (
         <div key={request.id} className="friend-request">
           <p>Demande en ami de <b>{request.sender.pseudo}</b> :</p>
@@ -55,7 +55,7 @@ const Profile = ({
             Refuser
           </Button>
         </div>
-      ))} */}
+      ))}
       <NavLink to="/profile">Editer le profil</NavLink>
       <Button onClick={handleDisconnection}>Se Déconnecter</Button>
     </div>
