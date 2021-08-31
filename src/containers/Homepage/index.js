@@ -16,7 +16,11 @@ const mapStateToProps = (state) => ({
   friendsList: state.homepage.friendsList,
   filteredFriends: state.homepage.filteredFriends,
   isLogged: state.homepage.isLogged,
+<<<<<<< HEAD
   noFriendsFound: state.homepage.noFriendsFound,
+=======
+  userList: state.homepage.userList,
+>>>>>>> origin/Kevin-friends-searchbar
 });
 
 // === mapDispatchToProps

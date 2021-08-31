@@ -1,7 +1,25 @@
 /* eslint-disable default-case */
 import axios from 'axios';
 
-import { SUBMIT_LOGIN, getUserData, GET_USER_DATA, changePseudo, changeSteamId, changeSteamAvatar, changeSteamUsername, changeToken, changeVisibilityState, isLogged, updateLibrary, loginError, loginSuccessfull, updateFriendsList, GET_USER_FRIENDS, getUserFriends, setLoading } from '../actions/login';
+import { SUBMIT_LOGIN,
+  getUserData,
+  GET_USER_DATA,
+  changePseudo,
+  changeSteamId,
+  changeSteamAvatar,
+  changeSteamUsername,
+  changeToken,
+  changeVisibilityState,
+  isLogged,
+  updateLibrary,
+  loginError,
+  loginSuccessfull,
+  updateFriendsList,
+  GET_USER_FRIENDS,
+  getUserFriends,
+  setLoading,
+  changeId,
+} from '../actions/login';
 
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
@@ -25,7 +43,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           // isLogged = true
           // store.dispatch(userLogged());
           // requête des récupérations de données
@@ -36,12 +54,7 @@ const loginMiddleware = (store) => (next) => (action) => {
 
         .catch((error) => {
           console.log(error);
-          console.log(error.response);
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-
-          if (error.response.data.message == 'Invalid credentials.') {
+          if (error.response.data.message === 'Invalid credentials.') {
             store.dispatch(loginError());
           }
         })
@@ -54,13 +67,18 @@ const loginMiddleware = (store) => (next) => (action) => {
     case GET_USER_DATA: {
       const {
         steamId,
+        token,
       } = store.getState().homepage;
 
       // let url = `${process.env.REACT_APP_API_URL}/api/users/${steamId}`;
 
-      axios.get(`http://localhost:8000/api/users/${steamId}`)
-        .then((response)=> {
-          console.log(response);
+      axios.get(`http://localhost:8000/api/users/${steamId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          // console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(changePseudo(response.data.pseudo));
           store.dispatch(changeSteamAvatar(response.data.steamAvatar));
@@ -97,8 +115,9 @@ const loginMiddleware = (store) => (next) => (action) => {
           //! ENFIN ON SE LOG
           store.dispatch(loginSuccessfull());
           store.dispatch(isLogged());
+          store.dispatch(changeId(response.data.id));
         })
-        .catch((error) =>{
+        .catch((error) => {
           console.log(error);
         })
         .finally(() => {

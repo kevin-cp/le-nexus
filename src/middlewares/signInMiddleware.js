@@ -5,6 +5,7 @@ import {
   usernameError,
   emailError,
   steamIdError,
+  isCreated,
 } from '../actions/SigninForm';
 
 const signInMiddleware = (store) => (next) => (action) => {
@@ -30,24 +31,20 @@ const signInMiddleware = (store) => (next) => (action) => {
           pseudo: inputUsername,
           steamId: inputSteamId,
           isLogged: true,
-          steamUsername: 'test',
-          steamAvatar: 'test',
-          visibilityState: true,
         },
       )
         .then((response) => {
           console.log(response);
+          if (response.statusText.includes('Created')) {
+            const newAction = isCreated(response.statusText);
+            store.dispatch(newAction);
+          }
         })
         .catch((error) => {
           console.log(error.response.data.errors);
 
           if (error.response.data.errors.detail.includes('pseudo')) {
             const newAction = usernameError(true);
-            store.dispatch(newAction);
-          }
-
-          if (!error.response.data.errors.detail.includes('pseudo')) {
-            const newAction = usernameError(!true);
             store.dispatch(newAction);
           }
 

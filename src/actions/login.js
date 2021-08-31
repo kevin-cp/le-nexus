@@ -9,6 +9,7 @@ export const LOGIN_SUCCESSFULL = "LOGIN_SUCCESSFULL";
 export const GET_USER_FRIENDS = "GET_USER_FRIENDS";
 
 // state modification
+export const CHANGE_ID = 'CHANGE_ID';
 export const CHANGE_PSEUDO = "CHANGE_PSEUDO";
 export const CHANGE_STEAMID = "CHANGE_STEAMID";
 export const CHANGE_STEAMAVATAR = "CHANGE_STEAMAVATAR";
@@ -17,6 +18,7 @@ export const CHANGE_VISIBILITY_STATE = "CHANGE_VISIBILITY_STATE";
 export const CHANGE_TOKEN = "CHANGE_TOKEN";
 export const UPDATE_LIBRARY = "UPDATE_LIBRARY";
 export const UPDATE_FRIENDSLIST = "UPDATE_FRIENDSLIST";
+export const UPDATE_USER_LIST = 'UPDATE_USER_LIST';
 
 export const IS_LOADING = "IS_LOADING";
 
@@ -60,6 +62,10 @@ export const setLoading = (newState) => ({
   newState,
 });
 
+export const changeId = (newId) => ({
+  type: CHANGE_ID,
+  newId,
+});
 // ! ========================================CHANGEMENT STATE HOMEPAGE===================================================
 
 // Pseudo
@@ -107,6 +113,10 @@ export const updateLibrary = (newLibrary) => ({
   newLibrary,
 });
 
+export const updateUserList = (newList) => ({
+  type: UPDATE_USER_LIST,
+  newList,
+});
 
 // TODO FRIENDSLIST
 export const updateFriendsList = (newFriendsList) => ({
