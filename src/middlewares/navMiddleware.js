@@ -80,6 +80,10 @@ const navMiddleware = (store) => (next) => (action) => {
         steamId
       } = store.getState().homepage;
 
+      const {
+        senderId,
+      } = store.getState().navReducer;
+
       axios.get(
         `http://localhost:8000/api/users/${steamId}/requests`, {
           headers: {
@@ -96,7 +100,11 @@ const navMiddleware = (store) => (next) => (action) => {
           const targetId = response.data.map((request) => request.target.id);
           console.log(targetId);
 
-          if (isAccepted[0] === null && isDeclined[0] === null && targetId == id) {
+          // if (isAccepted[0] === null && isDeclined[0] === null && targetId === id) {
+          //   store.dispatch(hasNotification());
+          // }
+
+          if (senderId.length !== 0) {
             store.dispatch(hasNotification());
           }
         })
