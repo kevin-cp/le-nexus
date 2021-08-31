@@ -88,17 +88,15 @@ const navMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           store.dispatch(updateSenderId(response.data));
 
-          const isDeclined = response.data.map((request) => request.declinedAt);
-          const isAccepted = response.data.map((request) => request.acceptedAt);
-          const targetId = response.data.map((request) => request.target.id);
-          console.log(targetId);
-
-          if (isAccepted[0] === null && isDeclined[0] === null && targetId == id) {
-            store.dispatch(hasNotification());
-          }
+          const requests = response.data.map((item) => {
+            if (item.declinedAt == null && item.acceptedAt == null) {
+              store.dispatch(hasNotification());
+            }
+          });
+          return requests;
         })
         .catch((error) => {
           console.log(error);
