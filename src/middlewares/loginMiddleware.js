@@ -85,10 +85,10 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(changeSteamUsername(response.data.steamUsername));
           store.dispatch(changeVisibilityState(response.data.visibilityState));
           store.dispatch(updateLibrary(response.data.libraries));
+          store.dispatch(changeId(response.data.id));
 
           // Maintenant il faut faire une requête pour appeler les données de la liste d'amis
           store.dispatch(getUserFriends());
-
         })
         .catch((error) =>{
           console.log(error);
@@ -102,11 +102,16 @@ const loginMiddleware = (store) => (next) => (action) => {
     case GET_USER_FRIENDS: {
       const {
         steamId,
+        token,
       } = store.getState().homepage;
 
       // let url = `${process.env.REACT_APP_API_URL}/api/users/${steamId}`;
 
-      axios.get(`http://localhost:8000/api/users/${steamId}/friends`)
+      axios.get(`http://localhost:8000/api/users/${steamId}/friends`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then((response)=> {
           console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
@@ -115,7 +120,6 @@ const loginMiddleware = (store) => (next) => (action) => {
           //! ENFIN ON SE LOG
           store.dispatch(loginSuccessfull());
           store.dispatch(isLogged());
-          store.dispatch(changeId(response.data.id));
         })
         .catch((error) => {
           console.log(error);

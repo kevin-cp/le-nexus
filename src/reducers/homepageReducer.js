@@ -1,15 +1,12 @@
 import { CHANGE_GAMESEARCH_INPUT } from 'src/actions/homepage';
-<<<<<<< HEAD
-import { ADD_FRIEND_TO_FILTER, RESET_FRIEND_LIST, DISPLAY_ALL_FRIENDS, NO_FRIEND_FOUND, FRIENDS_FOUND } from '../actions/homepage';
-import { CHANGE_EMAIL_INPUT, CHANGE_PASSWORD_INPUT, CHANGE_PSEUDO, CHANGE_STEAMAVATAR, CHANGE_STEAMUSERNAME, CHANGE_STEAMID, CHANGE_TOKEN, CHANGE_VISIBILITY_STATE, IS_LOGGED, USER_DISCONNECTED, UPDATE_LIBRARY, UPDATE_FRIENDSLIST } from "../actions/login";
+import { ADD_FRIEND_TO_FILTER,
+  RESET_FRIEND_LIST,
+  DISPLAY_ALL_FRIENDS,
+  NO_FRIEND_FOUND,
+  FRIENDS_FOUND
+} from '../actions/homepage';
 
-const initialState = {
-  // ici l'état initial
-  email: 'storyni@hotmail.fr',
-  password: 'calypso',
-=======
-import {
-  CHANGE_EMAIL_INPUT,
+import {CHANGE_EMAIL_INPUT,
   CHANGE_PASSWORD_INPUT,
   CHANGE_PSEUDO,
   CHANGE_STEAMAVATAR,
@@ -20,20 +17,20 @@ import {
   IS_LOGGED,
   USER_DISCONNECTED,
   UPDATE_LIBRARY,
+  UPDATE_FRIENDSLIST,
   UPDATE_USER_LIST,
   CHANGE_ID,
-} from '../actions/login';
+} from "../actions/login";
 
 const initialState = {
   // ici l'état initial
   id: '',
-  email: 'kevin@gmail.com',
-  password: '123',
->>>>>>> origin/Kevin-friends-searchbar
+  email: 'storyni@hotmail.fr',
+  password: 'calypso',
   pseudo: 'Monsieur Yoyo',
   steamId: '',
-  steamUsername: 'Tartalognon',
-  steamAvatar: 'https://avatarfiles.alphacoders.com/161/161326.png',
+  steamUsername: '',
+  steamAvatar: '',
   visibilityState: true,
   isLogged: false,
   token: '',
@@ -42,11 +39,7 @@ const initialState = {
   filteredFriends: [],
   noFriendsFound: null,
   gameSearch: '',
-<<<<<<< HEAD
-
-=======
   userList: [],
->>>>>>> origin/Kevin-friends-searchbar
 };
 
 function homepageReducer(state = initialState, action = {}) {
@@ -116,6 +109,12 @@ function homepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         library: action.newLibrary,
+      };
+
+    case CHANGE_ID:
+      return {
+        ...state,
+        id: action.newId,
       };
 
     // ! ======================= FRIEND LIST ==================================

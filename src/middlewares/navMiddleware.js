@@ -77,7 +77,7 @@ const navMiddleware = (store) => (next) => (action) => {
       const {
         token,
         id,
-        steamId
+        steamId,
       } = store.getState().homepage;
 
       axios.get(
