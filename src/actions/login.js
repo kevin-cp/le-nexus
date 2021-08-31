@@ -18,6 +18,8 @@ export const CHANGE_TOKEN = "CHANGE_TOKEN";
 export const UPDATE_LIBRARY = "UPDATE_LIBRARY";
 export const UPDATE_FRIENDSLIST = "UPDATE_FRIENDSLIST";
 
+export const IS_LOADING = "IS_LOADING";
+
 
 export const changeEmailInput = (newEmail) => ({
   type: CHANGE_EMAIL_INPUT,
@@ -53,6 +55,10 @@ export const loginSuccessfull = () => ({
   type: LOGIN_SUCCESSFULL,
 });
 
+export const setLoading = (newState) => ({
+  type: IS_LOADING,
+  newState,
+});
 
 // ! ========================================CHANGEMENT STATE HOMEPAGE===================================================
 

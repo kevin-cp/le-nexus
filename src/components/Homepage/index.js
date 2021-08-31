@@ -117,7 +117,7 @@ const Homepage = ({
               <Segment basic className='Homepage-profile--playerinfo--steamInfo'>
                 <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
                 <div>Status: Online </div>
-                <Button className="Homepage-profile-displayFriends-button" floated="right" basic inverted onClick={showAllFriends}>Afficher tous les amis</Button>
+                <Button className="Homepage-profile-displayFriends-button" floated="left" basic inverted onClick={showAllFriends}>Afficher tous les amis</Button>
                 {/* <div className='Homepage-profile--playerinfo--mood'>Humeur
                   <Dropdown clearable options={moodOptions} floating selection />
                 </div> */}
@@ -160,7 +160,7 @@ const Homepage = ({
             {noFriendsFound && (
             <div className="notFound">:'(</div>
             )}
-            <Card.Group stackable computer={4} mobile={3}>
+            <Card.Group stackable itemsPerRow={3}>
               {filteredFriendsList.map((friend) => (
                 <Card className="friendCard-element" key={friend.id}>
                   <Card.Content>

@@ -1,13 +1,9 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react';
+import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Loader } from 'semantic-ui-react';
 
 import './loginform.scss';
-
-import NexusLogo from 'src/assets/images/Nexus-logo-big-black.PNG';
-
-
 
 const LoginForm = ({ email,
   password,
@@ -15,12 +11,17 @@ const LoginForm = ({ email,
   setPassword,
   handleLogin,
   loginError,
-  isLogged
+  isLogged,
+  launchLoading,
+  isLoading,
 }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
+
+    // ON lance le loading
+    launchLoading(true);
   };
 
   // SI login correct, donc changement state pour loginsuccessfull alors on redirige vers page principale
@@ -28,7 +29,12 @@ if (isLogged) {
   return <Redirect to="/" />;
 }
 
+const [open, setOpen] = React.useState(false);
+
   return (
+    // Ici on met en place le loader
+    <>
+    
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='teal' textAlign='center'>
@@ -59,7 +65,12 @@ if (isLogged) {
           />
 
           <Button color='teal' fluid size='large'>
-            Login
+            {isLoading && (
+              <Loader active inline />
+            )}
+            {!isLoading && (
+              <div>Login</div>
+            )}
           </Button>
         </Segment>
       </Form>
@@ -76,6 +87,7 @@ if (isLogged) {
       )}
     </Grid.Column>
   </Grid>
+  </>
   );
 };
 

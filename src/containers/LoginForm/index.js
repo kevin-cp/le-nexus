@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeEmailInput, changePasswordInput, submitLogin } from 'src/actions/login';
+import { changeEmailInput, changePasswordInput, submitLogin, setLoading } from 'src/actions/login';
 
 // on importe le composant de présentation
 import LoginForm from 'src/components/LoginForm';
@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   password: state.homepage.password,
   loginError: state.login.loginError,
   isLogged: state.homepage.isLogged,
+  isLoading: state.login.isLoading,
 });
 
 // === mapDispatchToProps
@@ -28,6 +29,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleLogin: () => {
     dispatch(submitLogin());
+  },
+
+  launchLoading: (newState) => {
+    dispatch(setLoading(newState));
   },
 });
 

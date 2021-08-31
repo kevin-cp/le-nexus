@@ -1,7 +1,7 @@
 /* eslint-disable default-case */
 import axios from 'axios';
 
-import { SUBMIT_LOGIN, getUserData, GET_USER_DATA, changePseudo, changeSteamId, changeSteamAvatar, changeSteamUsername, changeToken, changeVisibilityState, isLogged, updateLibrary, loginError, loginSuccessfull, updateFriendsList, GET_USER_FRIENDS, getUserFriends } from '../actions/login';
+import { SUBMIT_LOGIN, getUserData, GET_USER_DATA, changePseudo, changeSteamId, changeSteamAvatar, changeSteamUsername, changeToken, changeVisibilityState, isLogged, updateLibrary, loginError, loginSuccessfull, updateFriendsList, GET_USER_FRIENDS, getUserFriends, setLoading } from '../actions/login';
 
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
@@ -44,6 +44,9 @@ const loginMiddleware = (store) => (next) => (action) => {
           if (error.response.data.message == 'Invalid credentials.') {
             store.dispatch(loginError());
           }
+        })
+        .finally(() => {
+          store.dispatch(setLoading(false));
         });
       break;
     }
@@ -71,6 +74,9 @@ const loginMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) =>{
           console.log(error);
+        })
+        .finally(() => {
+          store.dispatch(setLoading(false));
         });
       break;
     }
@@ -89,10 +95,14 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(updateFriendsList(response.data));
 
           //! ENFIN ON SE LOG
+          store.dispatch(loginSuccessfull());
           store.dispatch(isLogged());
         })
         .catch((error) =>{
           console.log(error);
+        })
+        .finally(() => {
+          store.dispatch(setLoading(false));
         });
       break;
     }

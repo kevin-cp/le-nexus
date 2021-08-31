@@ -16,7 +16,7 @@ const initialState = {
   library: [],
   friendsList: [],
   filteredFriends: [],
-  noFriendsFound: false,
+  noFriendsFound: null,
   gameSearch: '',
 
 };
@@ -139,7 +139,11 @@ function homepageReducer(state = initialState, action = {}) {
         steamUsername: '',
         token: null,
         visibilityState: false,
-
+        library: [],
+        friendsList: [],
+        filteredFriends: [],
+        noFriendsFound: null,
+        gameSearch: '',
       };
 
     default:

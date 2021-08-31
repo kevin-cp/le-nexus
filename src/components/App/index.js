@@ -24,22 +24,29 @@ const App = ( isLogged ) => (
         <Switch>
           <Route path="/signin">
             <SignInForm />
+            <Footer />
           </Route>
           <Route path="/login">
             <LoginForm />
+            <Footer />
           </Route>
           <Route path="/events">
             <Eventpage />
+            <Footer />
           </Route>
           <Route path="/profile">
             <Profilepage />
+            <Footer />
           </Route>
           <Route path="/contact" exact>
             <Contact />
+            <Footer />
           </Route>
           <Route path="/team" exact>
             <Team />
+            <Footer />
           </Route>
+          
           {isLogged && (
             <>
               <Nav />
@@ -49,6 +56,7 @@ const App = ( isLogged ) => (
               <Footer />
             </>
           )}
+        
         </Switch>
     </div>
   </Container>
