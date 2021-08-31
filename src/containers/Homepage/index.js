@@ -2,8 +2,8 @@ import { connect } from 'react-redux';
 
 // on importe le composant de présentation
 import Homepage from 'src/components/Homepage';
-import { checkNotification } from 'src/actions/nav';
 import { addFriendToFilter, displayAllFriends, friendsFound, handleSearchGame, noFriendsFound, resetFriendList } from '../../actions/homepage';
+
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
@@ -50,9 +50,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(friendsFound());
   },
 
-  handleSearchNotification: () => {
-    dispatch(checkNotification());
-  },
 });
 
 

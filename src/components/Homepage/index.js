@@ -34,6 +34,8 @@ const Homepage = ({
   searchGame,
   friendsList,
   isLogged,
+  handleSearchNotification,
+  handleUserData,
 }) => {
   const friendHeaderRef = useRef(null)
 
@@ -117,7 +119,14 @@ const Homepage = ({
               <Segment basic className='Homepage-profile--playerinfo--steamInfo'>
                 <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
                 <div>Status: Online </div>
-                <Button className="Homepage-profile-displayFriends-button" floated="left" basic inverted onClick={showAllFriends}>Afficher tous les amis</Button>
+                <Button
+                icon
+                labelPosition='right'
+                className="Homepage-profile-displayFriends-button"
+                floated="left"
+                basic
+                inverted
+                onClick={showAllFriends}>Afficher tous les amis <Icon name="users" /></Button>
                 {/* <div className='Homepage-profile--playerinfo--mood'>Humeur
                   <Dropdown clearable options={moodOptions} floating selection />
                 </div> */}

@@ -3,7 +3,7 @@ import { ADD_FRIEND_TO_FILTER,
   RESET_FRIEND_LIST,
   DISPLAY_ALL_FRIENDS,
   NO_FRIEND_FOUND,
-  FRIENDS_FOUND
+  FRIENDS_FOUND,
 } from '../actions/homepage';
 
 import {CHANGE_EMAIL_INPUT,
@@ -167,7 +167,7 @@ function homepageReducer(state = initialState, action = {}) {
         isLogged: false,
         email: '',
         pseudo: '',
-        password: '123',
+        password: '',
         steamId: '',
         steamAvatar: '',
         steamUsername: '',

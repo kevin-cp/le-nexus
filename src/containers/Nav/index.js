@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { userDisconnected } from 'src/actions/login';
+import { userDisconnected, getUserData } from 'src/actions/login';
 // on importe le composant de présentation
 import Nav from 'src/components/Nav';
 import {
@@ -80,7 +80,15 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleHasNoNotification: () => {
     dispatch(hasNoNotification());
-},
+  },
+
+  handleSearchNotification: () => {
+    dispatch(checkNotification());
+  },
+
+  handleUserData: () => {
+    dispatch(getUserData());
+  },
 });
 
 // === création de l'assistant

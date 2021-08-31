@@ -17,13 +17,12 @@ import Team from 'src/components/Team';
 import './app.scss';
 
 // == Composant
-const App = (isLogged) => (
+const App = ({isLogged}) => (
   <Container fluid>
     <div className="app">
       {/* <SignInForm /> */}
-      {isLogged && (
-        <Nav />
-      )}
+      {isLogged
+      && <Nav /> }
         <Switch>
           <Route path="/signin">
             <SignInForm />
@@ -43,16 +42,12 @@ const App = (isLogged) => (
           <Route path="/team" exact>
             <Team />
           </Route>
-          {isLogged && (
-            <>
-              <Route path="/" exact>
-                <Homepage />
-              </Route>
-              <Route path="/profile">
-                <Profilepage />
-              </Route>
-            </>
-          )}
+          <Route path="/" exact>
+            <Homepage />
+          </Route>
+          <Route path="/profile">
+            <Profilepage />
+          </Route>
         </Switch>
       <Footer />
     </div>

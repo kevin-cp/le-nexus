@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Image } from 'semantic-ui-react';
+import { Button, Image, Icon } from 'semantic-ui-react';
 import { NavLink, Link } from 'react-router-dom';
 
 import './profile.scss';
@@ -15,6 +15,8 @@ const Profile = ({
   denyRequest,
   requestId,
   handleHasNoNotification,
+  handleSearchNotification,
+  handleUserData,
 }) => {
   const handleAcceptFriendRequest = () => {
     acceptRequest();
@@ -30,6 +32,14 @@ const Profile = ({
 
   const handleRequestId = (id) => {
     requestId(id);
+  };
+
+  const refreshNotification = () => {
+    handleSearchNotification();
+  };
+
+  const refreshUserData = () => {
+    handleUserData();
   };
   return (
     <div className="profile-popup">
@@ -56,6 +66,13 @@ const Profile = ({
           </Button>
         </div>
       ))}
+      <Button
+                icon
+                labelPosition='right'
+                onClick={() => {
+                  refreshNotification();
+                  refreshUserData();
+                }}> Raffraichir les données  <Icon name="sync" /></Button>
       <NavLink to="/profile">Editer le profil</NavLink>
       <Button onClick={handleDisconnection}>Se Déconnecter</Button>
     </div>
