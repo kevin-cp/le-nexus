@@ -51,6 +51,17 @@ const [open, setOpen] = React.useState(false);
               setEmail(event.currentTarget.value);
             }}
             />
+          <Form.Input
+            fluid
+            icon='lock'
+            iconPosition='left'
+            placeholder='Password'
+            type='password'
+            value={password}
+            onChange={(event) => {
+              setPassword(event.currentTarget.value);
+            }}
+          />
 
           <Button color='teal' fluid size='large'>
             {isLoading && (
