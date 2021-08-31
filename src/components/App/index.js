@@ -21,41 +21,40 @@ const App = (isLogged) => (
   <Container fluid>
     <div className="app">
       {/* <SignInForm /> */}
+      {isLogged && (
+        <Nav />
+      )}
         <Switch>
           <Route path="/signin">
             <SignInForm />
-            <Footer />
           </Route>
           <Route path="/login">
             <LoginForm />
-            <Footer />
           </Route>
           <Route path="/events">
             <Eventpage />
-            <Footer />
           </Route>
           <Route path="/profile">
             <Profilepage />
-            <Footer />
           </Route>
           <Route path="/contact" exact>
             <Contact />
-            <Footer />
           </Route>
           <Route path="/team" exact>
             <Team />
-            <Footer />
           </Route>
           {isLogged && (
             <>
-              <Nav />
               <Route path="/" exact>
                 <Homepage />
               </Route>
-              <Footer />
+              <Route path="/profile">
+                <Profilepage />
+              </Route>
             </>
           )}
         </Switch>
+      <Footer />
     </div>
   </Container>
 );

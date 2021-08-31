@@ -66,10 +66,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(friendToRequest(newValue));
   },
 
-  handleSearchNotification: () => {
-    dispatch(checkNotification());
-  },
-
   handleAcceptFriendRequest: () => {
     dispatch(acceptFriendRequest());
   },

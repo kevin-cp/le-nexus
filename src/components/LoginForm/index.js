@@ -28,12 +28,9 @@ const LoginForm = ({ email,
     return <Redirect to="/" />;
   }
 
-const [open, setOpen] = React.useState(false);
-
   return (
     // Ici on met en place le loader
     <>
-    
     <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='teal' textAlign='center'>
@@ -76,7 +73,6 @@ const [open, setOpen] = React.useState(false);
       <Message>
         Nouveau parmi nous ? <a href="/signin">Inscrivez-vous</a>
       </Message>
-
         {loginError && (
         <Message
           error

@@ -66,7 +66,7 @@ const Nav = ({
   return (
     <Menu fixed="top" stackable id="navbar">
       <Menu.Item>
-        <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
+        <Image id="Nexus-logo-nav" size="mini" href="/" src={NexuslogoNav} />
       </Menu.Item>
       {/* div qui regroupe la barre de recherche et les résultats */}
       <div className="search-group">
@@ -144,27 +144,6 @@ const Nav = ({
         </div>
         )}
       </div>
-      <NavLink
-        to="/"
-        exact
-      >
-        <Menu.Item
-          className="nav-item"
-          name="Accueil"
-        >
-          Accueil
-        </Menu.Item>
-      </NavLink>
-      <NavLink
-        to="/events"
-      >
-        <Menu.Item
-          className="nav-item"
-          name="Evenements"
-        >
-          Evenements
-        </Menu.Item>
-      </NavLink>
       <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
@@ -189,12 +168,7 @@ const Nav = ({
       {hasNotification && (
         <Label className="notification-label" circular color="red" empty key="red" />
       )}
-      <Button
-        icon
-        onClick={handleSearchNotification}
-      >
-        <Icon name="sync" />
-      </Button>
+      
     </Menu>
   );
 };
