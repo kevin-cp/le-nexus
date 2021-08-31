@@ -1,12 +1,7 @@
 /* eslint-disable default-case */
 import axios from 'axios';
 
-<<<<<<< HEAD
 import { SUBMIT_LOGIN,
-=======
-import {
-  SUBMIT_LOGIN,
->>>>>>> origin/Armand-Profilepage-updated-2
   getUserData,
   GET_USER_DATA,
   changePseudo,
@@ -18,16 +13,12 @@ import {
   isLogged,
   updateLibrary,
   loginError,
-<<<<<<< HEAD
   loginSuccessfull,
   updateFriendsList,
   GET_USER_FRIENDS,
   getUserFriends,
   setLoading,
   changeId,
-=======
-  loginSuccessfull 
->>>>>>> origin/Armand-Profilepage-updated-2
 } from '../actions/login';
 
 const loginMiddleware = (store) => (next) => (action) => {
@@ -87,11 +78,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response) => {
-<<<<<<< HEAD
           // console.log(response);
-=======
-          console.log(response);
->>>>>>> origin/Armand-Profilepage-updated-2
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(changePseudo(response.data.pseudo));
           store.dispatch(changeSteamAvatar(response.data.steamAvatar));

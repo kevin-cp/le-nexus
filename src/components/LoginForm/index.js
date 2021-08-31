@@ -1,35 +1,19 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-<<<<<<< HEAD
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Loader } from 'semantic-ui-react';
 
 import './loginform.scss';
 
 const LoginForm = ({ email,
-=======
-import {
-  Button, Form, Grid, Header, Image, Message, Segment,
-} from 'semantic-ui-react';
-
-import './loginform.scss';
-
-import NexusLogo from 'src/assets/images/Nexus-logo-big-black.PNG';
-
-const LoginForm = ({
-  email,
->>>>>>> origin/Armand-Profilepage-updated-2
   password,
   setEmail,
   setPassword,
   handleLogin,
   loginError,
   isLogged,
-<<<<<<< HEAD
   launchLoading,
   isLoading,
-=======
->>>>>>> origin/Armand-Profilepage-updated-2
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();

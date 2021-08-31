@@ -21,7 +21,6 @@ const App = (isLogged) => (
   <Container fluid>
     <div className="app">
       {/* <SignInForm /> */}
-<<<<<<< HEAD
         <Switch>
           <Route path="/signin">
             <SignInForm />
@@ -57,37 +56,6 @@ const App = (isLogged) => (
             </>
           )}
         </Switch>
-=======
-      <Switch>
-        <Route path="/signin">
-          <SignInForm />
-        </Route>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
-        <Route path="/events">
-          <Eventpage />
-        </Route>
-        <Route path="/profile">
-          <Profilepage />
-        </Route>
-        <Route path="/contact" exact>
-          <Contact />
-        </Route>
-        <Route path="/team" exact>
-          <Team />
-        </Route>
-        {isLogged && (
-        <>
-          <Nav />
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
-          <Footer />
-        </>
-        )}
-      </Switch>
->>>>>>> origin/Armand-Profilepage-updated-2
     </div>
   </Container>
 );

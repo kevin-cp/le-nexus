@@ -1,12 +1,9 @@
-<<<<<<< HEAD
-=======
+
 import axios from 'axios';
 
 import { USERNAME_SUBMIT, EMAIL_SUBMIT, PASSWORD_SUBMIT } from 'src/actions/Profilepage';
 
 const profileInfoMiddleware = (store) => (next) => (action) => {
-  console.log('on a intercepté une action dans le middleware: ', action);
-
   switch (action.type) {
     case USERNAME_SUBMIT: {
       const {
@@ -110,4 +107,3 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
 };
 
 export default profileInfoMiddleware;
->>>>>>> origin/Armand-Profilepage-updated-2
