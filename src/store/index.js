@@ -4,7 +4,7 @@ import reducer from 'src/reducers';
 import loginMiddleware from '../middlewares/loginMiddleware';
 import signInMiddleware from '../middlewares/signInMiddleware';
 import navMiddleware from '../middlewares/navMiddleware';
-// import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
+import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
 
 // on combine devTools avec les middlewares
 const enhancers = composeWithDevTools(
@@ -13,6 +13,7 @@ const enhancers = composeWithDevTools(
     loginMiddleware,
     // ... d'autres middlewares
     navMiddleware,
+    profileInfoMiddleware,
   ),
 );
 

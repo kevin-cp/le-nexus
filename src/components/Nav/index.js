@@ -25,6 +25,7 @@ import Profile from './Profile';
 import 'semantic-ui-css/semantic.min.css';
 import './nav.scss';
 
+<<<<<<< HEAD
 const Nav = ({
   steamAvatar,
   pseudo,
@@ -67,6 +68,34 @@ const Nav = ({
     <Menu fixed="top" stackable id="navbar">
       <Menu.Item>
         <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
+=======
+const Nav = ({ steamAvatar, pseudo, handleDisconnection }) => (
+  <Menu fixed="top" stackable id="navbar">
+
+    <Menu.Item>
+      <Image id="Nexus-logo-nav" size="mini" href="#" src={NexuslogoNav} />
+    </Menu.Item>
+    <Input placeholder="Search Friends" icon="search" className="nav-search" />
+    <NavLink
+      to="/"
+      exact
+    >
+      <Menu.Item
+        className="nav-item"
+        name="Accueil"
+      >
+        Accueil
+      </Menu.Item>
+    </NavLink>
+    <NavLink
+      to="/events"
+    >
+      <Menu.Item
+        className="nav-item"
+        name="Evenements"
+      >
+        Evenements
+>>>>>>> origin/Armand-Profilepage-updated-2
       </Menu.Item>
       {/* div qui regroupe la barre de recherche et les résultats */}
       <div className="search-group">

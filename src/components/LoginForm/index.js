@@ -1,21 +1,36 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+<<<<<<< HEAD
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Loader } from 'semantic-ui-react';
 
 import './loginform.scss';
 
 const LoginForm = ({ email,
+=======
+import {
+  Button, Form, Grid, Header, Image, Message, Segment,
+} from 'semantic-ui-react';
+
+import './loginform.scss';
+
+import NexusLogo from 'src/assets/images/Nexus-logo-big-black.PNG';
+
+const LoginForm = ({
+  email,
+>>>>>>> origin/Armand-Profilepage-updated-2
   password,
   setEmail,
   setPassword,
   handleLogin,
   loginError,
   isLogged,
+<<<<<<< HEAD
   launchLoading,
   isLoading,
+=======
+>>>>>>> origin/Armand-Profilepage-updated-2
 }) => {
-
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin();
@@ -25,9 +40,9 @@ const LoginForm = ({ email,
   };
 
   // SI login correct, donc changement state pour loginsuccessfull alors on redirige vers page principale
-if (isLogged) {
-  return <Redirect to="/" />;
-}
+  if (isLogged) {
+    return <Redirect to="/" />;
+  }
 
 const [open, setOpen] = React.useState(false);
 
@@ -52,17 +67,6 @@ const [open, setOpen] = React.useState(false);
               setEmail(event.currentTarget.value);
             }}
             />
-          <Form.Input
-            fluid
-            icon='lock'
-            iconPosition='left'
-            placeholder='Password'
-            type='password'
-            value={password}
-            onChange={(event) => {
-              setPassword(event.currentTarget.value);
-            }}
-          />
 
           <Button color='teal' fluid size='large'>
             {isLoading && (
@@ -78,7 +82,7 @@ const [open, setOpen] = React.useState(false);
         Nouveau parmi nous ? <a href="/signin">Inscrivez-vous</a>
       </Message>
 
-      {loginError && (
+        {loginError && (
         <Message
           error
           header="Impossible de se connecter"

@@ -1,161 +1,79 @@
-.Profilepage-main {
+.main {
   height: 100vh;
-  padding-top: 5em;
+  border: solid 0.3em lightgray;
+  padding: 1.5em;
+  border-radius: 1em;
+  box-shadow: inset 0 0 1em gold, 0 0 2em red;
   
-  
-  .Profilepage-NexusUsername {
-    color: lightgray;
-    font-style: oblique;
-    padding-top: 0.5em;
-    text-align: center;
-  }
 
-  .Profilepage-avatar {
-    position: relative;
-    margin: 3em;
-    height: 17em;
-    width: 17em;
-    margin-left: 5.5em;
+  .avatar {
 
-    .Profilepage-avatar--button {
-      position: absolute;
-      left: 15em;
-      bottom: 15em;
+    .nexusUsername {
+      color: lightgray;
+
     }
 
-  }
-
-  
-
-  .Profilepage-form {
-    
-    .Profilepage-email{
-      
-      .Profilepage-email--input {
-        margin-bottom: 0.7em;
-      }
+    .avatar-image {
+      box-shadow: inset 0 0 1em gold, 0 0 2em red;
+      padding: 0.2em;
+      margin-bottom: 1em;
+      border: solid 0.2em lightgray;
     }
 
-    .Profilepage-buttonsgroup {
+    .avatar-popup {
+      position: sticky;
+      .avatar-popup--form {
 
-      .Password-modal {
-        .Password-form {
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        height: 20em;
-        justify-content: space-around;
-        align-items: center;
-        
-        .Password-form--input {
-          width: 17em;
-          height: 2em;
-          border-radius: 0.7em;
-          font-size: 1.2em;
+        .popup-form--input {
+
         }
-      
-        .Password-form--button {
-          max-width: 20em;
-          border-radius: 0.7em;
-      
+
+        .popup-form--button {
+          
         }
       }
+
+      .avatar-popup--button {
+
+      }
     }
-      }
-
-      
-    
   }
-  
-}  
 
-  //! ============================= Ici breakpoint pour iPhone ============================================
-  @media only screen and (max-width: 765px){
-    .Profilepage-main {
-      height: 100vh;
-      margin-top: 18em;
-      margin-bottom: 3em;
-      
-      
-      .Profilepage-NexusUsername {
-        
-      }
-    
-      .Profilepage-avatar {
-        position: relative;
-    
-      }
-    
-      .Profilepage-avatar--button {
-        position: absolute;
-      }
-    
-      .Profilepage-NexusUsername {
-        
-      }
-    
-    }  
-   }
+  .mainform {
 
-   //! ============================= Ici breakpoint pour iPhone ============================================
-  @media only screen and (max-width: 750px){
-    .Profilepage-main {
-      height: 100vh;
-      margin-top: 11em;
-      margin-bottom: 3em;
+    .mainform-username {
       
-      
-      .Profilepage-NexusUsername {
-        
-      }
-    
-      .Profilepage-avatar {
-        position: relative;
-    
-      }
-    
-      .Profilepage-avatar--button {
-        position: absolute;
-      }
-    
-      .Profilepage-NexusUsername {
-        
-      }
-    
-    }  
-   }
+      .mainform-username--input {
 
-   //! ============================= Ici breakpoint pour iPhone ============================================
-  @media only screen and (max-width: 450px){
-    .Profilepage-main {
-      height: 100vh;
-      margin-top: 11em;
-      margin-bottom: 3em;
-      
-      
-      .Profilepage-NexusUsername {
-        
-      }
-    
-      .Profilepage-avatar {
-        position: relative;
-        height: 12em;
-        width: 12em;
-        margin-left: 7em;
-        margin-bottom: 1em;
-      }
-    
-      .Profilepage-avatar--button {
-        position: absolute;
-        left: 11em;
-        bottom: 9.5em;
-      }
-    
-      .Profilepage-NexusUsername {
-        
-      }
-    
-    }  
-   }
 
-  
+      }
+
+    }
+
+    .mainform-email {
+
+      .mainform-email--input {
+
+
+      }
+
+      .mainform-email--inputConfirm {
+
+
+      }
+    }
+  }
+
+  .password-modal {
+
+    .password-form {
+
+      .password-form--input {
+
+
+      }
+    }
+  }
+
+
+}
