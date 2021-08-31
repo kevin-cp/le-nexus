@@ -196,7 +196,7 @@ const Profilepage = ({
                 <Button type="submit">Enregistrer</Button>
               </Form>
             )}
-            actions={['Cancel']}
+            actions={['Retour']}
           />
         </Grid.Column>
       </Grid>
