@@ -118,7 +118,7 @@ const Homepage = ({
               <Image id="user-avatar" src={steamAvatar} size="small" floated="left" rounded />
               <Segment basic className='Homepage-profile--playerinfo--steamInfo'>
                 <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
-                <div>Status: Online </div>
+                {/* <div>Status: Online </div> */}
                 <Button
                 icon
                 labelPosition='right'

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 // import de composants semantic-ui
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -67,7 +67,9 @@ const Nav = ({
   return (
     <Menu fixed="top" stackable id="navbar">
       <Menu.Item>
-        <Image id="Nexus-logo-nav" size="mini" href="/" src={NexuslogoNav} />
+        <Link to='/'>
+          <Image id="Nexus-logo-nav" size="mini" src={NexuslogoNav} />
+        </Link>
       </Menu.Item>
       {/* div qui regroupe la barre de recherche et les résultats */}
       <div className="search-group">
