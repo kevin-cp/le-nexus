@@ -47,10 +47,10 @@ const Nav = ({
   handleHasNoNotification,
   numberOfnotifications,
   role,
+  friendsList,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
   if (inputSearch.length > 0 && resultList.length > 0) {
-    console.log(resultList);
     handleIsSearching();
   }
   else {
@@ -65,6 +65,11 @@ const Nav = ({
   const handleSendFriendRequest = () => {
     handleFriendRequest();
   };
+
+  // je stocke la liste d'amis dans une variable que je vais utiliser
+  // pour faire un affichage conditionnel du bouton de modal d'ajout d'amis
+  // en utilisant un .includes()
+  const friends = friendsList.map((item) => item.pseudo);
 
   return (
     <Menu fixed="top" stackable id="navbar">
@@ -93,52 +98,58 @@ const Nav = ({
                 <List.Content>
                   <List.Header>{user.pseudo}</List.Header>
                   <Icon name="steam" /> {user.steamUsername}
-                  <Modal
-                    trigger={(
-                      <Button
-                        floated="right"
-                        className="addFriend"
-                        circular
-                        inverted
-                        color="blue"
-                        size="tiny"
-                        icon="add user"
-                      />
+                  {/* si les résultats de la recherche ne contiennent PAS un pseudo étant dans la liste d'ami
+                    on affiche le modal pour ajouter un ami
+                   */}
+                  {!friends.includes(user.pseudo)
+                    && (
+                    <Modal
+                      trigger={(
+                        <Button
+                          floated="right"
+                          className="addFriend"
+                          circular
+                          inverted
+                          color="blue"
+                          size="tiny"
+                          icon="add user"
+                        />
                   )}
-                  >
-                    <Modal.Content image>
-                      <Image size="medium" src={user.steamAvatar} wrapped />
-                      <Modal.Description>
-                        <Header>{user.pseudo}</Header>
-                        <Icon size="big" name="steam" /> {user.steamUsername}
-                        <p>Voulez-vous ajouter {user.pseudo} en ami ?</p>
-                      </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
-                      <Form onSubmit={() => {
-                        handleAddFriendClick(user.id);
-                        handleSendFriendRequest();
-                        handleIsNotSearching();
-                      }}
-                      >
-                        <Button
-                          onClick={(event) => {
-                            event.preventDefault();
-                            handleIsNotSearching();
-                          }}
-                          color="red"
+                    >
+                      <Modal.Content image>
+                        <Image size="medium" src={user.steamAvatar} wrapped />
+                        <Modal.Description>
+                          <Header>{user.pseudo}</Header>
+                          <Icon size="big" name="steam" /> {user.steamUsername}
+                          <p>Voulez-vous ajouter {user.pseudo} en ami ?</p>
+                        </Modal.Description>
+                      </Modal.Content>
+                      <Modal.Actions>
+                        <Form onSubmit={() => {
+                          handleAddFriendClick(user.id);
+                          handleSendFriendRequest();
+                          handleIsNotSearching();
+                        }}
                         >
-                          <Icon name="remove" /> Non
-                        </Button>
-                        <Button
-                          type="submit"
-                          color="green"
-                        >
-                          <Icon name="checkmark" /> Oui
-                        </Button>
-                      </Form>
-                    </Modal.Actions>
-                  </Modal>
+                          <Button
+                            onClick={(event) => {
+                              event.preventDefault();
+                              handleIsNotSearching();
+                            }}
+                            color="red"
+                          >
+                            <Icon name="remove" /> Non
+                          </Button>
+                          <Button
+                            type="submit"
+                            color="green"
+                          >
+                            <Icon name="checkmark" /> Oui
+                          </Button>
+                        </Form>
+                      </Modal.Actions>
+                    </Modal>
+                    )}
 
                 </List.Content>
               </List.Item>

@@ -34,6 +34,7 @@ const mapStateToProps = (state) => ({
   requestId: state.navReducer.requestId,
   numberOfnotifications: state.navReducer.numberOfnotifications,
   role: state.homepage.role,
+  friendsList: state.homepage.friendsList,
 });
 
 // === mapDispatchToProps

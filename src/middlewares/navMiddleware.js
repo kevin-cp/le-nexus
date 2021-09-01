@@ -34,7 +34,9 @@ const navMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(Object.keys(response.data).length);
+          // console.log(Object.keys(response.data).length);
+          // si l'objet de réponse est = à 0 c'est qu'il n'y a pas de résultat
+          // donc si > 0 on envoie la réponse sinon tableau vide (cela n'affiche rien)
           if (Object.keys(response.data).length > 0) {
             store.dispatch(displayResults(response.data));
           }
@@ -43,7 +45,7 @@ const navMiddleware = (store) => (next) => (action) => {
           }
         })
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         });
       break;
     }
