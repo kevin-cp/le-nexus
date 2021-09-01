@@ -1,5 +1,6 @@
 /* eslint-disable default-case */
 import axios from 'axios';
+import { displayAllFriends } from '../actions/homepage';
 
 import { SUBMIT_LOGIN,
   getUserData,
@@ -116,7 +117,8 @@ const loginMiddleware = (store) => (next) => (action) => {
           console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(updateFriendsList(response.data));
-
+          // Affiche tous les amis dès le chargement de la page homepage
+          store.dispatch(displayAllFriends());
           //! ENFIN ON SE LOG
           store.dispatch(loginSuccessfull());
           store.dispatch(isLogged());

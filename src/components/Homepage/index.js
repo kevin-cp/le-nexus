@@ -165,7 +165,7 @@ const Homepage = ({
         {/* Partie de droite */}
         <Grid.Column width={10} className="homepage-friendCardsList">
 
-            <Header className="friendCardsList-header" as="h2" textAlign="center"><span ref={friendHeaderRef}> </span></Header>
+            <Header className="friendCardsList-header" as="h2" textAlign="center"><span ref={friendHeaderRef}>Liste d'amis:</span></Header>
             {noFriendsFound && (
             <div className="notFound">:'(</div>
             )}

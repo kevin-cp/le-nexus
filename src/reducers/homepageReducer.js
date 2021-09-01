@@ -164,6 +164,7 @@ function homepageReducer(state = initialState, action = {}) {
     case USER_DISCONNECTED:
       return {
         ...state,
+        id: '',
         isLogged: false,
         email: '',
         pseudo: '',
