@@ -16,9 +16,21 @@ const FAQ = () => (
     <Divider />
     <Segment inverted>
       <Header as='h3'>
+      <Header.Content> Pourquoi mon ID Steam est-il nécessaire pour utiliser le Nexus ? </Header.Content>
+      </Header>
+      Votre ID Steam est votre identifiant unique et public de votre compte Steam. <div>Sans celui-ci il nous est malheureusement impossible de récupérer les données de votre compte Steam (telles que la liste de vos jeux ou de vos amis) et donc d'afficher celles-ci sur le Nexus.</div>
+    </Segment>
+    <Segment inverted>
+      <Header as='h3'>
       <Header.Content> Comment puis-je récupérer mon ID Steam ? </Header.Content>
       </Header>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis mauris nec nulla mollis eleifend quis quis nulla. Fusce lectus risus, tristique eget tempor in, pretium sit amet felis. Ut vel ipsum at ex cursus aliquet. Fusce lorem ante, varius a massa et, vestibulum imperdiet sapien. Mauris vitae viverra mi, sed tristique nibh. Ut tincidunt, metus nec consequat congue, sapien risus fringilla magna, at mollis est ipsum non elit. Fusce pretium lectus sed efficitur congue. Ut commodo quam ac ipsum eleifend luctus. Sed laoreet, lacus eget placerat congue, erat justo auctor nulla, id sodales libero magna quis enim. Cras sit.
+    </Segment>
+    <Segment inverted>
+      <Header as='h3'>
+      <Header.Content> Pourquoi faut-il que mon compte Steam soit en public ? </Header.Content>
+      </Header>
+      Si vos données Steam ne sont pas mises en public, il nous est impossible de récupérer vos données ou de les actualiser pour pouvoir les afficher sur le Nexus et vous garantir une utilisation optimale.
     </Segment>
     <Segment inverted>
       <Header as='h3'>

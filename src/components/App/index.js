@@ -26,7 +26,6 @@ const App = ({isLogged}) => (
       {/* <SignInForm /> */}
       {isLogged
       && <Nav /> }
-      {console.log(localStorage)}
         <Switch>
           <Route path="/signin">
             <SignInForm />

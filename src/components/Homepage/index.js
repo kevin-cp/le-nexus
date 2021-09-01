@@ -3,9 +3,9 @@
 import React, { useRef } from 'react';
 
 // semantic ui import
-import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button, Icon, Popup } from 'semantic-ui-react';
+import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button, Icon, Popup, Divider } from 'semantic-ui-react';
 
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
@@ -34,8 +34,7 @@ const Homepage = ({
   searchGame,
   friendsList,
   isLogged,
-  handleSearchNotification,
-  handleUserData,
+  visibilityState,
 }) => {
   const friendHeaderRef = useRef(null)
 
@@ -164,7 +163,18 @@ const Homepage = ({
 
         {/* Partie de droite */}
         <Grid.Column width={10} className="homepage-friendCardsList">
-
+          {/* VISIBLE UNIQUEMENT SI COMPTE EN PRIVE */}
+          {!visibilityState && (
+            <Segment inverted className='Homepage-friendCardsList--privateAccount--message'>
+              <Header as='h1' icon textAlign='center' inverted >
+                <Icon name='ban' circular color='red' />
+                <Header.Content>ATTENTION</Header.Content>
+                <Divider />
+                <h2>Il semblerait que les données de votre compte Steam soient privées, vos données risquent de ne pas pouvoir s'afficher correctement ou s'actualiser</h2>
+                <h4>Nous vous invitons à consulter notre <Link to="/FAQ">FAQ</Link> à ce sujet.</h4>
+              </Header>
+            </Segment>
+          )}
             <Header className="friendCardsList-header" as="h2" textAlign="center"><span ref={friendHeaderRef}>Liste d'amis:</span></Header>
             {noFriendsFound && (
             <div className="notFound">:'(</div>

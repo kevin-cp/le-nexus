@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+
 // Fonctions qui chargera le state depuis le localstorage
 export const loadState = () => {
   try {

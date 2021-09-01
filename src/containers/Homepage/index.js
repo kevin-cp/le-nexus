@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
   isLogged: state.homepage.isLogged,
   noFriendsFound: state.homepage.noFriendsFound,
   userList: state.homepage.userList,
+  visibilityState: state.homepage.visibilityState,
 });
 
 // === mapDispatchToProps
