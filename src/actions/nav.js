@@ -13,6 +13,7 @@ export const ACCEPT_FRIEND_REQUEST = 'ACCEPT_FRIEND_REQUEST';
 export const DENY_FRIEND_REQUEST = 'DENY_FRIEND_REQUEST';
 export const UPDATE_REQUEST_ID = 'UPDATE_REQUEST_ID';
 export const HAS_NO_NOTIFICATION = 'HAS_NO_NOTIFICATION';
+export const NUMBER_OF_NOTIFICATIONS = 'NUMBER_OF_NOTIFICATIONS';
 
 export const changeSearchValue = (value) => ({
   type: CHANGE_SEARCH_VALUE,
@@ -75,4 +76,9 @@ export const denyFriendRequest = () => ({
 export const updateRequestId = (requestId) => ({
   type: UPDATE_REQUEST_ID,
   requestId,
+});
+
+export const numberOfNotifications = (number) => ({
+  type: NUMBER_OF_NOTIFICATIONS,
+  number,
 });

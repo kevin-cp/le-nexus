@@ -8,7 +8,9 @@ import {
   hasNotification,
   ACCEPT_FRIEND_REQUEST,
   DENY_FRIEND_REQUEST,
+  numberOfNotifications,
 } from 'src/actions/nav';
+import { getUserData } from '../actions/login';
 
 const navMiddleware = (store) => (next) => (action) => {
   // je peux réagir au cas par cas suivant l'action,
@@ -32,8 +34,13 @@ const navMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response.data);
-          store.dispatch(displayResults(response.data));
+          console.log(Object.keys(response.data).length);
+          if (Object.keys(response.data).length > 0) {
+            store.dispatch(displayResults(response.data));
+          }
+          else {
+            store.dispatch(displayResults([]));
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -90,10 +97,12 @@ const navMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           // console.log(response.data);
           store.dispatch(updateSenderId(response.data));
+          // store.dispatch(numberOfNotifications(response.data.length));
 
-          const requests = response.data.map((item) => {
-            if (item.declinedAt == null && item.acceptedAt == null) {
+          const requests = response.data.map((item, index) => {
+            if (item.declinedAt === null && item.acceptedAt === null) {
               store.dispatch(hasNotification());
+              store.dispatch(numberOfNotifications(index + 1));
             }
           });
           return requests;
@@ -127,6 +136,7 @@ const navMiddleware = (store) => (next) => (action) => {
       )
         .then((response) => {
           console.log(response);
+          store.dispatch(getUserData());
         })
         .catch((error) => {
           console.log(error);

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 // import de composants semantic-ui
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -45,9 +45,12 @@ const Nav = ({
   handleDenyFriendRequest,
   handleRequestId,
   handleHasNoNotification,
+  numberOfnotifications,
+  role,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
-  if (inputSearch.length > 0) {
+  if (inputSearch.length > 0 && resultList.length > 0) {
+    console.log(resultList);
     handleIsSearching();
   }
   else {
@@ -155,16 +158,20 @@ const Nav = ({
           Accueil
         </Menu.Item>
       </NavLink>
-      <NavLink
-        to="/events"
-      >
-        <Menu.Item
-          className="nav-item"
-          name="Evenements"
+      {role === 'ROLE_ADMIN'
+      && (
+      <Menu.Item>
+        <a
+          className="backOffice-link"
+          href="http://localhost:8000/back/user/"
+          target="_blank"
+          rel="noreferrer"
         >
-          Evenements
-        </Menu.Item>
-      </NavLink>
+          Admin Back-office
+        </a>
+      </Menu.Item>
+      )}
+
       <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
@@ -187,14 +194,16 @@ const Nav = ({
         trigger={<Image className="avatar" src={steamAvatar} size="tiny" avatar />}
       />
       {hasNotification && (
-        <Label className="notification-label" circular color="red" empty key="red" />
+        <Label className="notification-label" circular color="red" key="red">
+          {numberOfnotifications}
+        </Label>
       )}
-      <Button
+      {/* <Button
         icon
         onClick={handleSearchNotification}
       >
         <Icon name="sync" />
-      </Button>
+      </Button> */}
     </Menu>
   );
 };

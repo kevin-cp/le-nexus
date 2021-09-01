@@ -13,6 +13,7 @@ import {
   DENY_FRIEND_REQUEST,
   UPDATE_REQUEST_ID,
   HAS_NO_NOTIFICATION,
+  NUMBER_OF_NOTIFICATIONS,
 } from 'src/actions/nav';
 
 const initialState = {
@@ -25,6 +26,7 @@ const initialState = {
   hasNotification: false,
   senderId: '',
   requestId: '',
+  numberOfnotifications: 0,
 
 };
 
@@ -105,6 +107,12 @@ function navReducer(state = initialState, action = {}) {
       return {
         ...state,
         requestId: action.requestId,
+      };
+
+    case NUMBER_OF_NOTIFICATIONS:
+      return {
+        ...state,
+        numberOfnotifications: action.number,
       };
 
     default:

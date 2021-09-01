@@ -22,6 +22,7 @@ import {
   UPDATE_FRIENDSLIST,
   UPDATE_USER_LIST,
   CHANGE_ID,
+  GET_ROLE,
 } from '../actions/login';
 
 const initialState = {
@@ -42,6 +43,7 @@ const initialState = {
   noFriendsFound: null,
   gameSearch: '',
   userList: [],
+  role: '',
 };
 
 function homepageReducer(state = initialState, action = {}) {
@@ -119,6 +121,11 @@ function homepageReducer(state = initialState, action = {}) {
         id: action.newId,
       };
 
+    case GET_ROLE:
+      return {
+        ...state,
+        role: action.role,
+      };
     // ! ======================= FRIEND LIST ==================================
     case UPDATE_FRIENDSLIST:
       return {
