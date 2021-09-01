@@ -67,8 +67,8 @@ const Nav = ({
   return (
     <Menu fixed="top" stackable id="navbar">
       <Menu.Item>
-        <Link to='/'>
-          <Image id="Nexus-logo-nav" size="mini" src={NexuslogoNav} />
+        <Link to='/' id="Nexus-nav" >
+          <Image id="Nexus-logo" size="mini" src={NexuslogoNav} />
         </Link>
       </Menu.Item>
       {/* div qui regroupe la barre de recherche et les résultats */}

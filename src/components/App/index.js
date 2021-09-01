@@ -11,11 +11,13 @@ import SignInForm from 'src/containers/SignInForm';
 import LoginForm from 'src/containers/LoginForm';
 import Contact from 'src/components/Contact';
 import Team from 'src/components/Team';
+import FAQ from '../FAQ';
 
 // == Import
 
 import './app.scss';
 import Page404 from '../Errors/404';
+
 
 // == Composant
 const App = ({isLogged}) => (
@@ -48,6 +50,9 @@ const App = ({isLogged}) => (
           </Route>
           <Route path="/profile">
             <Profilepage />
+          </Route>
+          <Route path="/FAQ">
+            <FAQ />
           </Route>
           <Route path="*">
             <Page404 />
