@@ -1,5 +1,5 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import Homepage from 'src/containers/Homepage';
 import Profilepage from 'src/containers/Profilepage';
 import Eventpage from 'src/components/Eventpage';
@@ -20,48 +20,55 @@ import Page404 from '../Errors/404';
 
 
 // == Composant
-const App = ({isLogged}) => (
-  <Container fluid>
-    <div className="app">
-      {/* <SignInForm /> */}
-      {isLogged
-      && <Nav /> }
-        <Switch>
-          <Route path="/signin">
-            <SignInForm />
-          </Route>
-          <Route path="/login">
-            <LoginForm />
-          </Route>
-          <Route path="/events">
-            <Eventpage />
-          </Route>
-          <Route path="/profile">
-            <Profilepage />
-          </Route>
-          <Route path="/contact" exact>
-            <Contact />
-          </Route>
-          <Route path="/team" exact>
-            <Team />
-          </Route>
-          <Route path="/" exact>
-            <Homepage />
-          </Route>
-          <Route path="/profile">
-            <Profilepage />
-          </Route>
-          <Route path="/FAQ">
-            <FAQ />
-          </Route>
-          <Route path="*">
-            <Page404 />
-          </Route>
-        </Switch>
-      <Footer />
-    </div>
-  </Container>
-);
+const App = ({isLogged, refreshData}) => {
+  // Ici le useEffect ne s'appliquera que lorsque le composant App est monté
+  useEffect(() => {
+    refreshData();
+  }, []);
+
+  return (
+    <Container fluid>
+        <div className="app">
+          {/* <SignInForm /> */}
+          {isLogged
+          && <Nav /> }
+            <Switch>
+              <Route path="/signin">
+                <SignInForm />
+              </Route>
+              <Route path="/login">
+                <LoginForm />
+              </Route>
+              <Route path="/events">
+                <Eventpage />
+              </Route>
+              <Route path="/profile">
+                <Profilepage />
+              </Route>
+              <Route path="/contact" exact>
+                <Contact />
+              </Route>
+              <Route path="/team" exact>
+                <Team />
+              </Route>
+              <Route path="/" exact>
+                <Homepage />
+              </Route>
+              <Route path="/profile">
+                <Profilepage />
+              </Route>
+              <Route path="/FAQ">
+                <FAQ />
+              </Route>
+              <Route path="*">
+                <Page404 />
+              </Route>
+            </Switch>
+          <Footer />
+        </div>
+    </Container>
+  );
+}
 
 // == Export
 export default App;

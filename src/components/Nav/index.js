@@ -38,14 +38,12 @@ const Nav = ({
   resultList,
   handleFriendRequest,
   handleFriendToRequestId,
-  handleSearchNotification,
   hasNotification,
   friendRequests,
   handleAcceptFriendRequest,
   handleDenyFriendRequest,
   handleRequestId,
   handleHasNoNotification,
-  handleUserData,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
   if (inputSearch.length > 0) {
@@ -161,8 +159,6 @@ const Nav = ({
             handleDisconnection={handleDisconnection}
             requestId={handleRequestId}
             handleHasNoNotification={handleHasNoNotification}
-            handleSearchNotification={handleSearchNotification}
-            handleUserData={handleUserData}
           />
 )}
         on="click"

@@ -166,11 +166,11 @@ const Homepage = ({
           {/* VISIBLE UNIQUEMENT SI COMPTE EN PRIVE */}
           {!visibilityState && (
             <Segment inverted className='Homepage-friendCardsList--privateAccount--message'>
-              <Header as='h1' icon textAlign='center' inverted >
+              <Header icon textAlign='center' inverted >
                 <Icon name='ban' circular color='red' />
-                <Header.Content>ATTENTION</Header.Content>
+                <Header.Content as='h1' >ATTENTION</Header.Content>
                 <Divider />
-                <h2>Il semblerait que les données de votre compte Steam soient privées, vos données risquent de ne pas pouvoir s'afficher correctement ou s'actualiser</h2>
+                <h2>Il semblerait que les données de votre compte Steam soient privées, vos données risquent de ne pas pouvoir s'afficher correctement ni de s'actualiser</h2>
                 <h4>Nous vous invitons à consulter notre <Link to="/FAQ">FAQ</Link> à ce sujet.</h4>
               </Header>
             </Segment>

@@ -15,8 +15,7 @@ const Profile = ({
   denyRequest,
   requestId,
   handleHasNoNotification,
-  handleSearchNotification,
-  handleUserData,
+
 }) => {
   const handleAcceptFriendRequest = () => {
     acceptRequest();
@@ -34,13 +33,6 @@ const Profile = ({
     requestId(id);
   };
 
-  const refreshNotification = () => {
-    handleSearchNotification();
-  };
-
-  const refreshUserData = () => {
-    handleUserData();
-  };
   return (
     <div className="profile-popup">
       <Image className="avatar" src={avatar} avatar />
@@ -66,13 +58,6 @@ const Profile = ({
           </Button>
         </div>
       ))}
-      <Button
-                icon
-                labelPosition='right'
-                onClick={() => {
-                  refreshNotification();
-                  refreshUserData();
-                }}> Raffraichir les données  <Icon name="sync" /></Button>
       <NavLink to="/profile">Editer le profil</NavLink>
       <Button onClick={handleDisconnection}>Se Déconnecter</Button>
     </div>
