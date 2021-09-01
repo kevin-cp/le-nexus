@@ -6,6 +6,11 @@ import signInMiddleware from '../middlewares/signInMiddleware';
 import navMiddleware from '../middlewares/navMiddleware';
 import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
 
+// Fonctions pour le localstorage
+import { loadState, saveState } from './localStorage';
+
+const persistedState = loadState();
+
 // on combine devTools avec les middlewares
 const enhancers = composeWithDevTools(
   applyMiddleware(
@@ -20,9 +25,15 @@ const enhancers = composeWithDevTools(
 const store = createStore(
   // reducer
   reducer,
+  persistedState,
   // enhancer
   enhancers,
   // devToolsEnhancer(),
 );
+
+// Dès que le store est utilisé, on le stocke dans le localstorage
+store.subscribe(() => {
+  saveState(store.getState());
+});
 
 export default store;
