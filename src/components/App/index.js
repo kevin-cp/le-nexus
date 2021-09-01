@@ -15,6 +15,7 @@ import Team from 'src/components/Team';
 // == Import
 
 import './app.scss';
+import Page404 from '../Errors/404';
 
 // == Composant
 const App = ({isLogged}) => (
@@ -47,6 +48,9 @@ const App = ({isLogged}) => (
           </Route>
           <Route path="/profile">
             <Profilepage />
+          </Route>
+          <Route path="*">
+            <Page404 />
           </Route>
         </Switch>
       <Footer />
