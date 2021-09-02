@@ -1,11 +1,15 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-import { Container, Segment, Header, Icon, Divider, Image } from 'semantic-ui-react';
+import { Container, Segment, Header, Icon, Divider, Image, List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 import './faq.scss';
-import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
+import howToSteamId1 from 'src/assets/images/howto/Howto-steamid-1.PNG';
+import howToSteamId2 from 'src/assets/images/howto/Howto-steamid-3.PNG';
+import howToSteamProfile1 from 'src/assets/images/howto/Howto-steamprofile-0.PNG';
+import howToSteamProfile2 from 'src/assets/images/howto/Howto-steamprofile-2.png';
+import howToSteamProfile3 from 'src/assets/images/howto/Howto-steamprofile-4.png';
 
 const FAQ = () => (
   <Container fluid className='FAQ-MainSegment'>
@@ -24,7 +28,16 @@ const FAQ = () => (
       <Header>
       <Header.Content as='h3'> Comment puis-je récupérer mon ID Steam ? </Header.Content>
       </Header>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis mauris nec nulla mollis eleifend quis quis nulla. Fusce lectus risus, tristique eget tempor in, pretium sit amet felis. Ut vel ipsum at ex cursus aliquet. Fusce lorem ante, varius a massa et, vestibulum imperdiet sapien. Mauris vitae viverra mi, sed tristique nibh. Ut tincidunt, metus nec consequat congue, sapien risus fringilla magna, at mollis est ipsum non elit. Fusce pretium lectus sed efficitur congue. Ut commodo quam ac ipsum eleifend luctus. Sed laoreet, lacus eget placerat congue, erat justo auctor nulla, id sodales libero magna quis enim. Cras sit.
+      <h4>Rien de plus simple !</h4>
+      <List inverted relaxed ordered>
+          <List.Item>Ouvrez votre application Steam.</List.Item>
+          <List.Item>Cliquez sur votre profil en haut à droite de l'application</List.Item>
+          <Image size='huge' src={howToSteamId1} />
+          <List.Item>Puis cliquez sur 'Détails du compte'</List.Item>
+          <List.Item>Une nouvelle page s'ouvre.</List.Item>
+          <List.Item>Et voilà !</List.Item>
+          <Image size='huge' src={howToSteamId2} />
+      </List>
     </Segment>
     <Segment inverted>
       <Header>
@@ -36,7 +49,19 @@ const FAQ = () => (
       <Header>
       <Header.Content as='h3'> Comment puis-je mettre mon profil en public ? </Header.Content>
       </Header>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis mauris nec nulla mollis eleifend quis quis nulla. Fusce lectus risus, tristique eget tempor in, pretium sit amet felis. Ut vel ipsum at ex cursus aliquet. Fusce lorem ante, varius a massa et, vestibulum imperdiet sapien. Mauris vitae viverra mi, sed tristique nibh. Ut tincidunt, metus nec consequat congue, sapien risus fringilla magna, at mollis est ipsum non elit. Fusce pretium lectus sed efficitur congue. Ut commodo quam ac ipsum eleifend luctus. Sed laoreet, lacus eget placerat congue, erat justo auctor nulla, id sodales libero magna quis enim. Cras sit.
+      <List inverted relaxed ordered>
+          <List.Item>Ouvrez votre application Steam.</List.Item>
+          <List.Item>Cliquez sur votre profil tout de suite en haut de la page</List.Item>
+          <Image size='huge' src={howToSteamProfile1} />
+          <List.Item>Puis cliquez sur 'Profil'</List.Item>
+          <List.Item>Une nouvelle page s'ouvre.</List.Item>
+          <List.Item>Cliquez ensuite sur 'Modifier le profil'</List.Item>
+          <Image size='huge' src={howToSteamProfile2} />
+          <List.Item>Une nouvelle page s'ouvre à nouveau.</List.Item>
+          <List.Item>Cliquez enfin sur 'Options de confidentialité'</List.Item>
+          <List.Item>Assurez-vous que vos données soient bien réglées de la manière suivante</List.Item>
+          <Image size='huge' src={howToSteamProfile3} />
+      </List>
     </Segment>
     <Segment inverted>
       <Header>
