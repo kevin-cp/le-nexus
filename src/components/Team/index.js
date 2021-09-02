@@ -3,85 +3,100 @@ import {
   Card,
   Image,
   Grid,
+  Icon,
+  Header,
 } from 'semantic-ui-react';
+
+import { Link } from 'react-router-dom';
 import './team.scss';
 
+import Tatayoyoavatar from 'src/assets/images/devteam/Tatayoyo.jpg';
+
 const Team = () => (
-  <Grid className="team-container" stackable textAlign="center" style={{ height: '100vh' }} verticalAlign="middle">
-    <Grid.Column style={{ maxWidth: 600 }}>
-      <Card.Group className="team-card-group" stackable itemsPerRow={2}>
+  <Grid className="team-container" centered stackable style={{ height: '100vh', overflow: 'auto' }} divided>
+    <Grid.Row>
+      <Header as='h1' textAlign='center' style={{color:'white', paddingBottom: '8rem', paddingTop: '8rem'}}>L'équipe de développement du Nexus</Header>
+    </Grid.Row>
+    <Grid.Row columns={5}>
+      <Grid.Column width={4} className="team-developper">
         <Card>
+          <Image src={Tatayoyoavatar} size='medium' />
           <Card.Content>
-            <Image
-              floated='right'
-              size='mini'
-              src='/images/avatar/large/steve.jpg'
-            />
-            <Card.Header>Steve Sanders</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
-            <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
-            </Card.Description>
+            <Card.Header>François Dzuidzia</Card.Header>
+            <Card.Meta><Icon name="steam" color="black" /> : Tatayoyo </Card.Meta>
+            <Card.Description>Front Developper - Product Owner</Card.Description>
+          </Card.Content>
+          <Card.Content>
+          <Card.Meta>Jeux favoris:</Card.Meta>
+          <Card.Description>Stellaris, Half-life, Cyberpunk 2077, Amnesia, Léa Passion Cheval</Card.Description>
           </Card.Content>
         </Card>
+      </Grid.Column>
+      <Grid.Column width={4} className="team-developper">
         <Card>
+          <Image src={Tatayoyoavatar} size='medium' />
           <Card.Content>
-            <Image
-              floated='right'
-              size='mini'
-              src='/images/avatar/large/steve.jpg'
-            />
-            <Card.Header>Steve Sanders</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
-            <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
-            </Card.Description>
+            <Card.Header>François Dzuidzia</Card.Header>
+            <Card.Meta><Icon name="steam" color="black" /> : Tatayoyo </Card.Meta>
+            <Card.Description>Front Developper - Product Owner</Card.Description>
+          </Card.Content>
+          <Card.Content>
+          <Card.Meta>Jeux favoris:</Card.Meta>
+          <Card.Description>Stellaris, Half-life, Cyberpunk 2077, Amnesia, Léa Passion Cheval</Card.Description>
           </Card.Content>
         </Card>
+      </Grid.Column>
+      <Grid.Column width={4} className="team-developper">
         <Card>
+          <Image src={Tatayoyoavatar} size='medium' />
           <Card.Content>
-            <Image
-              floated='right'
-              size='mini'
-              src='/images/avatar/large/steve.jpg'
-            />
-            <Card.Header>Steve Sanders</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
-            <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
-            </Card.Description>
+            <Card.Header>François Dzuidzia</Card.Header>
+            <Card.Meta><Icon name="steam" color="black" /> : Tatayoyo </Card.Meta>
+            <Card.Description>Front Developper - Product Owner</Card.Description>
+          </Card.Content>
+          <Card.Content>
+          <Card.Meta>Jeux favoris:</Card.Meta>
+          <Card.Description>Stellaris, Half-life, Cyberpunk 2077, Amnesia, Léa Passion Cheval</Card.Description>
           </Card.Content>
         </Card>
+      </Grid.Column>
+    </Grid.Row>
+    <Grid.Row columns={2}>
+    <Grid.Column width={4} className="team-developper">
         <Card>
+          <Image src={Tatayoyoavatar} size='medium' />
           <Card.Content>
-            <Image
-              floated='right'
-              size='mini'
-              src='/images/avatar/large/steve.jpg'
-            />
-            <Card.Header>Steve Sanders</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
-            <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
-            </Card.Description>
+            <Card.Header>François Dzuidzia</Card.Header>
+            <Card.Meta><Icon name="steam" color="black" /> : Tatayoyo </Card.Meta>
+            <Card.Description>Front Developper - Product Owner</Card.Description>
+          </Card.Content>
+          <Card.Content>
+          <Card.Meta>Jeux favoris:</Card.Meta>
+          <Card.Description>Stellaris, Half-life, Cyberpunk 2077, Amnesia, Léa Passion Cheval</Card.Description>
           </Card.Content>
         </Card>
+      </Grid.Column>
+      <Grid.Column width={4} className="team-developper">
         <Card>
+          <Image src={Tatayoyoavatar} size='medium' />
           <Card.Content>
-            <Image
-              floated='right'
-              size='mini'
-              src='/images/avatar/large/steve.jpg'
-            />
-            <Card.Header>Steve Sanders</Card.Header>
-            <Card.Meta>Friends of Elliot</Card.Meta>
-            <Card.Description>
-              Steve wants to add you to the group <strong>best friends</strong>
-            </Card.Description>
+            <Card.Header>François Dzuidzia</Card.Header>
+            <Card.Meta><Icon name="steam" color="black" /> : Tatayoyo </Card.Meta>
+            <Card.Description>Front Developper - Product Owner</Card.Description>
+          </Card.Content>
+          <Card.Content>
+          <Card.Meta>Jeux favoris:</Card.Meta>
+          <Card.Description>Stellaris, Half-life, Cyberpunk 2077, Amnesia, Léa Passion Cheval</Card.Description>
           </Card.Content>
         </Card>
-      </Card.Group>
-    </Grid.Column>
+      </Grid.Column>
+      
+    </Grid.Row>
+      <Grid.Row>
+        <Link to='/'>
+          <div className='Team-linkToHome'>Retour à l'accueil</div>
+        </Link>
+      </Grid.Row>
   </Grid>
 );
 

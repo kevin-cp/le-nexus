@@ -1,8 +1,15 @@
 .team-container {
+  background-image: url('src/assets/images/devteam/unsplash-code-team.jpg');
+  background-size: cover;
   overflow: scroll;
   
- .team-card-group {
-   background-color: whitesmoke;
-   padding: 50px;
+ .team-developper {
+   width: 200%;
  }
+}
+
+.Team-linkToHome {
+  padding: 2rem;
+  text-align: center;
+  text-decoration: underline;
 }
