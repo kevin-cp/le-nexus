@@ -2,15 +2,25 @@
   padding: 50px;
   box-shadow: 0px 0px 19px 12px rgba(0,0,0,.6);
   overflow: scroll;
+  background-image: url("/src/assets/images/contact.jpg");
+  background-size: cover;
+    
 
   .contact-form {
-    border: 1px solid black;
     padding: 50px;
     background-color: whitesmoke;
+    z-index: 1;
   }
 
   .button-submit {
     background-color: yellowgreen;
+  }
+
+  .homepage-button {
+    background-color: rgb(26, 159, 177);
+    margin-top: 50px;
+    color: white;
+    font-weight: bold;
   }
 
 }

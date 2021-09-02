@@ -5,6 +5,7 @@ import loginMiddleware from '../middlewares/loginMiddleware';
 import signInMiddleware from '../middlewares/signInMiddleware';
 import navMiddleware from '../middlewares/navMiddleware';
 import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
+import contactMiddleware from '../middlewares/contactMiddleware';
 
 // on combine devTools avec les middlewares
 const enhancers = composeWithDevTools(
@@ -14,6 +15,7 @@ const enhancers = composeWithDevTools(
     // ... d'autres middlewares
     navMiddleware,
     profileInfoMiddleware,
+    contactMiddleware,
   ),
 );
 

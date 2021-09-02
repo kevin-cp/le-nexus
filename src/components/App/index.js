@@ -9,7 +9,7 @@ import { Container } from 'semantic-ui-react';
 import { Switch, Route } from 'react-router-dom';
 import SignInForm from 'src/containers/SignInForm';
 import LoginForm from 'src/containers/LoginForm';
-import Contact from 'src/components/Contact';
+import Contact from 'src/containers/Contact';
 import Team from 'src/components/Team';
 
 // == Import

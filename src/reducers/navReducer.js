@@ -15,6 +15,7 @@ import {
   HAS_NO_NOTIFICATION,
   NUMBER_OF_NOTIFICATIONS,
   REQUEST_SENT_MESSAGE,
+  SENT_MESSAGE_DISAPPEARS,
 } from 'src/actions/nav';
 
 const initialState = {
@@ -120,6 +121,12 @@ function navReducer(state = initialState, action = {}) {
       return {
         ...state,
         friendRequestSuccessMessage: true,
+      };
+
+    case SENT_MESSAGE_DISAPPEARS:
+      return {
+        ...state,
+        friendRequestSuccessMessage: !true,
       };
 
     default:

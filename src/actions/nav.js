@@ -15,6 +15,7 @@ export const UPDATE_REQUEST_ID = 'UPDATE_REQUEST_ID';
 export const HAS_NO_NOTIFICATION = 'HAS_NO_NOTIFICATION';
 export const NUMBER_OF_NOTIFICATIONS = 'NUMBER_OF_NOTIFICATIONS';
 export const REQUEST_SENT_MESSAGE = 'REQUEST_SENT_MESSAGE';
+export const SENT_MESSAGE_DISAPPEARS = 'SENT_MESSAGE_DISAPPEARS';
 
 export const changeSearchValue = (value) => ({
   type: CHANGE_SEARCH_VALUE,
@@ -86,4 +87,8 @@ export const numberOfNotifications = (number) => ({
 
 export const requestSentMessage = () => ({
   type: REQUEST_SENT_MESSAGE,
+});
+
+export const SentMessageDisappears = () => ({
+  type: SENT_MESSAGE_DISAPPEARS,
 });

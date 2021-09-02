@@ -3,22 +3,36 @@
 import React, { useRef } from 'react';
 
 // semantic ui import
-import { Grid, Segment, Header, Card, Image, Dropdown, Form, Button, Icon, Popup } from 'semantic-ui-react';
+import {
+  Grid,
+  Segment,
+  Header,
+  Card,
+  Image,
+  // Dropdown,
+  Form,
+  Button,
+  Icon,
+  // Popup,
+  Message,
+} from 'semantic-ui-react';
 
 import { Redirect } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
-import Avatar from './intel.jpg';
-
 import './homepage.scss';
 
 const moodOptions = [
-  { key: 1, text: 'PGM', value: 1, color: 'green' },
-  { key: 2, text: 'Chill', value: 2, color: 'yellow' },
+  {
+    key: 1, text: 'PGM', value: 1, color: 'green',
+  },
+  {
+    key: 2, text: 'Chill', value: 2, color: 'yellow',
+  },
 ];
 
-const Homepage = ({ 
+const Homepage = ({
   pseudo,
   steamUsername,
   steamAvatar,
@@ -34,8 +48,10 @@ const Homepage = ({
   searchGame,
   friendsList,
   isLogged,
+  messageDisappears,
+  successMessage,
 }) => {
-  const friendHeaderRef = useRef(null)
+  const friendHeaderRef = useRef(null);
 
   //! ========================FILTRE JEUX====================================
   //! De base la librairie affichera les 20 premiers jeux de la liste
@@ -51,14 +67,14 @@ const Homepage = ({
       return gameNameLowered.includes(inputSearchLowered);
     }).slice(0, 20);
   }
-//! =========================================================================
-//! =============================FILTRE AMIS=====================================
+  //! =========================================================================
+  //! =============================FILTRE AMIS=====================================
   const filteredFriendsList = filteredFriends;
 
   const handleGameClick = (evt) => {
     // ON commence par reset la friendList pour que l'affichage soit dynamique
     resetFriendList();
-    const gameName = evt.currentTarget.querySelector(".header").innerText;
+    const gameName = evt.currentTarget.querySelector('.header').innerText;
     // On définit le message de base si on ne trouve rien
     friendHeaderRef.current.innerText = `Aucun de vos amis ne possède ${gameName}`;
     // On cherche dans les librairies de chaque ami...
@@ -66,7 +82,7 @@ const Homepage = ({
     for (const friend of friendsList) {
       // On obtient 4 objets friend contenant les données dont librairies de chaque ami
       // Je veux dans chacune de ces librairies chercher (find) s'il y a gameName dans le nom d'un jeu (game.game.name)
-      const found = friend.libraries.find((game) => game.game.name == gameName );
+      const found = friend.libraries.find((game) => game.game.name == gameName);
       if (typeof found !== 'undefined') {
         // SI TROUVÉ, ON AJOUTE L'AMI A LA LISTE FILTEREDFRIENDS APRES AVOIR RESET LA LISTE D'AMIS POUR EVITER LES DOUBLONS
         addFriendToFilter(friend);
@@ -79,7 +95,7 @@ const Homepage = ({
       didntFindFriends();
     }
     else {
-      // Fonction qui change le header de la page d'ami si jeu en commun 
+      // Fonction qui change le header de la page d'ami si jeu en commun
       foundFriends();
     }
   };
@@ -100,61 +116,72 @@ const Homepage = ({
   //! ===========================REDIRECTION================================
   // Si non connecté, renvoie vers la page de login
   if (!isLogged) {
-    return <Redirect to="/login" />
+    return <Redirect to="/login" />;
   }
 
-  //! ======================================================================
+  //! ===================MESSAGE QUI DISPARAIT AU BOUT D'UN CERTAIN TEMPS==============================
+  setTimeout(() => {
+    messageDisappears();
+  }, 10000);
+  //! ========================================================
   return (
     <div className="Homepage">
-    <Grid stackable>
-      <Grid.Row columns={2}>
-        <Grid.Column width={6}>
-          <Segment.Group className="Homepage-profile">
-            <Segment basic className="Homepage-profile--playerinfo">
-              {/* Profil du joueur */}
-              <Header className="Homepage-profile--playerinfo--username" as="h2" textAlign="center">{pseudo}</Header>
-              <Image id="user-avatar" src={steamAvatar} size="small" floated="left" rounded />
-              <Segment basic className='Homepage-profile--playerinfo--steamInfo'>
-                <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
-                <div>Status: Online </div>
-                <Button className="Homepage-profile-displayFriends-button" floated="left" basic inverted onClick={showAllFriends}>Afficher tous les amis</Button>
-                {/* <div className='Homepage-profile--playerinfo--mood'>Humeur
+      <Grid stackable>
+        <Grid.Row columns={2}>
+          <Grid.Column width={6}>
+            <Segment.Group className="Homepage-profile">
+              {/* si une demande d'ami est effectuée un message de confirmation appraraît */}
+              {successMessage && (
+              <Message
+                success
+                header="Demande d'ami envoyée !"
+              />
+              )}
+              <Segment basic className="Homepage-profile--playerinfo">
+                {/* Profil du joueur */}
+                <Header className="Homepage-profile--playerinfo--username" as="h2" textAlign="center">{pseudo}</Header>
+                <Image id="user-avatar" src={steamAvatar} size="small" floated="left" rounded />
+                <Segment basic className="Homepage-profile--playerinfo--steamInfo">
+                  <div><Icon name="steam" color="grey" /> : {steamUsername}</div>
+                  <div>Status: Online </div>
+                  <Button className="Homepage-profile-displayFriends-button" floated="left" basic inverted onClick={showAllFriends}>Afficher tous les amis</Button>
+                  {/* <div className='Homepage-profile--playerinfo--mood'>Humeur
                   <Dropdown clearable options={moodOptions} floating selection />
                 </div> */}
+                </Segment>
               </Segment>
-            </Segment>
-            {/* Fin profil du joueur */}
-            {/* Liste des jeux */}
-            <Segment.Group className="Homepage-profile--playergames">
-              <Form>
-                <Form.Field>
-                  <input
-                    id="Homepage-profile--playergames--search"
-                    placeholder="Search Games"
-                    value={gameSearch}
-                    onChange={(evt) => {
-                      searchGame(evt.currentTarget.value);
-                    }}
-                  />
-                </Form.Field>
-              </Form>
-              <Card.Group itemsPerRow={3} className="Homepage-profile--playergames--gamelist">
-                {filteredSteamLibrary.map((game) => (
-                  <Card className="Homepage-profile--playergames--game" key={game.game.id} onClick={handleGameClick}>
-                    <Image className='game-image' src={game.game.picture} ui={false} />
-                    <Card.Content>
-                      <Card.Header>{game.game.name}</Card.Header>
-                    </Card.Content>
-                  </Card>
-                ))}
-              </Card.Group>
+              {/* Fin profil du joueur */}
+              {/* Liste des jeux */}
+              <Segment.Group className="Homepage-profile--playergames">
+                <Form>
+                  <Form.Field>
+                    <input
+                      id="Homepage-profile--playergames--search"
+                      placeholder="Search Games"
+                      value={gameSearch}
+                      onChange={(evt) => {
+                        searchGame(evt.currentTarget.value);
+                      }}
+                    />
+                  </Form.Field>
+                </Form>
+                <Card.Group itemsPerRow={3} className="Homepage-profile--playergames--gamelist">
+                  {filteredSteamLibrary.map((game) => (
+                    <Card className="Homepage-profile--playergames--game" key={game.game.id} onClick={handleGameClick}>
+                      <Image className="game-image" src={game.game.picture} ui={false} />
+                      <Card.Content>
+                        <Card.Header>{game.game.name}</Card.Header>
+                      </Card.Content>
+                    </Card>
+                  ))}
+                </Card.Group>
+              </Segment.Group>
+              {/* Fin liste des jeux */}
             </Segment.Group>
-            {/* Fin liste des jeux */}
-          </Segment.Group>
-        </Grid.Column>
+          </Grid.Column>
 
-        {/* Partie de droite */}
-        <Grid.Column width={10} className="homepage-friendCardsList">
+          {/* Partie de droite */}
+          <Grid.Column width={10} className="homepage-friendCardsList">
 
             <Header className="friendCardsList-header" as="h2" textAlign="center"><span ref={friendHeaderRef}> </span></Header>
             {noFriendsFound && (
@@ -180,12 +207,12 @@ const Homepage = ({
                 </Card>
               ))}
             </Card.Group>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-  </div>
-  )
-}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </div>
+  );
+};
 
 Homepage.propTypes = {
   pseudo: PropTypes.string.isRequired,

@@ -67,7 +67,6 @@ const Nav = ({
     handleFriendRequest();
   };
 
-
   // je stocke la liste d'amis dans une variable que je vais utiliser
   // pour faire un affichage conditionnel du bouton de modal d'ajout d'amis
   // en utilisant un .includes()
@@ -135,6 +134,7 @@ const Nav = ({
                           handleAddFriendClick(user.id);
                           handleSendFriendRequest();
                           handleIsNotSearching();
+                          handleSuccessMessage();
                         }}
                         >
                           <Button
@@ -203,7 +203,6 @@ const Nav = ({
             handleDisconnection={handleDisconnection}
             requestId={handleRequestId}
             handleHasNoNotification={handleHasNoNotification}
-            handleSuccessMessage={handleSuccessMessage}
           />
 )}
         on="click"

@@ -9,7 +9,6 @@ import {
   ACCEPT_FRIEND_REQUEST,
   DENY_FRIEND_REQUEST,
   numberOfNotifications,
-  requestSentMessage,
 } from 'src/actions/nav';
 import { getUserData } from '../actions/login';
 
@@ -45,6 +44,7 @@ const navMiddleware = (store) => (next) => (action) => {
             store.dispatch(displayResults([]));
           }
         })
+        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
           // console.log(error);
         });
@@ -76,7 +76,7 @@ const navMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -86,7 +86,6 @@ const navMiddleware = (store) => (next) => (action) => {
     case CHECK_NOTIFICATION: {
       const {
         token,
-        id,
         steamId,
       } = store.getState().homepage;
 
@@ -102,6 +101,7 @@ const navMiddleware = (store) => (next) => (action) => {
           store.dispatch(updateSenderId(response.data));
           // store.dispatch(numberOfNotifications(response.data.length));
 
+          // eslint-disable-next-line array-callback-return
           const requests = response.data.map((item, index) => {
             if (item.declinedAt === null && item.acceptedAt === null) {
               store.dispatch(hasNotification());

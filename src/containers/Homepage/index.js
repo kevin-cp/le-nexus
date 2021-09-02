@@ -2,8 +2,15 @@ import { connect } from 'react-redux';
 
 // on importe le composant de présentation
 import Homepage from 'src/components/Homepage';
-import { addFriendToFilter, displayAllFriends, friendsFound, handleSearchGame, noFriendsFound, resetFriendList } from '../../actions/homepage';
-
+import {
+  addFriendToFilter,
+  displayAllFriends,
+  friendsFound,
+  handleSearchGame,
+  noFriendsFound,
+  resetFriendList,
+} from '../../actions/homepage';
+import { SentMessageDisappears } from '../../actions/nav';
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
 const mapStateToProps = (state) => ({
@@ -18,13 +25,14 @@ const mapStateToProps = (state) => ({
   isLogged: state.homepage.isLogged,
   noFriendsFound: state.homepage.noFriendsFound,
   userList: state.homepage.userList,
+  successMessage: state.navReducer.friendRequestSuccessMessage,
 });
 
 // === mapDispatchToProps
 // si j'ai besoin de dispatcher des actions vers le store (mettre à jour le state)
 const mapDispatchToProps = (dispatch) => ({
 
-// nom de la prop à remplir: fonction qui dispatch l'action
+  // nom de la prop à remplir: fonction qui dispatch l'action
   searchGame: (newSearch) => {
     dispatch(handleSearchGame(newSearch));
   },
@@ -48,9 +56,11 @@ const mapDispatchToProps = (dispatch) => ({
   foundFriends: () => {
     dispatch(friendsFound());
   },
+
+  messageDisappears: () => {
+    dispatch(SentMessageDisappears());
+  },
 });
-
-
 
 // === création de l'assistant
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
