@@ -31,26 +31,30 @@ const App = (isLogged) => (
             <Footer />
           </Route>
           <Route path="/events">
+            <Nav />
             <Eventpage />
             <Footer />
           </Route>
-          <Route path="/profile">
-            <Profilepage />
-            <Footer />
-          </Route>
           <Route path="/contact" exact>
+            <Nav />
             <Contact />
             <Footer />
           </Route>
           <Route path="/team" exact>
+            <Nav />
             <Team />
             <Footer />
           </Route>
           {isLogged && (
             <>
-              <Nav />
               <Route path="/" exact>
+                <Nav />
                 <Homepage />
+              </Route>
+              <Route path="/profile">
+                <Nav />
+                <Profilepage />
+                <Footer />
               </Route>
               <Footer />
             </>

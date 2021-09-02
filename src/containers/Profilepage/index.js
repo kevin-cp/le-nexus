@@ -7,12 +7,15 @@ import {
   changeUsernameValue,
   changeEmailValue,
   changeConfirmEmailValue,
-  changeCurrentPasswordValue,
   changeNewPasswordValue,
   changeConfirmPasswordValue,
   usernameSubmit,
   emailSubmit,
   passwordSubmit,
+  toggleUsernameError,
+  usernameError,
+  toggleEmailError,
+  emailError,
 } from 'src/actions/Profilepage';
 
 // === mapStateToProps
@@ -22,14 +25,18 @@ const mapStateToProps = (state) => ({
   newUsername: state.profilepageReducer.inputUsername,
   newEmail: state.profilepageReducer.inputEmail,
   confirmEmail: state.profilepageReducer.inputConfirmEmail,
-  currentPassword: state.profilepageReducer.inputCurrentPassword,
   newPassword: state.profilepageReducer.inputNewPassword,
   confirmPassword: state.profilepageReducer.inputConfirmPassword,
   usernameError: state.profilepageReducer.usernameError,
+  emailError: state.profilepageReducer.emailError,
+  passwordError: state.profilepageReducer.passwordError,
   steamId: state.homepage.steamId,
   usernameToDisplay: state.homepage.pseudo,
   avatarToDisplay: state.homepage.steamAvatar,
   emailToDisplay: state.homepage.email,
+  usernamePatchMessage: state.profilepageReducer.usernamePatchMessage,
+  emailPatchMessage: state.profilepageReducer.emailPatchMessage,
+  passwordPatchMessage: state.profilepageReducer.passwordPatchMessage,
 });
 
 // === mapDispatchToProps
@@ -46,10 +53,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   setConfirmEmail: (newValue) => {
     dispatch(changeConfirmEmailValue(newValue));
-  },
-
-  setCurrentPassword: (newValue) => {
-    dispatch(changeCurrentPasswordValue(newValue));
   },
 
   setNewPassword: (newValue) => {
@@ -71,6 +74,23 @@ const mapDispatchToProps = (dispatch) => ({
   handlePasswordSubmit: () => {
     dispatch(passwordSubmit());
   },
+
+  toggleUsernameError: () => {
+    dispatch(toggleUsernameError());
+  },
+
+  handleUsernameError: () => {
+    dispatch(usernameError());
+  },
+
+  toggleEmailError: () => {
+    dispatch(toggleEmailError());
+  },
+
+  handleEmailError: () => {
+    dispatch(emailError());
+  },
+
 });
 
 // === création de l'assistant

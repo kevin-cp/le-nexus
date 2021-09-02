@@ -25,8 +25,8 @@ import {CHANGE_EMAIL_INPUT,
 const initialState = {
   // ici l'état initial
   id: '',
-  email: 'storyni@hotmail.fr',
-  password: 'calypso',
+  email: 'b@b.b',
+  password: 'bbb',
   pseudo: 'Monsieur Yoyo',
   steamId: '',
   steamUsername: '',
