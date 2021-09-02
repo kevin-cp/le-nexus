@@ -39,6 +39,7 @@ const Nav = ({
   handleFriendRequest,
   handleFriendToRequestId,
   hasNotification,
+  // eslint-disable-next-line react/prop-types
   friendRequests,
   handleAcceptFriendRequest,
   handleDenyFriendRequest,
@@ -66,6 +67,7 @@ const Nav = ({
     handleFriendRequest();
   };
 
+
   // je stocke la liste d'amis dans une variable que je vais utiliser
   // pour faire un affichage conditionnel du bouton de modal d'ajout d'amis
   // en utilisant un .includes()
@@ -85,7 +87,11 @@ const Nav = ({
           value={inputSearch}
           onChange={(event) => {
             setInputSearch(event.currentTarget.value);
-            handleFriendSearch();
+            // si la length de l'input search est de 1 ça créé une erreur 404, alors
+            // j'appelle la requête seulement si c'est différent de 1
+            if (inputSearch.length !== 1) {
+              handleFriendSearch();
+            }
           }}
           onBlur={handleIsNotSearching}
         />
@@ -228,15 +234,14 @@ Nav.propTypes = {
   handleFriendRequest: PropTypes.func.isRequired,
   handleFriendToRequestId: PropTypes.func.isRequired,
   hasNotification: PropTypes.bool.isRequired,
-  friendRequests: PropTypes.array.isRequired,
   handleAcceptFriendRequest: PropTypes.func.isRequired,
   handleDenyFriendRequest: PropTypes.func.isRequired,
-  handleRequestId: PropTypes.number.isRequired,
-  handleHasNoNotification: PropTypes.bool.isRequired,
+  handleRequestId: PropTypes.func.isRequired,
+  handleHasNoNotification: PropTypes.func.isRequired,
   numberOfnotifications: PropTypes.number.isRequired,
   role: PropTypes.string.isRequired,
   friendsList: PropTypes.array.isRequired,
-  handleSuccessMessage: PropTypes.string.isRequired,
+  handleSuccessMessage: PropTypes.func.isRequired,
 };
 
 export default Nav;

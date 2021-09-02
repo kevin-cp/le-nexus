@@ -118,7 +118,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response)=> {
-          console.log(response);
+          // console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(updateFriendsList(response.data));
 
