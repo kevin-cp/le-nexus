@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, NavLink } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -153,12 +153,10 @@ const SignInForm = ({
           )}
           {/* message explicatif pour la récupératuion d'id */}
           <Message info>
-            <Message.Header>Pourquoi nous demandons ton ID Steam ?</Message.Header>
-            <p>Cela va nous permettre d'afficher la liste de jeux de ta bibliothèque etc..</p>
+            <Message.Header>Pourquoi nous demandons votre ID Steam ?</Message.Header>
+            <p>Cela va nous permettre de récupérer la liste de jeux de votre bibliothèque Steam, votre liste d'amis... Nous vous invitons à consulter notre <Link to='/FAQ'>FAQ</Link> à ce sujet</p>
             <Message.Header>Comment faire ?</Message.Header>
-            <p>C'est simple, sur le client Steam clique sur ton profil
-              en haut a droite et sur <b>"Détails du compte"</b>.
-              Juste en dessous du nom de ton compte se trouve l'ID !
+            <p>Nous avons rédiger un guide complet à ce sujet dans notre <Link to='/FAQ'>FAQ</Link> !
             </p>
           </Message>
           <Form.Field required>
@@ -166,7 +164,7 @@ const SignInForm = ({
           </Form.Field>
           {!isChecked && (
             <Message negative>
-              <Message.Header>Veuillez cocher les conditions</Message.Header>
+              <Message.Header>Il est nécessaire d'accepter les CGU pour utiliser le Nexus.</Message.Header>
             </Message>
           )}
           <Button className="button-submit" type="submit">Confirmer</Button>

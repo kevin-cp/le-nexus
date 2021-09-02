@@ -1,0 +1,52 @@
+.login-header {
+  color: white;
+  padding-top: 5rem;
+  font-size: 5rem;
+  text-align: center;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.login-form {
+  background-image: url('src/assets/images/unsplash-gaming-team.jpg');
+  background-size: cover;
+}
+
+.login-presentation--tiredofplayingalone {
+  color: white;
+
+
+  &--header {
+    top: 0px;
+  }
+}
+
+.login-presentation--howdoesitwork {
+  color: white;
+
+
+  &--header {
+    top: 0px;
+  }
+}
+
+.login-presentation--oneclickgame {
+  color: white;
+  background-image: url('src/assets/images/unsplash-gamer.jpg');
+  background-size: cover;
+
+  &--column {
+    border: 1px solid white;
+    border-radius: 15px;
+    background-color: #2D2D2D;
+    height: 70vh;
+  }
+}
+
+.login-presentation--findfriends {
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  background-color: #2D2D2D;
+
+}
