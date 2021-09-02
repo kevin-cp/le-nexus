@@ -42,7 +42,13 @@
       background-color: grey;
     }
 
-
+  #user-avatar {
+    box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px #0ba9ca, 0 0 30px #0ba9ca,
+    0 0 40px #0ba9ca, 0 0 50px #0ba9ca;
+  -webkit-animation: blink 0.7s infinite alternate;
+  animation: blink 0.7s infinite alternate;
+  }  
+  
 }
 
 //! ========================== Partie de droite =====================================
