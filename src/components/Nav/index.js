@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 // import de composants semantic-ui
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -38,7 +38,6 @@ const Nav = ({
   resultList,
   handleFriendRequest,
   handleFriendToRequestId,
-  handleSearchNotification,
   hasNotification,
   friendRequests,
   handleAcceptFriendRequest,
@@ -48,6 +47,7 @@ const Nav = ({
   numberOfnotifications,
   role,
   friendsList,
+  handleSuccessMessage,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
   if (inputSearch.length > 0 && resultList.length > 0) {
@@ -197,6 +197,7 @@ const Nav = ({
             handleDisconnection={handleDisconnection}
             requestId={handleRequestId}
             handleHasNoNotification={handleHasNoNotification}
+            handleSuccessMessage={handleSuccessMessage}
           />
 )}
         on="click"
@@ -209,12 +210,6 @@ const Nav = ({
           {numberOfnotifications}
         </Label>
       )}
-      {/* <Button
-        icon
-        onClick={handleSearchNotification}
-      >
-        <Icon name="sync" />
-      </Button> */}
     </Menu>
   );
 };
@@ -231,6 +226,17 @@ Nav.propTypes = {
   handleFriendSearch: PropTypes.func.isRequired,
   resultList: PropTypes.array.isRequired,
   handleFriendRequest: PropTypes.func.isRequired,
+  handleFriendToRequestId: PropTypes.func.isRequired,
+  hasNotification: PropTypes.bool.isRequired,
+  friendRequests: PropTypes.array.isRequired,
+  handleAcceptFriendRequest: PropTypes.func.isRequired,
+  handleDenyFriendRequest: PropTypes.func.isRequired,
+  handleRequestId: PropTypes.number.isRequired,
+  handleHasNoNotification: PropTypes.bool.isRequired,
+  numberOfnotifications: PropTypes.number.isRequired,
+  role: PropTypes.string.isRequired,
+  friendsList: PropTypes.array.isRequired,
+  handleSuccessMessage: PropTypes.string.isRequired,
 };
 
 export default Nav;

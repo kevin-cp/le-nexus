@@ -15,6 +15,7 @@ const Profile = ({
   denyRequest,
   requestId,
   handleHasNoNotification,
+  handleSuccessMessage,
 }) => {
   const handleAcceptFriendRequest = () => {
     acceptRequest();
@@ -43,6 +44,7 @@ const Profile = ({
             handleRequestId(request.id);
             handleAcceptFriendRequest();
             handleNoNotif();
+            handleSuccessMessage();
           }}
           >Accepter
           </Button>

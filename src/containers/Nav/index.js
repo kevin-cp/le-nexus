@@ -15,6 +15,7 @@ import {
   denyFriendRequest,
   updateRequestId,
   hasNoNotification,
+  requestSentMessage,
 } from '../../actions/nav';
 
 // === mapStateToProps
@@ -35,6 +36,7 @@ const mapStateToProps = (state) => ({
   numberOfnotifications: state.navReducer.numberOfnotifications,
   role: state.homepage.role,
   friendsList: state.homepage.friendsList,
+  successMessage: state.navReducer.friendRequestSuccessMessage,
 });
 
 // === mapDispatchToProps
@@ -87,7 +89,12 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleHasNoNotification: () => {
     dispatch(hasNoNotification());
-},
+  },
+
+  handleSuccessMessage: () => {
+    dispatch(requestSentMessage());
+  },
+
 });
 
 // === création de l'assistant

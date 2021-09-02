@@ -28,7 +28,7 @@ import {
 const initialState = {
   // ici l'état initial
   id: '',
-  email: 'armand@gmail.com',
+  email: 'kevin@gmail.com',
   password: '123',
   pseudo: 'Monsieur Yoyo',
   steamId: '',

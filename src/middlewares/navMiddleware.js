@@ -9,6 +9,7 @@ import {
   ACCEPT_FRIEND_REQUEST,
   DENY_FRIEND_REQUEST,
   numberOfNotifications,
+  requestSentMessage,
 } from 'src/actions/nav';
 import { getUserData } from '../actions/login';
 
