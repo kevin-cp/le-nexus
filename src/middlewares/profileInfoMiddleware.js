@@ -11,6 +11,8 @@ import {
   passwordPatchMessage,
 } from 'src/actions/Profilepage';
 
+import { getUserData } from 'src/actions/login';
+
 const profileInfoMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case USERNAME_SUBMIT: {
@@ -41,11 +43,12 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
           if (response.data) {
             const newAction = usernamePatchMessage(true);
             store.dispatch(newAction);
+            store.dispatch(getUserData());
           }
         })
         .catch((error) => {
           console.log(error.response.data);
-
+          store.dispatch(getUserData());
           if (error.response.data.pseudo.includes('This value is already used.')) {
             const newAction = usernameError(true);
             store.dispatch(newAction);
@@ -86,10 +89,12 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
           if (response.data) {
             const newAction = emailPatchMessage(true);
             store.dispatch(newAction);
+            store.dispatch(getUserData());
           }
         })
         .catch((error) => {
           console.log(error.response.data);
+          store.dispatch(getUserData());
 
           if (error.response.data.email.includes('This value is already used.')) {
             const newAction = emailError(true);
@@ -131,10 +136,12 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
           if (response.data) {
             const newAction = passwordPatchMessage(true);
             store.dispatch(newAction);
+            store.dispatch(getUserData());
           }
         })
         .catch((error) => {
           console.log(error);
+          store.dispatch(getUserData());
         });
       break;
     } default:

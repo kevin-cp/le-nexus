@@ -13,6 +13,8 @@ import {
   Message,
 } from 'semantic-ui-react';
 
+import { Redirect } from 'react-router-dom';
+
 import './profilepage.scss';
 import PropTypes from 'prop-types';
 
@@ -45,6 +47,7 @@ const Profilepage = ({
   passwordPatchMessage,
   handlePasswordError,
   togglePasswordError,
+  isLogged,
 }) => {
   const handleSubmitUsername = (evt) => {
     evt.preventDefault();
@@ -78,6 +81,10 @@ const Profilepage = ({
       handlePasswordError();
     }
   };
+
+  if (!isLogged) {
+    return <Redirect to="/login" />;
+  }
 
   return (
 

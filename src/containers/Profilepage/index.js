@@ -39,6 +39,7 @@ const mapStateToProps = (state) => ({
   usernamePatchMessage: state.profilepageReducer.usernamePatchMessage,
   emailPatchMessage: state.profilepageReducer.emailPatchMessage,
   passwordPatchMessage: state.profilepageReducer.passwordPatchMessage,
+  isLogged: state.homepage.isLogged,
 });
 
 // === mapDispatchToProps
