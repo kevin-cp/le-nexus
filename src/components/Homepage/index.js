@@ -39,6 +39,8 @@ const Homepage = ({
   visibilityState,
   messageDisappears,
   successMessage,
+  gameImage,
+  handleGameImage,
 }) => {
   const friendHeaderRef = useRef(null);
 
@@ -64,6 +66,10 @@ const Homepage = ({
     // ON commence par reset la friendList pour que l'affichage soit dynamique
     resetFriendList();
     const gameName = evt.currentTarget.querySelector('.header').innerText;
+    // // On cherche l'image du jeu
+    // const gamepicture = evt.currentTarget.querySelector('img').src;
+    // // ON l'enregistre dansle state
+    // handleGameImage(gamepicture);
     // On définit le message de base si on ne trouve rien
     friendHeaderRef.current.innerText = `Aucun de vos amis ne possède ${gameName}`;
     // On cherche dans les librairies de chaque ami...
@@ -176,7 +182,7 @@ const Homepage = ({
           </Grid.Column>
 
         {/* Partie de droite */}
-        <Grid.Column width={10} className="homepage-friendCardsList">
+        <Grid.Column width={10} className="homepage-friendCardsList" >
           {/* VISIBLE UNIQUEMENT SI COMPTE EN PRIVE */}
           {!visibilityState && (
             <Segment inverted className='Homepage-friendCardsList--privateAccount--message'>
@@ -195,7 +201,7 @@ const Homepage = ({
             )}
             <Card.Group stackable itemsPerRow={3}>
               {filteredFriendsList.map((friend) => (
-                <Card className="friendCard-element" key={friend.id}>
+                <Card className="friendCard-element">
                   <Card.Content>
                     <Image
                       className="friendCard-picture"

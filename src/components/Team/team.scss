@@ -2,6 +2,11 @@
   background-image: url('src/assets/images/devteam/unsplash-code-team.jpg');
   background-size: cover;
   overflow: scroll;
+
+  &--header{
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+  }
   
  .team-developper {
    width: 200%;

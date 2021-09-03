@@ -19,7 +19,7 @@ import Florianavatar from 'src/assets/images/devteam/Florian.jpg';
 const Team = () => (
   <Grid className="team-container" centered stackable style={{ height: '100vh', overflow: 'auto' }} divided>
     <Grid.Row>
-      <Header as='h1' textAlign='center' style={{color:'white', paddingBottom: '8rem', paddingTop: '8rem'}}>L'équipe de développement du Nexus</Header>
+      <Header className="team-container--header" as='h1' textAlign='center' style={{color:'white', paddingBottom: '8rem', paddingTop: '8rem'}}>L'équipe de développement du Nexus</Header>
     </Grid.Row>
     <Grid.Row columns={5}>
       <Grid.Column width={4} className="team-developper">

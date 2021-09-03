@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -59,9 +59,9 @@ const Contact = ({
         </Form.Field>
         <Button className="button-submit" type="submit">Envoyer</Button>
       </Form>
-      <NavLink to="/">
-        <Button className="homepage-button">Accueil</Button>
-      </NavLink>
+      <Link to="/" className="homepage-button">
+        Retour à l'accueil
+      </Link>
     </Grid.Column>
   </Grid>
 );

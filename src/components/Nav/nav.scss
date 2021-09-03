@@ -50,7 +50,7 @@
     width: 200px;
     height: 25px;
   }
-
+  
   #Nexus-nav {
     display: none;
   }
@@ -60,5 +60,9 @@
   }
   .nav-item {
     font-size: 0.7em;
+  }
+  .backOffice-link {
+    position: absolute;
+    top: 0px;
   }
 }

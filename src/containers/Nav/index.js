@@ -36,7 +36,6 @@ const mapStateToProps = (state) => ({
   role: state.homepage.role,
   friendsList: state.homepage.friendsList,
   successMessage: state.navReducer.friendRequestSuccessMessage,
-  isLogged: state.homepage.isLogged,
 });
 
 // === mapDispatchToProps

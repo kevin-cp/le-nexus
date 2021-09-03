@@ -73,9 +73,9 @@ const Nav = ({
   const friends = friendsList.map((item) => item.pseudo);
 
   return (
-    <Menu fixed="top" stackable id="navbar">
+    <Menu stackable fixed="top" id="navbar">
       <Menu.Item>
-        <Link to='/' id="Nexus-nav" >
+        <Link to='/' id="Nexus-nav"  >
           <Image id="Nexus-logo" size="mini" src={NexuslogoNav} />
         </Link>
       </Menu.Item>
@@ -168,7 +168,7 @@ const Nav = ({
       </div>
       {role === 'ROLE_ADMIN'
       && (
-      <Menu.Item>
+      <Menu.Item only='computer' >
         <a
           className="backOffice-link"
           href="http://localhost:8000/back/user/"

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 // on importe le composant de présentation
 import Homepage from 'src/components/Homepage';
-import { addFriendToFilter, displayAllFriends, friendsFound, handleSearchGame, noFriendsFound, resetFriendList } from '../../actions/homepage';
+import { addFriendToFilter, displayAllFriends, friendsFound, handleSearchGame, noFriendsFound, resetFriendList, setGameImage } from '../../actions/homepage';
 import { SentMessageDisappears } from '../../actions/nav';
 
 // === mapStateToProps
@@ -21,6 +21,7 @@ const mapStateToProps = (state) => ({
   userList: state.homepage.userList,
   visibilityState: state.homepage.visibilityState,
   successMessage: state.navReducer.friendRequestSuccessMessage,
+  gameImage: state.homepage.gameImage,
 });
 
 // === mapDispatchToProps
@@ -55,6 +56,11 @@ const mapDispatchToProps = (dispatch) => ({
   messageDisappears: () => {
     dispatch(SentMessageDisappears());
   },
+
+  handleGameImage: (newImage) => {
+    dispatch(setGameImage(newImage));
+  },
+  
 });
 
 // === création de l'assistant

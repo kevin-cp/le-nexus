@@ -5,6 +5,7 @@ import {
   NO_FRIEND_FOUND,
   FRIENDS_FOUND,
   CHANGE_GAMESEARCH_INPUT,
+  SET_GAME_IMAGE,
 } from '../actions/homepage';
 
 import {
@@ -44,6 +45,7 @@ const initialState = {
   gameSearch: '',
   userList: [],
   role: '',
+  gameImage: '',
 };
 
 function homepageReducer(state = initialState, action = {}) {
@@ -126,6 +128,12 @@ function homepageReducer(state = initialState, action = {}) {
         ...state,
         role: action.role,
       };
+
+    case SET_GAME_IMAGE:
+      return {
+        ...state,
+        gameImage: action.newImage,
+      }
     // ! ======================= FRIEND LIST ==================================
     case UPDATE_FRIENDSLIST:
       return {
@@ -188,6 +196,7 @@ function homepageReducer(state = initialState, action = {}) {
         filteredFriends: [],
         noFriendsFound: null,
         gameSearch: '',
+        gameImage: '',
       };
 
     default:

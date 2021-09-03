@@ -4,6 +4,7 @@ export const RESET_FRIEND_LIST = 'RESET_FRIEND_LIST';
 export const DISPLAY_ALL_FRIENDS = 'DISPLAY_ALL_FRIENDS';
 export const NO_FRIEND_FOUND = 'NO_FRIEND_FOUND';
 export const FRIENDS_FOUND = 'FRIENDS_FOUND';
+export const SET_GAME_IMAGE = 'SET_GAME_IMAGE';
 
 export const handleSearchGame = (newSearch) => ({
   type: CHANGE_GAMESEARCH_INPUT,
@@ -30,4 +31,9 @@ export const noFriendsFound = () => ({
 
 export const friendsFound = () => ({
   type: FRIENDS_FOUND,
+});
+
+export const setGameImage = (newImage) => ({
+  type: SET_GAME_IMAGE,
+  newImage,
 });
