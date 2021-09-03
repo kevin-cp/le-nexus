@@ -197,6 +197,7 @@ function homepageReducer(state = initialState, action = {}) {
         noFriendsFound: null,
         gameSearch: '',
         gameImage: '',
+        role: '',
       };
 
     default:

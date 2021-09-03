@@ -17,12 +17,12 @@ import Kevinavatar from 'src/assets/images/devteam/Kevin.jpg';
 import Florianavatar from 'src/assets/images/devteam/Florian.jpg';
 
 const Team = () => (
-  <Grid className="team-container" centered stackable style={{ height: '100vh', overflow: 'auto' }} divided>
+  <Grid className="team-container" centered relaxed stackable style={{ height: '100vh', overflow: 'auto', marginLeft: '2rem' }}>
     <Grid.Row>
-      <Header className="team-container--header" as='h1' textAlign='center' style={{color:'white', paddingBottom: '8rem', paddingTop: '8rem'}}>L'équipe de développement du Nexus</Header>
+      <Header className="team-container--header" as='h1' textAlign='center' style={{color:'white', paddingBottom: '8rem', paddingTop: '8rem', fontSize: '5rem' }}>L'équipe de développement du Nexus</Header>
     </Grid.Row>
     <Grid.Row columns={5}>
-      <Grid.Column width={4} className="team-developper">
+      <Grid.Column className="team-developper">
         <Card>
           <Image src={Tatayoyoavatar} size='medium' />
           <Card.Content>
@@ -36,7 +36,7 @@ const Team = () => (
           </Card.Content>
         </Card>
       </Grid.Column>
-      <Grid.Column width={4} className="team-developper">
+      <Grid.Column className="team-developper">
         <Card>
           <Image src={Kevinavatar} size='medium' />
           <Card.Content>
@@ -50,7 +50,7 @@ const Team = () => (
           </Card.Content>
         </Card>
       </Grid.Column>
-      <Grid.Column width={4} className="team-developper">
+      <Grid.Column className="team-developper">
         <Card>
           <Image src={Armandavatar} size='medium' />
           <Card.Content>
@@ -64,9 +64,7 @@ const Team = () => (
           </Card.Content>
         </Card>
       </Grid.Column>
-    </Grid.Row>
-    <Grid.Row columns={2}>
-    <Grid.Column width={4} className="team-developper">
+      <Grid.Column className="team-developper">
         <Card>
           <Image src={Florianavatar} size='medium' />
           <Card.Content>
@@ -80,7 +78,7 @@ const Team = () => (
           </Card.Content>
         </Card>
       </Grid.Column>
-      <Grid.Column width={4} className="team-developper">
+      <Grid.Column className="team-developper">
         <Card>
           <Image src={Julienavatar} size='medium' />
           <Card.Content>
@@ -94,13 +92,13 @@ const Team = () => (
           </Card.Content>
         </Card>
       </Grid.Column>
-      
     </Grid.Row>
-      <Grid.Row>
+    <Grid.Row>
         <Link to='/'>
           <div className='Team-linkToHome'>Retour à l'accueil</div>
         </Link>
       </Grid.Row>
+      
   </Grid>
 );
 

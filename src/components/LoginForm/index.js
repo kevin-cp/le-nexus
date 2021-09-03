@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Image, Message, Segment, Modal, Loader, Icon, GridColumn } from 'semantic-ui-react';
 
 import NexusLogo from 'src/assets/images/Nexus-logo-big-black.PNG';
@@ -112,6 +112,8 @@ const LoginForm = ({
         <h2 className='login-presentation--howdoesitwork--header'>Comment ça fonctionne ?</h2>
         <div>Le Nexus récupère vos données publiques Steam et filtre automatiquement votre liste d'amis en fonction des jeux que vous possédez en commun.</div>
         <div>De plus, vous pouvez également vous créer votre propre cercle d'amis grâce à notre moteur de recherche intégré d'utilisateurs !</div>
+        <div>Pour que le Nexus puisse fonctionner correctement, il est néanmoins nécessaire que vos paramètres de confidentialité concernants votre compte Steam soient <b>publics</b>. </div>
+        <h4>Nous vous invitons à consulter notre <Link to='/FAQ'>FAQ à ce sujet !</Link></h4>
       </Grid.Column>
     </Grid.Row>
     <Grid.Row style={{paddingTop: '8rem', paddingBottom: '8rem' }} className='login-presentation--oneclickgame' >

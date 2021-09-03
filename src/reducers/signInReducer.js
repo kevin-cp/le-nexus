@@ -12,6 +12,7 @@ import {
   TOGGLE_PASSWORD_ERROR,
   passwordError,
   IS_CREATED,
+  isChecked,
 } from '../actions/SigninForm';
 
 const initialState = {
@@ -91,7 +92,7 @@ function signInreducer(state = initialState, action = {}) {
     case IS_CHECKED:
       return {
         ...state,
-        isChecked: true,
+        isChecked: !state.isChecked,
       };
 
     case TOGGLE_PASSWORD_ERROR:

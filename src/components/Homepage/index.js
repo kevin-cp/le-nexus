@@ -166,7 +166,19 @@ const Homepage = ({
                     />
                   </Form.Field>
                 </Form>
+                
                 <Card.Group itemsPerRow={3} className="Homepage-profile--playergames--gamelist">
+                  {filteredSteamLibrary.length === 0 && (
+                    <Segment inverted className='Homepage-playergames--gamelist--nogamefound'>
+                    <Header icon textAlign='center' inverted >
+                      <Icon name='ban' circular color='red' />
+                      <Header.Content as='h1' >ATTENTION</Header.Content>
+                      <Divider />
+                      <h2>Nous n'avons pas pu récupérer votre liste de jeux Steam, merci de vérifier que les données de votre compte Steam soient bien publiques.</h2>
+                      <h4>Nous vous invitons à consulter notre <Link to="/FAQ">FAQ</Link> à ce sujet.</h4>
+                    </Header>
+                  </Segment>
+                  )}
                   {filteredSteamLibrary.map((game) => (
                     <Card className="Homepage-profile--playergames--game" key={game.game.id} onClick={handleGameClick}>
                       <Image className="game-image" src={game.game.picture} ui={false} />
