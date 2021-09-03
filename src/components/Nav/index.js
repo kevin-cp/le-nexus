@@ -168,7 +168,7 @@ const Nav = ({
       </div>
       {role === 'ROLE_ADMIN'
       && (
-      <Menu.Item only='computer' >
+      <Menu.Item>
         <a
           className="backOffice-link"
           href="http://localhost:8000/back/user/"

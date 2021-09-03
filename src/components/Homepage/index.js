@@ -213,7 +213,7 @@ const Homepage = ({
             )}
             <Card.Group stackable itemsPerRow={3}>
               {filteredFriendsList.map((friend) => (
-                <Card className="friendCard-element">
+                <Card className="friendCard-element" key={friend.steamId}>
                   <Card.Content>
                     <Image
                       className="friendCard-picture"
