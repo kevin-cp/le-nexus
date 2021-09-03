@@ -12,6 +12,7 @@ export const PASSWORD_ERROR = 'PASSWORD_ERROR';
 export const EMAIL_ERROR = 'EMAIL_ERROR';
 export const TOGGLE_USERNAME_ERROR = 'TOGGLE_USERNAME_ERROR';
 export const TOGGLE_EMAIL_ERROR = 'TOGGLE_EMAIL_ERROR';
+export const TOGGLE_PASSWORD_ERROR = 'TOGGLE_PASSWORD_ERROR';
 export const USERNAME_PATCH_MESSAGE = 'USERNAME_PATCH_MESSAGE';
 export const EMAIL_PATCH_MESSAGE = 'EMAIL_PATCH_MESSAGE';
 export const PASSWORD_PATCH_MESSAGE = 'PASSWORD_PATCH_MESSAGE';
@@ -76,6 +77,10 @@ export const toggleUsernameError = () => ({
 
 export const toggleEmailError = () => ({
   type: TOGGLE_EMAIL_ERROR,
+});
+
+export const togglePasswordError = () => ({
+  type: TOGGLE_PASSWORD_ERROR,
 });
 
 export const usernamePatchMessage = () => ({

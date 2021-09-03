@@ -43,6 +43,8 @@ const Profilepage = ({
   usernamePatchMessage,
   emailPatchMessage,
   passwordPatchMessage,
+  handlePasswordError,
+  togglePasswordError,
 }) => {
   const handleSubmitUsername = (evt) => {
     evt.preventDefault();
@@ -70,6 +72,10 @@ const Profilepage = ({
     evt.preventDefault();
     if (newPassword === confirmPassword) {
       handlePasswordSubmit();
+      togglePasswordError();
+    }
+    else {
+      handlePasswordError();
     }
   };
 
@@ -212,7 +218,9 @@ const Profilepage = ({
                 </Form.Field>
                 {passwordError && (
                 <Message negative>
-                  <Message.Header>Les mots de passe doivent être identiques</Message.Header>
+                  <Message.Header>
+                    Les mots de passe doivent être identiques et les champs ne peuvent être vides
+                  </Message.Header>
                 </Message>
                 )}
                 {passwordPatchMessage && (
@@ -260,6 +268,8 @@ Profilepage.propTypes = {
   usernamePatchMessage: PropTypes.bool.isRequired,
   emailPatchMessage: PropTypes.bool.isRequired,
   passwordPatchMessage: PropTypes.bool.isRequired,
+  handlePasswordError: PropTypes.func.isRequired,
+  togglePasswordError: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

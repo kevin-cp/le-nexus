@@ -16,6 +16,8 @@ import {
   usernameError,
   toggleEmailError,
   emailError,
+  togglePasswordError,
+  passwordError,
 } from 'src/actions/Profilepage';
 
 // === mapStateToProps
@@ -89,6 +91,14 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleEmailError: () => {
     dispatch(emailError());
+  },
+
+  togglePasswordError: () => {
+    dispatch(togglePasswordError());
+  },
+
+  handlePasswordError: () => {
+    dispatch(passwordError());
   },
 
 });

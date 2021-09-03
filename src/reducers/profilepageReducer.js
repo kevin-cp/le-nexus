@@ -9,8 +9,10 @@ import {
   PASSWORD_ERROR,
   TOGGLE_USERNAME_ERROR,
   TOGGLE_EMAIL_ERROR,
+  TOGGLE_PASSWORD_ERROR,
   usernameError,
   emailError,
+  passwordError,
   USERNAME_PATCH_MESSAGE,
   EMAIL_PATCH_MESSAGE,
   PASSWORD_PATCH_MESSAGE,
@@ -90,6 +92,12 @@ function profilepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         emailError: !emailError,
+      };
+
+    case TOGGLE_PASSWORD_ERROR:
+      return {
+        ...state,
+        passwordError: !passwordError,
       };
 
     case USERNAME_PATCH_MESSAGE:
