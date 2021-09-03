@@ -35,7 +35,9 @@ const store = createStore(
 
 // Dès que le store est utilisé, on le stocke dans le localstorage
 store.subscribe(() => {
-  saveState(store.getState());
+  saveState({
+    homepage: store.getState().homepage
+  });
 });
 
 export default store;
