@@ -6,6 +6,7 @@ import {
   emailError,
   steamIdError,
   isCreated,
+  emptyStateAfterSubmit,
 } from '../actions/SigninForm';
 
 const signInMiddleware = (store) => (next) => (action) => {
@@ -39,6 +40,7 @@ const signInMiddleware = (store) => (next) => (action) => {
             const newAction = isCreated(response.statusText);
             store.dispatch(newAction);
           }
+          store.dispatch(emptyStateAfterSubmit());
         })
         .catch((error) => {
           console.log(error.response.data.errors);

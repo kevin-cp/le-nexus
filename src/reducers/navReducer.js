@@ -16,6 +16,7 @@ import {
   NUMBER_OF_NOTIFICATIONS,
   REQUEST_SENT_MESSAGE,
   SENT_MESSAGE_DISAPPEARS,
+  EMPTY_SEARCHBAR,
 } from 'src/actions/nav';
 
 const initialState = {
@@ -127,6 +128,14 @@ function navReducer(state = initialState, action = {}) {
       return {
         ...state,
         friendRequestSuccessMessage: !true,
+      };
+
+      // vide la searchbar après une demande d'ami
+    case EMPTY_SEARCHBAR:
+      return {
+        ...state,
+        searchResult: [],
+        inputSearch: '',
       };
 
     default:

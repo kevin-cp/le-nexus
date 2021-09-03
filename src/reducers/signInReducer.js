@@ -12,6 +12,7 @@ import {
   TOGGLE_PASSWORD_ERROR,
   passwordError,
   IS_CREATED,
+  EMPTY_STATE_AFTER_SUBMIT,
 } from '../actions/SigninForm';
 
 const initialState = {
@@ -104,6 +105,22 @@ function signInreducer(state = initialState, action = {}) {
       return {
         ...state,
         isCreated: action.value,
+      };
+
+    case EMPTY_STATE_AFTER_SUBMIT:
+      return {
+        ...state,
+        inputUsername: '',
+        inputPassword: '',
+        inputConfirmPassword: '',
+        inputEmail: '',
+        inputSteamId: null,
+        passwordError: false,
+        usernameError: false,
+        emailError: false,
+        steamIdError: false,
+        isChecked: false,
+        isCreated: '',
       };
 
     default:
