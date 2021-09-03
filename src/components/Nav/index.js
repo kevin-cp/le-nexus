@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 // import de composants semantic-ui
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -39,14 +39,19 @@ const Nav = ({
   handleFriendRequest,
   handleFriendToRequestId,
   hasNotification,
+  // eslint-disable-next-line react/prop-types
   friendRequests,
   handleAcceptFriendRequest,
   handleDenyFriendRequest,
   handleRequestId,
   handleHasNoNotification,
+  numberOfnotifications,
+  role,
+  friendsList,
+  handleSuccessMessage,
 }) => {
   // Si il y a un résultat lors de la recherche on affiche la div de résultat
-  if (inputSearch.length > 0) {
+  if (inputSearch.length > 0 && resultList.length > 0) {
     handleIsSearching();
   }
   else {
@@ -61,6 +66,11 @@ const Nav = ({
   const handleSendFriendRequest = () => {
     handleFriendRequest();
   };
+
+  // je stocke la liste d'amis dans une variable que je vais utiliser
+  // pour faire un affichage conditionnel du bouton de modal d'ajout d'amis
+  // en utilisant un .includes()
+  const friends = friendsList.map((item) => item.pseudo);
 
   return (
     <Menu fixed="top" stackable id="navbar">
@@ -78,7 +88,11 @@ const Nav = ({
           value={inputSearch}
           onChange={(event) => {
             setInputSearch(event.currentTarget.value);
-            handleFriendSearch();
+            // si la length de l'input search est de 1 ça créé une erreur 404, alors
+            // j'appelle la requête seulement si c'est différent de 1
+            if (inputSearch.length !== 1) {
+              handleFriendSearch();
+            }
           }}
           onBlur={handleIsNotSearching}
         />
@@ -91,52 +105,59 @@ const Nav = ({
                 <List.Content>
                   <List.Header>{user.pseudo}</List.Header>
                   <Icon name="steam" /> {user.steamUsername}
-                  <Modal
-                    trigger={(
-                      <Button
-                        floated="right"
-                        className="addFriend"
-                        circular
-                        inverted
-                        color="blue"
-                        size="tiny"
-                        icon="add user"
-                      />
+                  {/* si les résultats de la recherche ne contiennent PAS un pseudo étant dans la liste d'ami
+                    on affiche le modal pour ajouter un ami
+                   */}
+                  {!friends.includes(user.pseudo)
+                    && (
+                    <Modal
+                      trigger={(
+                        <Button
+                          floated="right"
+                          className="addFriend"
+                          circular
+                          inverted
+                          color="blue"
+                          size="tiny"
+                          icon="add user"
+                        />
                   )}
-                  >
-                    <Modal.Content image>
-                      <Image size="medium" src={user.steamAvatar} wrapped />
-                      <Modal.Description>
-                        <Header>{user.pseudo}</Header>
-                        <Icon size="big" name="steam" /> {user.steamUsername}
-                        <p>Voulez-vous ajouter {user.pseudo} en ami ?</p>
-                      </Modal.Description>
-                    </Modal.Content>
-                    <Modal.Actions>
-                      <Form onSubmit={() => {
-                        handleAddFriendClick(user.id);
-                        handleSendFriendRequest();
-                        handleIsNotSearching();
-                      }}
-                      >
-                        <Button
-                          onClick={(event) => {
-                            event.preventDefault();
-                            handleIsNotSearching();
-                          }}
-                          color="red"
+                    >
+                      <Modal.Content image>
+                        <Image size="medium" src={user.steamAvatar} wrapped />
+                        <Modal.Description>
+                          <Header>{user.pseudo}</Header>
+                          <Icon size="big" name="steam" /> {user.steamUsername}
+                          <p>Voulez-vous ajouter {user.pseudo} en ami ?</p>
+                        </Modal.Description>
+                      </Modal.Content>
+                      <Modal.Actions>
+                        <Form onSubmit={() => {
+                          handleAddFriendClick(user.id);
+                          handleSendFriendRequest();
+                          handleIsNotSearching();
+                          handleSuccessMessage();
+                        }}
                         >
-                          <Icon name="remove" /> Non
-                        </Button>
-                        <Button
-                          type="submit"
-                          color="green"
-                        >
-                          <Icon name="checkmark" /> Oui
-                        </Button>
-                      </Form>
-                    </Modal.Actions>
-                  </Modal>
+                          <Button
+                            onClick={(event) => {
+                              event.preventDefault();
+                              handleIsNotSearching();
+                            }}
+                            color="red"
+                          >
+                            <Icon name="remove" /> Non
+                          </Button>
+                          <Button
+                            type="submit"
+                            color="green"
+                          >
+                            <Icon name="checkmark" /> Oui
+                          </Button>
+                        </Form>
+                      </Modal.Actions>
+                    </Modal>
+                    )}
 
                 </List.Content>
               </List.Item>
@@ -145,6 +166,20 @@ const Nav = ({
         </div>
         )}
       </div>
+      {role === 'ROLE_ADMIN'
+      && (
+      <Menu.Item>
+        <a
+          className="backOffice-link"
+          href="http://localhost:8000/back/user/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Admin Back-office
+        </a>
+      </Menu.Item>
+      )}
+
       <Popup
       // le content est ce que le popup affiche au clic, il s'agit ici du sous-composant profile
       // afin d'alléger le code ici
@@ -167,9 +202,10 @@ const Nav = ({
         trigger={<Image className="avatar" src={steamAvatar} size="tiny" avatar />}
       />
       {hasNotification && (
-        <Label className="notification-label" circular color="red" empty key="red" />
+        <Label className="notification-label" circular color="red" key="red">
+          {numberOfnotifications}
+        </Label>
       )}
-      
     </Menu>
   );
 };
@@ -186,6 +222,16 @@ Nav.propTypes = {
   handleFriendSearch: PropTypes.func.isRequired,
   resultList: PropTypes.array.isRequired,
   handleFriendRequest: PropTypes.func.isRequired,
+  handleFriendToRequestId: PropTypes.func.isRequired,
+  hasNotification: PropTypes.bool.isRequired,
+  handleAcceptFriendRequest: PropTypes.func.isRequired,
+  handleDenyFriendRequest: PropTypes.func.isRequired,
+  handleRequestId: PropTypes.func.isRequired,
+  handleHasNoNotification: PropTypes.func.isRequired,
+  numberOfnotifications: PropTypes.number.isRequired,
+  role: PropTypes.string.isRequired,
+  friendsList: PropTypes.array.isRequired,
+  handleSuccessMessage: PropTypes.func.isRequired,
 };
 
 export default Nav;

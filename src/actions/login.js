@@ -19,9 +19,8 @@ export const CHANGE_TOKEN = "CHANGE_TOKEN";
 export const UPDATE_LIBRARY = "UPDATE_LIBRARY";
 export const UPDATE_FRIENDSLIST = "UPDATE_FRIENDSLIST";
 export const UPDATE_USER_LIST = 'UPDATE_USER_LIST';
-
+export const GET_ROLE = 'GET_ROLE';
 export const IS_LOADING = "IS_LOADING";
-
 
 export const changeEmailInput = (newEmail) => ({
   type: CHANGE_EMAIL_INPUT,
@@ -122,4 +121,9 @@ export const updateUserList = (newList) => ({
 export const updateFriendsList = (newFriendsList) => ({
   type: UPDATE_FRIENDSLIST,
   newFriendsList,
+});
+
+export const getRole = (role) => ({
+  type: GET_ROLE,
+  role,
 });

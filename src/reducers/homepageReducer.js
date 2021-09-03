@@ -1,12 +1,14 @@
-import { CHANGE_GAMESEARCH_INPUT } from 'src/actions/homepage';
-import { ADD_FRIEND_TO_FILTER,
+import {
+  ADD_FRIEND_TO_FILTER,
   RESET_FRIEND_LIST,
   DISPLAY_ALL_FRIENDS,
   NO_FRIEND_FOUND,
   FRIENDS_FOUND,
+  CHANGE_GAMESEARCH_INPUT,
 } from '../actions/homepage';
 
-import {CHANGE_EMAIL_INPUT,
+import {
+  CHANGE_EMAIL_INPUT,
   CHANGE_PASSWORD_INPUT,
   CHANGE_PSEUDO,
   CHANGE_STEAMAVATAR,
@@ -20,13 +22,14 @@ import {CHANGE_EMAIL_INPUT,
   UPDATE_FRIENDSLIST,
   UPDATE_USER_LIST,
   CHANGE_ID,
-} from "../actions/login";
+  GET_ROLE,
+} from '../actions/login';
 
 const initialState = {
   // ici l'état initial
   id: '',
-  email: 'storyni@hotmail.fr',
-  password: 'calypso',
+  email: 'kevin@gmail.com',
+  password: '123',
   pseudo: 'Monsieur Yoyo',
   steamId: '',
   steamUsername: '',
@@ -40,6 +43,7 @@ const initialState = {
   noFriendsFound: null,
   gameSearch: '',
   userList: [],
+  role: '',
 };
 
 function homepageReducer(state = initialState, action = {}) {
@@ -117,6 +121,11 @@ function homepageReducer(state = initialState, action = {}) {
         id: action.newId,
       };
 
+    case GET_ROLE:
+      return {
+        ...state,
+        role: action.role,
+      };
     // ! ======================= FRIEND LIST ==================================
     case UPDATE_FRIENDSLIST:
       return {
@@ -153,14 +162,14 @@ function homepageReducer(state = initialState, action = {}) {
         ...state,
         noFriendsFound: false,
       };
-    
+
     case UPDATE_USER_LIST:
       return {
         ...state,
         userList: action.newList,
       };
 
-  // ! ==========================================================
+    // ! ==========================================================
     case USER_DISCONNECTED:
       return {
         ...state,

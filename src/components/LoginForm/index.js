@@ -11,7 +11,8 @@ import HowtoNexus3 from 'src/assets/images/howto/howto-nexus-3.png';
 
 import './loginform.scss';
 
-const LoginForm = ({ email,
+const LoginForm = ({
+  email,
   password,
   setEmail,
   setPassword,

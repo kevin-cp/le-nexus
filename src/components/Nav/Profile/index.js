@@ -9,6 +9,7 @@ const Profile = ({
   avatar,
   pseudo,
   handleDisconnection,
+  // eslint-disable-next-line react/prop-types
   friendRequest,
   hasNotif,
   acceptRequest,
@@ -41,24 +42,28 @@ const Profile = ({
       && friendRequest.map((request) => (
         <div key={request.id} className="friend-request">
           <p>Demande en ami de <b>{request.sender.pseudo}</b> :</p>
-          <Button onClick={() => {
-            handleRequestId(request.id);
-            handleAcceptFriendRequest();
-            handleNoNotif();
-          }}
+          <Button
+            color="twitter"
+            onClick={() => {
+              handleRequestId(request.id);
+              handleAcceptFriendRequest();
+              handleNoNotif();
+            }}
           >Accepter
           </Button>
-          <Button onClick={() => {
-            handleRequestId(request.id);
-            handleDenyFriendRequest();
-            handleNoNotif();
-          }}
+          <Button
+            color="youtube"
+            onClick={() => {
+              handleRequestId(request.id);
+              handleDenyFriendRequest();
+              handleNoNotif();
+            }}
           >
             Refuser
           </Button>
         </div>
       ))}
-      <NavLink to="/profile">Editer le profil</NavLink>
+      <NavLink className="edit-link" to="/profile">Editer le profil</NavLink>
       <Button onClick={handleDisconnection}>Se Déconnecter</Button>
     </div>
   );
@@ -68,14 +73,11 @@ Profile.propTypes = {
   avatar: PropTypes.string.isRequired,
   pseudo: PropTypes.string.isRequired,
   handleDisconnection: PropTypes.func.isRequired,
-  friendRequest: PropTypes.string.isRequired,
   hasNotif: PropTypes.bool.isRequired,
-};
-
-Profile.propTypes = {
-  avatar: PropTypes.string.isRequired,
-  pseudo: PropTypes.string.isRequired,
-  handleDisconnection: PropTypes.func.isRequired,
+  acceptRequest: PropTypes.func.isRequired,
+  denyRequest: PropTypes.func.isRequired,
+  requestId: PropTypes.func.isRequired,
+  handleHasNoNotification: PropTypes.func.isRequired,
 };
 
 export default Profile;

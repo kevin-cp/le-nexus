@@ -34,7 +34,7 @@ const signInMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response);
+          console.log(Object.response);
           if (response.statusText.includes('Created')) {
             const newAction = isCreated(response.statusText);
             store.dispatch(newAction);

@@ -5,6 +5,7 @@ import loginMiddleware from '../middlewares/loginMiddleware';
 import signInMiddleware from '../middlewares/signInMiddleware';
 import navMiddleware from '../middlewares/navMiddleware';
 import profileInfoMiddleware from '../middlewares/profileInfoMiddleware';
+import contactMiddleware from '../middlewares/contactMiddleware';
 
 // Fonctions pour le localstorage
 import { loadState, saveState } from './localStorage';
@@ -19,6 +20,7 @@ const enhancers = composeWithDevTools(
     // ... d'autres middlewares
     navMiddleware,
     profileInfoMiddleware,
+    contactMiddleware,
   ),
 );
 

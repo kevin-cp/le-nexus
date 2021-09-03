@@ -20,7 +20,9 @@ import { SUBMIT_LOGIN,
   getUserFriends,
   setLoading,
   changeId,
+  getRole,
 } from '../actions/login';
+import { checkNotification } from '../actions/nav';
 
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
@@ -51,6 +53,7 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(changeToken(response.data.payload.token));
           store.dispatch(changeSteamId(response.data.authenticatedUserId));
           store.dispatch(getUserData());
+          store.dispatch(checkNotification());
         })
 
         .catch((error) => {
@@ -87,6 +90,8 @@ const loginMiddleware = (store) => (next) => (action) => {
           store.dispatch(changeVisibilityState(response.data.visibilityState));
           store.dispatch(updateLibrary(response.data.libraries));
           store.dispatch(changeId(response.data.id));
+          // récupération du role pour afficher ou non le lien vers le back-office
+          store.dispatch(getRole(response.data.roles[0]));
 
           // Maintenant il faut faire une requête pour appeler les données de la liste d'amis
           store.dispatch(getUserFriends());
@@ -114,7 +119,7 @@ const loginMiddleware = (store) => (next) => (action) => {
         },
       })
         .then((response)=> {
-          console.log(response);
+          // console.log(response);
           // Maintenant il faut appeler toutes les fonctions qui modifient le state
           store.dispatch(updateFriendsList(response.data));
           // Affiche tous les amis dès le chargement de la page homepage

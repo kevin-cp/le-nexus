@@ -47,6 +47,14 @@
       background-color: grey;
     }
 
+  #user-avatar {
+    box-shadow: 0 0 2px #fff, 0 0 10px #fff, 0 0 20px #0ba9ca, 0 0 30px #0ba9ca,
+    0 0 40px #0ba9ca, 0 0 50px #0ba9ca;
+  -webkit-animation: blink 0.7s infinite alternate;
+  animation: blink 0.7s infinite alternate;
+  margin-right: 30px;
+  }  
+  
 }
 
 //! ========================== Partie de droite =====================================
@@ -54,9 +62,10 @@
 
 
 .homepage-friendCardsList {
-  background-color: #1b2838;
+  background-color: #273c57;
   padding-left: 2em;
   overflow: auto;
+  opacity: 0.99;
 
   .friendCardsList-header {
     font-weight: bold;

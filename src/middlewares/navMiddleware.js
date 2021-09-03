@@ -8,7 +8,9 @@ import {
   hasNotification,
   ACCEPT_FRIEND_REQUEST,
   DENY_FRIEND_REQUEST,
+  numberOfNotifications,
 } from 'src/actions/nav';
+import { getUserData } from '../actions/login';
 
 const navMiddleware = (store) => (next) => (action) => {
   // je peux réagir au cas par cas suivant l'action,
@@ -32,11 +34,19 @@ const navMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response.data);
-          store.dispatch(displayResults(response.data));
+          // console.log(Object.keys(response.data).length);
+          // si l'objet de réponse est = à 0 c'est qu'il n'y a pas de résultat
+          // donc si > 0 on envoie la réponse sinon tableau vide (cela n'affiche rien)
+          if (Object.keys(response.data).length > 0) {
+            store.dispatch(displayResults(response.data));
+          }
+          else {
+            store.dispatch(displayResults([]));
+          }
         })
+        // eslint-disable-next-line no-unused-vars
         .catch((error) => {
-          console.log(error);
+          // console.log(error);
         });
       break;
     }
@@ -66,7 +76,7 @@ const navMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response);
+          // console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -76,7 +86,6 @@ const navMiddleware = (store) => (next) => (action) => {
     case CHECK_NOTIFICATION: {
       const {
         token,
-        id,
         steamId,
       } = store.getState().homepage;
 
@@ -88,17 +97,18 @@ const navMiddleware = (store) => (next) => (action) => {
         },
       )
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           store.dispatch(updateSenderId(response.data));
+          // store.dispatch(numberOfNotifications(response.data.length));
 
-          const isDeclined = response.data.map((request) => request.declinedAt);
-          const isAccepted = response.data.map((request) => request.acceptedAt);
-          const targetId = response.data.map((request) => request.target.id);
-          console.log(targetId);
-
-          if (isAccepted[0] === null && isDeclined[0] === null && targetId == id) {
-            store.dispatch(hasNotification());
-          }
+          // eslint-disable-next-line array-callback-return
+          const requests = response.data.map((item, index) => {
+            if (item.declinedAt === null && item.acceptedAt === null) {
+              store.dispatch(hasNotification());
+              store.dispatch(numberOfNotifications(index + 1));
+            }
+          });
+          return requests;
         })
         .catch((error) => {
           console.log(error);
@@ -129,6 +139,7 @@ const navMiddleware = (store) => (next) => (action) => {
       )
         .then((response) => {
           console.log(response);
+          store.dispatch(getUserData());
         })
         .catch((error) => {
           console.log(error);

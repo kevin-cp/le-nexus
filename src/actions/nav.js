@@ -7,12 +7,15 @@ export const FRIEND_REQUEST = 'FRIEND_REQUEST';
 export const FRIEND_TO_REQUEST = 'FRIEND_TO_REQUEST';
 export const CHECK_NOTIFICATION = 'CHECK_NOTIFICATION';
 export const UPDATE_SENDER_ID = 'UPDATE_SENDER_ID';
+// pour le refus ou l'ajout d'ami
 export const HAS_NOTIFICATION = 'HAS_NOTIFICATION';
-// pour le refus ou l'acceptation d'ami
 export const ACCEPT_FRIEND_REQUEST = 'ACCEPT_FRIEND_REQUEST';
 export const DENY_FRIEND_REQUEST = 'DENY_FRIEND_REQUEST';
 export const UPDATE_REQUEST_ID = 'UPDATE_REQUEST_ID';
 export const HAS_NO_NOTIFICATION = 'HAS_NO_NOTIFICATION';
+export const NUMBER_OF_NOTIFICATIONS = 'NUMBER_OF_NOTIFICATIONS';
+export const REQUEST_SENT_MESSAGE = 'REQUEST_SENT_MESSAGE';
+export const SENT_MESSAGE_DISAPPEARS = 'SENT_MESSAGE_DISAPPEARS';
 
 export const changeSearchValue = (value) => ({
   type: CHANGE_SEARCH_VALUE,
@@ -75,4 +78,17 @@ export const denyFriendRequest = () => ({
 export const updateRequestId = (requestId) => ({
   type: UPDATE_REQUEST_ID,
   requestId,
+});
+
+export const numberOfNotifications = (number) => ({
+  type: NUMBER_OF_NOTIFICATIONS,
+  number,
+});
+
+export const requestSentMessage = () => ({
+  type: REQUEST_SENT_MESSAGE,
+});
+
+export const SentMessageDisappears = () => ({
+  type: SENT_MESSAGE_DISAPPEARS,
 });
