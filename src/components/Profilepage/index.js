@@ -4,13 +4,13 @@ import {
   Button,
   Form,
   Image,
-  Popup,
   Modal,
   Grid,
   Container,
   Header,
   Label,
   Input,
+  Message,
 } from 'semantic-ui-react';
 
 import './profilepage.scss';
@@ -26,8 +26,6 @@ const Profilepage = ({
   setNewEmail,
   confirmEmail,
   setConfirmEmail,
-  currentPassword,
-  setCurrentPassword,
   newPassword,
   setNewPassword,
   confirmPassword,
@@ -36,26 +34,53 @@ const Profilepage = ({
   handleEmailSubmit,
   handlePasswordSubmit,
   usernameError,
+  emailError,
+  passwordError,
+  handleUsernameError,
+  toggleUsernameError,
+  handleEmailError,
+  toggleEmailError,
+  usernamePatchMessage,
+  emailPatchMessage,
+  passwordPatchMessage,
+  handlePasswordError,
+  togglePasswordError,
 }) => {
   const handleSubmitUsername = (evt) => {
     evt.preventDefault();
-    handleUsernameSubmit();
+    if (usernameError) {
+      toggleUsernameError();
+      handleUsernameSubmit();
+    }
+    else {
+      handleUsernameError();
+    }
   };
 
   const handleSubmitEmail = (evt) => {
     evt.preventDefault();
-    handleEmailSubmit();
-    // if (newEmail === confirmEmail) {
-    //   handleFormSubmit();
-    // }
+    if (emailError && newEmail === confirmEmail) {
+      toggleEmailError();
+      handleEmailSubmit();
+    }
+    else {
+      handleEmailError();
+    }
   };
 
   const handleSubmitPassword = (evt) => {
     evt.preventDefault();
-    handlePasswordSubmit();
+    if (newPassword === confirmPassword) {
+      handlePasswordSubmit();
+      togglePasswordError();
+    }
+    else {
+      handlePasswordError();
+    }
   };
 
   return (
+
     <Container
       className="main"
       style={{ paddingTop: '10em' }}
@@ -73,30 +98,13 @@ const Profilepage = ({
             {usernameToDisplay}
           </Header>
           <Image className="avatar-image" src={avatarToDisplay} size="medium" centered circular />
-          <Popup
-            className="avatar-popup"
-            content={(
-              <Form className="avatar-popup--form" onSubmit="">
-                <Label>Nouvel avatar</Label>
-                <Input className="popup-form--input" placeholder="chemin d'importation" />
-                <Button className="popup-form--button" type="submit">Importer</Button>
-              </Form>
-          )}
-            on="click"
-            offset={[0, 0]}
-            trigger={<Button className="popup-avatar--button" type="button" circular icon="settings" />}
-          />
         </Grid.Column>
         <Grid.Column verticalAlign="middle">
           <Form
             className="mainform-username"
             onSubmit={handleSubmitUsername}
           >
-            {/* {usernameError && (
-          <Message negative>
-            <Message.Header>Pseudo déjà existant</Message.Header>
-          </Message>
-          )} */}
+
             <Form.Field>
               <Label>Nouvel identifiant Nexus</Label>
               <Input
@@ -110,6 +118,21 @@ const Profilepage = ({
                 }}
               />
             </Form.Field>
+            {/* Message qui s'affiche uniquement si le pseudo est déjà existant */}
+            {usernameError && (
+            <Message negative>
+              <Message.Header>
+                Pseudo déjà existant ou nombre de caractères insuffisant
+              </Message.Header>
+            </Message>
+            )}
+            {usernamePatchMessage && (
+            <Message positive>
+              <Message.Header>
+                La modification a bien été prise en compte
+              </Message.Header>
+            </Message>
+            )}
             <Button type="submit">Enregistrer</Button>
           </Form>
 
@@ -117,7 +140,7 @@ const Profilepage = ({
             className="mainform-email"
             onSubmit={handleSubmitEmail}
           >
-            <Form.Field>
+            <Form.Field required>
               <Label>Email</Label>
               <Input
                 className="mainform-email--input"
@@ -131,7 +154,7 @@ const Profilepage = ({
               />
             </Form.Field>
 
-            <Form.Field>
+            <Form.Field required>
               <Input
                 className="mainform-email--inputConfirm"
                 type="email"
@@ -143,6 +166,18 @@ const Profilepage = ({
                 }}
               />
             </Form.Field>
+            {emailError && (
+            <Message negative>
+              <Message.Header>E-mail déjà existant ou champ non renseigné</Message.Header>
+            </Message>
+            )}
+            {emailPatchMessage && (
+            <Message positive>
+              <Message.Header>
+                La modification a bien été prise en compte
+              </Message.Header>
+            </Message>
+            )}
             <Button type="submit">Enregistrer</Button>
           </Form>
 
@@ -155,18 +190,6 @@ const Profilepage = ({
                 className="password-form"
                 onSubmit={handleSubmitPassword}
               >
-                <Form.Field>
-                  <Input
-                    className="password-form--input"
-                    type="password"
-                    placeholder="Mot de passe actuel"
-                    value={currentPassword}
-                    onChange={(event) => {
-                    // console.log(event.currentTarget.value);
-                      setCurrentPassword(event.currentTarget.value);
-                    }}
-                  />
-                </Form.Field>
 
                 <Form.Field>
                   <Input
@@ -181,7 +204,7 @@ const Profilepage = ({
                   />
                 </Form.Field>
 
-                <Form.Field>
+                <Form.Field required="true">
                   <Input
                     className="password-form--input"
                     type="password"
@@ -193,6 +216,20 @@ const Profilepage = ({
                     }}
                   />
                 </Form.Field>
+                {passwordError && (
+                <Message negative>
+                  <Message.Header>
+                    Les mots de passe doivent être identiques et les champs ne peuvent être vides
+                  </Message.Header>
+                </Message>
+                )}
+                {passwordPatchMessage && (
+                <Message positive>
+                  <Message.Header>
+                    La modification a bien été prise en compte
+                  </Message.Header>
+                </Message>
+                )}
                 <Button type="submit">Enregistrer</Button>
               </Form>
             )}
@@ -211,8 +248,6 @@ Profilepage.propTypes = {
   setNewEmail: PropTypes.func.isRequired,
   confirmEmail: PropTypes.string.isRequired,
   setConfirmEmail: PropTypes.func.isRequired,
-  currentPassword: PropTypes.string.isRequired,
-  setCurrentPassword: PropTypes.func.isRequired,
   newPassword: PropTypes.string.isRequired,
   setNewPassword: PropTypes.func.isRequired,
   confirmPassword: PropTypes.string.isRequired,
@@ -220,10 +255,21 @@ Profilepage.propTypes = {
   handleUsernameSubmit: PropTypes.func.isRequired,
   handleEmailSubmit: PropTypes.func.isRequired,
   handlePasswordSubmit: PropTypes.func.isRequired,
+  handleUsernameError: PropTypes.func.isRequired,
+  toggleUsernameError: PropTypes.func.isRequired,
+  handleEmailError: PropTypes.func.isRequired,
+  toggleEmailError: PropTypes.func.isRequired,
   usernameError: PropTypes.bool.isRequired,
+  emailError: PropTypes.bool.isRequired,
+  passwordError: PropTypes.bool.isRequired,
   usernameToDisplay: PropTypes.string.isRequired,
   avatarToDisplay: PropTypes.string.isRequired,
   emailToDisplay: PropTypes.string.isRequired,
+  usernamePatchMessage: PropTypes.bool.isRequired,
+  emailPatchMessage: PropTypes.bool.isRequired,
+  passwordPatchMessage: PropTypes.bool.isRequired,
+  handlePasswordError: PropTypes.func.isRequired,
+  togglePasswordError: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

@@ -52,6 +52,7 @@ const App = ({isLogged, refreshData}) => {
                 <Team />
               </Route>
               <Route path="/" exact>
+                <Nav />
                 <Homepage />
               </Route>
               <Route path="/profile">

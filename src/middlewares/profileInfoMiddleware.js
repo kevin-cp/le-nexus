@@ -1,7 +1,15 @@
-
 import axios from 'axios';
 
-import { USERNAME_SUBMIT, EMAIL_SUBMIT, PASSWORD_SUBMIT } from 'src/actions/Profilepage';
+import {
+  USERNAME_SUBMIT,
+  EMAIL_SUBMIT,
+  PASSWORD_SUBMIT,
+  usernameError,
+  emailError,
+  usernamePatchMessage,
+  emailPatchMessage,
+  passwordPatchMessage,
+} from 'src/actions/Profilepage';
 
 const profileInfoMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -30,9 +38,22 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
 
         .then((response) => {
           console.log(response.data);
+          if (response.data) {
+            const newAction = usernamePatchMessage(true);
+            store.dispatch(newAction);
+          }
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+
+          if (error.response.data.pseudo.includes('This value is already used.')) {
+            const newAction = usernameError(true);
+            store.dispatch(newAction);
+          }
+          else if (error.response.data.pseudo.includes('This value is too short. It should have 3 characters or more.')) {
+            const newAction = usernameError(true);
+            store.dispatch(newAction);
+          }
         });
       break;
     }
@@ -62,9 +83,22 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
 
         .then((response) => {
           console.log(response.data);
+          if (response.data) {
+            const newAction = emailPatchMessage(true);
+            store.dispatch(newAction);
+          }
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
+
+          if (error.response.data.email.includes('This value is already used.')) {
+            const newAction = emailError(true);
+            store.dispatch(newAction);
+          }
+          else if (error.response.data.email.includes('This value should not be blank.')) {
+            const newAction = emailError(true);
+            store.dispatch(newAction);
+          }
         });
       break;
     }
@@ -94,6 +128,10 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
 
         .then((response) => {
           console.log(response.data);
+          if (response.data) {
+            const newAction = passwordPatchMessage(true);
+            store.dispatch(newAction);
+          }
         })
         .catch((error) => {
           console.log(error);
