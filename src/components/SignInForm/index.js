@@ -13,6 +13,7 @@ import {
   Header,
   Grid,
   Image,
+  Loader,
 } from 'semantic-ui-react';
 
 import './signinform.scss';
@@ -38,6 +39,8 @@ const SignInForm = ({
   handleIsChecked,
   togglePasswordError,
   isCreated,
+  isLoading,
+  launchLoading,
 }) => {
   // dans le handleSubmit je fais une comparaison de mot de passe
   // si le mdp et la confirmation sont différents on aura un message sinon c'est ok
@@ -46,6 +49,7 @@ const SignInForm = ({
     if (password === confirmPassword && isChecked === true) {
       togglePasswordError();
       handleFormSubmit();
+      launchLoading(true);
     }
     else {
       handlePasswordError();
@@ -167,7 +171,14 @@ const SignInForm = ({
               <Message.Header>Il est nécessaire d'accepter les CGU pour utiliser le Nexus.</Message.Header>
             </Message>
           )}
-          <Button className="button-submit" type="submit">Confirmer</Button>
+
+          {isLoading && (
+          <Button className="button-submit" loading>Loading</Button>
+          )}
+          {!isLoading && (
+          <Button className="button-submit" type="submit"><div>Confirmer</div></Button>
+          )}
+                
           <Button className="button-cancel">Annuler</Button>
           <Message>
             Déjà inscrit ? <a href="/">Connectez-vous</a>

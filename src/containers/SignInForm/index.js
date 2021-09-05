@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import SignInForm from 'src/components/SignInForm';
 
 import {
+  setLoading,
+} from 'src/actions/login';
+
+import {
   changeUsernameValue,
   changePasswordValue,
   changeConfirmPasswordValue,
@@ -14,6 +18,7 @@ import {
   isChecked,
   togglePasswordError,
 } from '../../actions/SigninForm';
+
 
 // === mapStateToProps
 // si j'ai besoin de lire des informations dans le state
@@ -30,6 +35,7 @@ const mapStateToProps = (state) => ({
   steamIdError: state.signInReducer.steamIdError,
   isChecked: state.signInReducer.isChecked,
   isCreated: state.signInReducer.isCreated,
+  isLoading: state.login.isLoading,
 });
 
 // === mapDispatchToProps
@@ -70,6 +76,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   togglePasswordError: () => {
     dispatch(togglePasswordError());
+  },
+
+  launchLoading: (newState) => {
+    dispatch(setLoading(newState));
   },
 });
 

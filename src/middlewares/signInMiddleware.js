@@ -8,6 +8,10 @@ import {
   isCreated,
 } from '../actions/SigninForm';
 
+import {
+  setLoading,
+} from '../actions/login';
+
 const signInMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
 
@@ -57,6 +61,9 @@ const signInMiddleware = (store) => (next) => (action) => {
             const newAction = steamIdError(true);
             store.dispatch(newAction);
           }
+        })
+        .finally(() => {
+          store.dispatch(setLoading(false));
         });
       break;
     }
