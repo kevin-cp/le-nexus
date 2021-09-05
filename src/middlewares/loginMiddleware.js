@@ -23,6 +23,7 @@ import { SUBMIT_LOGIN,
   getRole,
 } from '../actions/login';
 import { checkNotification } from '../actions/nav';
+import { isCreated } from '../actions/SigninForm';
 
 const loginMiddleware = (store) => (next) => (action) => {
   // console.log('on a intercepté une action dans le middleware: ', action);
@@ -52,6 +53,8 @@ const loginMiddleware = (store) => (next) => (action) => {
           // requête des récupérations de données
           store.dispatch(changeToken(response.data.payload.token));
           store.dispatch(changeSteamId(response.data.authenticatedUserId));
+          // Pour faire disparaître le message isCreated au login
+          store.dispatch(isCreated(''));
           store.dispatch(getUserData());
           store.dispatch(checkNotification());
         })

@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   loginError: state.login.loginError,
   isLogged: state.homepage.isLogged,
   isLoading: state.login.isLoading,
+  isCreated: state.signInReducer.isCreated,
 });
 
 // === mapDispatchToProps

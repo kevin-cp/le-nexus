@@ -21,6 +21,7 @@ const LoginForm = ({
   isLogged,
   launchLoading,
   isLoading,
+  isCreated,
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -79,6 +80,12 @@ const LoginForm = ({
               <div>Login</div>
             )}
           </Button>
+          {isCreated === 'Created' && (
+              <Message positive>
+                <Message.Header>Votre compte a bien été créé !</Message.Header>
+                <p>Vous pouvez désormais vous connecter.</p>
+              </Message>
+            )}
         </Segment>
       </Form>
       <Message>
@@ -134,7 +141,6 @@ const LoginForm = ({
     </Grid.Row>
   </Grid>
 
-  
   </>
   );
 };

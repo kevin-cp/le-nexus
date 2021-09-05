@@ -171,14 +171,12 @@ const SignInForm = ({
               <Message.Header>Il est nécessaire d'accepter les CGU pour utiliser le Nexus.</Message.Header>
             </Message>
           )}
-
           {isLoading && (
           <Button className="button-submit" loading>Loading</Button>
           )}
           {!isLoading && (
           <Button className="button-submit" type="submit"><div>Confirmer</div></Button>
           )}
-                
           <Button className="button-cancel">Annuler</Button>
           <Message>
             Déjà inscrit ? <a href="/">Connectez-vous</a>
