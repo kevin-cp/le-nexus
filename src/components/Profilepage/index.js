@@ -48,23 +48,24 @@ const Profilepage = ({
   handlePasswordError,
   togglePasswordError,
   isLogged,
+  handleResetState,
 }) => {
   const handleSubmitUsername = (evt) => {
     evt.preventDefault();
-    if (usernameError) {
-      toggleUsernameError();
+    if (!usernameError) {
       handleUsernameSubmit();
     }
     else {
-      handleUsernameError();
+      // handleUsernameError();
+      toggleUsernameError();
     }
   };
 
   const handleSubmitEmail = (evt) => {
     evt.preventDefault();
     if (emailError && newEmail === confirmEmail) {
-      toggleEmailError();
       handleEmailSubmit();
+      toggleEmailError();
     }
     else {
       handleEmailError();
@@ -86,165 +87,221 @@ const Profilepage = ({
     return <Redirect to="/login" />;
   }
 
+  setTimeout(() => {
+    handleResetState();
+  }, 17000);
+
   return (
 
-    <Container
+    <Grid
       className="main"
-      style={{ paddingTop: '10em' }}
+      style={{ height: '100vh' }}
+      verticalAlign="middle"
+      columns={2}
+      centered
+      stackable
     >
-      <Grid
-        columns={2}
-        centered
-        stackable
+      <Grid.Column
+        className="avatar"
+        textAlign="center"
       >
-        <Grid.Column className="avatar" textAlign="center">
+        <Header
+          as="h1"
+          className="nexusUsername"
+          textAlign="center"
+        >
+          {usernameToDisplay}
+        </Header>
+        <Image className="avatar-image" src={avatarToDisplay} size="medium" centered circular />
+        <Grid.Column
+          className="userInfoGroup"
+        >
           <Header
-            as="h1"
-            className="nexusUsername"
+            as="h2"
+            className="nexusEmail"
           >
-            {usernameToDisplay}
+            {emailToDisplay}
           </Header>
-          <Image className="avatar-image" src={avatarToDisplay} size="medium" centered circular />
         </Grid.Column>
-        <Grid.Column verticalAlign="middle">
-          <Form
-            className="mainform-username"
-            onSubmit={handleSubmitUsername}
+      </Grid.Column>
+      <Grid.Column
+        className="forms"
+        verticalAlign="middle"
+        textAlign="center"
+      >
+        <Form
+          className="mainform-username"
+          onSubmit={handleSubmitUsername}
+        >
+
+          <Form.Field>
+            <Label
+              className="user-label"
+              size="small"
+              pointing="below"
+              color="blue"
+            >
+              Nouvel identifiant Nexus
+            </Label>
+            <Input
+              type="text"
+              className="mainform-username--input"
+              placeholder={usernameToDisplay}
+              value={newUsername}
+              onChange={(event) => {
+                // console.log(event.currentTarget.value);
+                setNewUsername(event.currentTarget.value);
+              }}
+            />
+          </Form.Field>
+          {/* Message qui s'affiche uniquement si le pseudo est déjà existant */}
+          {usernameError && (
+          <Message negative>
+            <Message.Header>
+              Pseudo déjà existant ou nombre de caractères insuffisant
+            </Message.Header>
+          </Message>
+          )}
+          {usernamePatchMessage && (
+          <Message positive>
+            <Message.Header>
+              La modification a bien été prise en compte
+            </Message.Header>
+          </Message>
+          )}
+          <Button
+            type="submit"
+            className="user-submit"
           >
+            Enregistrer
+          </Button>
+        </Form>
 
-            <Form.Field>
-              <Label>Nouvel identifiant Nexus</Label>
-              <Input
-                type="text"
-                className="mainform-username--input"
-                placeholder={usernameToDisplay}
-                value={newUsername}
-                onChange={(event) => {
-                  // console.log(event.currentTarget.value);
-                  setNewUsername(event.currentTarget.value);
-                }}
-              />
-            </Form.Field>
-            {/* Message qui s'affiche uniquement si le pseudo est déjà existant */}
-            {usernameError && (
-            <Message negative>
-              <Message.Header>
-                Pseudo déjà existant ou nombre de caractères insuffisant
-              </Message.Header>
-            </Message>
-            )}
-            {usernamePatchMessage && (
-            <Message positive>
-              <Message.Header>
-                La modification a bien été prise en compte
-              </Message.Header>
-            </Message>
-            )}
-            <Button type="submit">Enregistrer</Button>
-          </Form>
+        <Form
+          className="mainform-email"
+          onSubmit={handleSubmitEmail}
+        >
+          <Form.Field required>
+            <Label
+              className="email-label"
+              size="small"
+              pointing="below"
+              color="blue"
+            >
+              Email
+            </Label>
+            <Input
+              className="mainform-email--input"
+              type="email"
+              placeholder={emailToDisplay}
+              value={newEmail}
+              onChange={(event) => {
+                // console.log(event.currentTarget.value);
+                setNewEmail(event.currentTarget.value);
+              }}
+            />
+          </Form.Field>
 
-          <Form
-            className="mainform-email"
-            onSubmit={handleSubmitEmail}
+          <Form.Field required>
+            <Input
+              className="mainform-email--inputConfirm"
+              type="email"
+              placeholder="Confirmer Nouvelle adresse mail"
+              value={confirmEmail}
+              onChange={(event) => {
+                // console.log(event.currentTarget.value);
+                setConfirmEmail(event.currentTarget.value);
+              }}
+            />
+          </Form.Field>
+          {emailError && (
+          <Message negative>
+            <Message.Header>E-mail déjà existant ou champ non renseigné</Message.Header>
+          </Message>
+          )}
+          {emailPatchMessage && (
+          <Message positive>
+            <Message.Header>
+              La modification a bien été prise en compte
+            </Message.Header>
+          </Message>
+          )}
+          <Button
+            type="submit"
+            className="email-submit"
           >
-            <Form.Field required>
-              <Label>Email</Label>
-              <Input
-                className="mainform-email--input"
-                type="email"
-                placeholder={emailToDisplay}
-                value={newEmail}
-                onChange={(event) => {
-                  // console.log(event.currentTarget.value);
-                  setNewEmail(event.currentTarget.value);
-                }}
-              />
-            </Form.Field>
+            Enregistrer
+          </Button>
+        </Form>
 
-            <Form.Field required>
-              <Input
-                className="mainform-email--inputConfirm"
-                type="email"
-                placeholder="Confirmer Nouvelle adresse mail"
-                value={confirmEmail}
-                onChange={(event) => {
-                  // console.log(event.currentTarget.value);
-                  setConfirmEmail(event.currentTarget.value);
-                }}
-              />
-            </Form.Field>
-            {emailError && (
-            <Message negative>
-              <Message.Header>E-mail déjà existant ou champ non renseigné</Message.Header>
-            </Message>
+        <Modal
+          className="password-modal"
+          header="Changement de mot de passe"
+          trigger={(
+            <Button
+              type="submit"
+              className="modal-activate"
+            >
+              Changer votre mot de passe
+            </Button>
             )}
-            {emailPatchMessage && (
-            <Message positive>
-              <Message.Header>
-                La modification a bien été prise en compte
-              </Message.Header>
-            </Message>
-            )}
-            <Button type="submit">Enregistrer</Button>
-          </Form>
+          content={(
+            <Form
+              className="password-form"
+              onSubmit={handleSubmitPassword}
+            >
 
-          <Modal
-            className="password-modal"
-            header="Changement de mot de passe"
-            trigger={<Button>Changer le mot de passe</Button>}
-            content={(
-              <Form
-                className="password-form"
-                onSubmit={handleSubmitPassword}
+              <Form.Field>
+                <Input
+                  className="password-form--input"
+                  type="password"
+                  placeholder="Nouveau mot de passe"
+                  value={newPassword}
+                  onChange={(event) => {
+                    // console.log(event.currentTarget.value);
+                    setNewPassword(event.currentTarget.value);
+                  }}
+                />
+              </Form.Field>
+
+              <Form.Field required="true">
+                <Input
+                  className="password-form--inputConfirm"
+                  type="password"
+                  placeholder="Confirmer nouveau mot de passe"
+                  value={confirmPassword}
+                  onChange={(event) => {
+                    // console.log(event.currentTarget.value);
+                    setConfirmPassword(event.currentTarget.value);
+                  }}
+                />
+              </Form.Field>
+              {passwordError && (
+              <Message negative>
+                <Message.Header>
+                  Les mots de passe doivent être identiques et les champs ne peuvent être vides
+                </Message.Header>
+              </Message>
+              )}
+              {passwordPatchMessage && (
+              <Message positive>
+                <Message.Header>
+                  La modification a bien été prise en compte
+                </Message.Header>
+              </Message>
+              )}
+              <Button
+                type="submit"
+                className="modal-save"
               >
-
-                <Form.Field>
-                  <Input
-                    className="password-form--input"
-                    type="password"
-                    placeholder="Nouveau mot de passe"
-                    value={newPassword}
-                    onChange={(event) => {
-                    // console.log(event.currentTarget.value);
-                      setNewPassword(event.currentTarget.value);
-                    }}
-                  />
-                </Form.Field>
-
-                <Form.Field required="true">
-                  <Input
-                    className="password-form--input"
-                    type="password"
-                    placeholder="Confirmer nouveau mot de passe"
-                    value={confirmPassword}
-                    onChange={(event) => {
-                    // console.log(event.currentTarget.value);
-                      setConfirmPassword(event.currentTarget.value);
-                    }}
-                  />
-                </Form.Field>
-                {passwordError && (
-                <Message negative>
-                  <Message.Header>
-                    Les mots de passe doivent être identiques et les champs ne peuvent être vides
-                  </Message.Header>
-                </Message>
-                )}
-                {passwordPatchMessage && (
-                <Message positive>
-                  <Message.Header>
-                    La modification a bien été prise en compte
-                  </Message.Header>
-                </Message>
-                )}
-                <Button type="submit">Enregistrer</Button>
-              </Form>
+                Changer votre mot de passe
+              </Button>
+            </Form>
             )}
-            actions={['Retour']}
-          />
-        </Grid.Column>
-      </Grid>
-    </Container>
+          actions={['Retour']}
+        />
+      </Grid.Column>
+    </Grid>
   );
 };
 
@@ -277,6 +334,7 @@ Profilepage.propTypes = {
   passwordPatchMessage: PropTypes.bool.isRequired,
   handlePasswordError: PropTypes.func.isRequired,
   togglePasswordError: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
 };
 
 export default Profilepage;

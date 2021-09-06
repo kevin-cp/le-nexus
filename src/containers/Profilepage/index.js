@@ -18,6 +18,7 @@ import {
   emailError,
   togglePasswordError,
   passwordError,
+  resetStateOnPatch,
 } from 'src/actions/Profilepage';
 
 // === mapStateToProps
@@ -100,6 +101,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   handlePasswordError: () => {
     dispatch(passwordError());
+  },
+
+  handleResetState: () => {
+    dispatch(resetStateOnPatch());
   },
 
 });
