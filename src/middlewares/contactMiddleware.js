@@ -18,7 +18,7 @@ const contactMiddleware = (store) => (next) => (action) => {
       } = store.getState().homepage;
 
       axios.post(
-        'http://localhost:8000/api/message',
+        'http://ec2-54-147-82-157.compute-1.amazonaws.com/api/message',
         // données
         {
           email: emailInput,

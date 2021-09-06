@@ -29,7 +29,7 @@ const signInMiddleware = (store) => (next) => (action) => {
       // let url = `${process.env.REACT_APP_API_URL}/api/users`;
 
       axios.post(
-        'http://localhost:8000/api/users',
+        'http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users',
         {
           email: inputEmail,
           password: inputPassword,

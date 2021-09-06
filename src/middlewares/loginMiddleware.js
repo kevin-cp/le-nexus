@@ -40,7 +40,7 @@ const loginMiddleware = (store) => (next) => (action) => {
       // let url = `${process.env.REACT_APP_API_URL}/api/login_check`;
 
       axios.post(
-        'http://localhost:8000/api/login_check',
+        'http://ec2-54-147-82-157.compute-1.amazonaws.com/api/login_check',
         {
           username: email,
           password: password,
@@ -79,7 +79,7 @@ const loginMiddleware = (store) => (next) => (action) => {
 
       // let url = `${process.env.REACT_APP_API_URL}/api/users/${steamId}`;
 
-      axios.get(`http://localhost:8000/api/users/${steamId}`, {
+      axios.get(`http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users/${steamId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -116,9 +116,11 @@ const loginMiddleware = (store) => (next) => (action) => {
 
       // let url = `${process.env.REACT_APP_API_URL}/api/users/${steamId}`;
 
-      axios.get(`http://localhost:8000/api/users/${steamId}/friends`, {
+      axios.get(`http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users/${steamId}/friends`, {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         },
       })
         .then((response)=> {

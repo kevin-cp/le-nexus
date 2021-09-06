@@ -29,7 +29,7 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
       } = store.getState().profilepageReducer;
 
       axios.patch(
-        `http://localhost:8000/api/users/${steamId}`,
+        `http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users/${steamId}`,
         {
           pseudo: inputUsername,
         },
@@ -37,6 +37,8 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )
@@ -76,7 +78,7 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
       } = store.getState().profilepageReducer;
 
       axios.patch(
-        `http://localhost:8000/api/users/${steamId}`,
+        `http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users/${steamId}`,
         {
           email: inputEmail,
         },
@@ -84,6 +86,8 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )
@@ -123,7 +127,7 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
       } = store.getState().profilepageReducer;
 
       axios.patch(
-        `http://localhost:8000/api/users/${steamId}`,
+        `http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users/${steamId}`,
         {
           password: inputNewPassword,
         },
@@ -131,6 +135,8 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )

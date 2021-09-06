@@ -29,9 +29,11 @@ const navMiddleware = (store) => (next) => (action) => {
       } = store.getState().homepage;
 
       axios.get(
-        `http://localhost:8000/api/users/pseudo/${inputSearch}`, {
+        `http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users/pseudo/${inputSearch}`, {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )
@@ -63,7 +65,7 @@ const navMiddleware = (store) => (next) => (action) => {
       } = store.getState().navReducer;
 
       axios.post(
-        'http://localhost:8000/api/request',
+        'http://ec2-54-147-82-157.compute-1.amazonaws.com/api/request',
         // données
         {
           sender: id,
@@ -74,6 +76,8 @@ const navMiddleware = (store) => (next) => (action) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )
@@ -93,9 +97,11 @@ const navMiddleware = (store) => (next) => (action) => {
       } = store.getState().homepage;
 
       axios.get(
-        `http://localhost:8000/api/users/${steamId}/requests`, {
+        `http://ec2-54-147-82-157.compute-1.amazonaws.com/api/users/${steamId}/requests`, {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )
@@ -128,7 +134,7 @@ const navMiddleware = (store) => (next) => (action) => {
       } = store.getState().navReducer;
 
       axios.patch(
-        `http://localhost:8000/api/request/${requestId}`,
+        `http://ec2-54-147-82-157.compute-1.amazonaws.com/api/request/${requestId}`,
         // données
         {
           acceptedAt: (new Date()).toJSON(),
@@ -137,6 +143,8 @@ const navMiddleware = (store) => (next) => (action) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )
@@ -159,7 +167,7 @@ const navMiddleware = (store) => (next) => (action) => {
       } = store.getState().navReducer;
 
       axios.patch(
-        `http://localhost:8000/api/request/${requestId}`,
+        `http://ec2-54-147-82-157.compute-1.amazonaws.com/api/request/${requestId}`,
         // données
         {
           declinedAt: (new Date()).toJSON(),
@@ -168,6 +176,8 @@ const navMiddleware = (store) => (next) => (action) => {
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           },
         },
       )
