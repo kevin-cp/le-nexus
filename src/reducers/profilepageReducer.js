@@ -16,6 +16,10 @@ import {
   USERNAME_PATCH_MESSAGE,
   EMAIL_PATCH_MESSAGE,
   PASSWORD_PATCH_MESSAGE,
+  EMPTY_USERNAME_FIELD,
+  EMPTY_EMAIL_FIELDS,
+  EMPTY_PASSWORD_FIELDS,
+  RESET_STATE_ON_PATCH,
 } from 'src/actions/Profilepage';
 
 const initialState = {
@@ -116,6 +120,34 @@ function profilepageReducer(state = initialState, action = {}) {
       return {
         ...state,
         passwordPatchMessage: true,
+      };
+
+    case EMPTY_USERNAME_FIELD:
+      return {
+        ...state,
+        inputUsername: '',
+      };
+
+    case EMPTY_EMAIL_FIELDS:
+      return {
+        ...state,
+        inputEmail: '',
+        inputConfirmEmail: '',
+      };
+
+    case EMPTY_PASSWORD_FIELDS:
+      return {
+        ...state,
+        inputNewPassword: '',
+        inputConfirmPassword: '',
+      };
+
+    case RESET_STATE_ON_PATCH:
+      return {
+        ...state,
+        usernamePatchMessage: false,
+        emailPatchMessage: false,
+        passwordPatchMessage: false,
       };
 
     default:

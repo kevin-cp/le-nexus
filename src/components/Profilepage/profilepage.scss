@@ -1,78 +1,170 @@
-.main {
-  height: 100vh;
-  border: solid 0.3em lightgray;
-  padding: 1.5em;
-  border-radius: 1em;
-  box-shadow: inset 0 0 1em gold, 0 0 2em red;
+
+
   
 
-  .avatar {
-
-    .nexusUsername {
-      color: lightgray;
+    
+  
+  .main {
+    border: solid 0.1em lightgray;
+    box-shadow: inset 0 0 0.5em lightskyblue, 0 0 1em lightskyblue;
+    border-radius: 0.8em;
+    background-image: url('src/assets/images/unsplash-profilepage.jpeg');
+    background-size: cover;
+    overflow: scroll;
+  
+    .avatar {
+      
+      .nexusUsername {
+        color: white;
+        font-style: italic;
+        text-shadow:lightskyblue 3px 0 3px;
+        font-size: 2.2em;
+        
+      }
+      
+      .nexusEmail {
+        color: white;
+        font-style: italic;
+        text-shadow:lightskyblue 3px 0 3px;
+        font-size: 1.5em;
+        padding-bottom: 1.5em;
+  
+      } 
+  
+      .avatar-image {
+        box-shadow: inset 0 0 0.5em lightskyblue, 0 0 1em lightskyblue;
+        margin-bottom: 1em;
+      }
+  
+  
     }
+  
+    .forms {
+      
+      
+      .mainform-username {
+        padding-bottom: 1em;
 
-    .avatar-image {
-      box-shadow: inset 0 0 1em gold, 0 0 2em red;
-      padding: 0.2em;
-      margin-bottom: 1em;
-      border: solid 0.2em lightgray;
-    }
+        .user-submit {
+          box-shadow: inset 0 0 1em lightskyblue, 0 0 1.5em lightskyblue;
+        }
+        .user-label {
+          
+        }
+        .mainform-username--input {
+          box-shadow: inset 0 0 1.5em lightskyblue, 0 0 2em lightskyblue;
+    
+        }
+      }
+    
+      .mainform-email {
 
-    .avatar-popup {
-      position: sticky;
-      .avatar-popup--form {
-
-        .popup-form--input {
-
+        .email-submit {
+          box-shadow: inset 0 0 1em lightskyblue, 0 0 1.5em lightskyblue;
+        
         }
 
-        .popup-form--button {
+
+        .email-label {
+          
+        }
+    
+        .mainform-email--input {
+          box-shadow: inset 0 0 1.5em lightskyblue, 0 0 2em lightskyblue;
+          
+        }
+    
+        .mainform-email--inputConfirm {
+          box-shadow: inset 0 0 1.5em lightskyblue, 0 0 2em lightskyblue;
           
         }
       }
+    }
+    
+  
+    
+  
+    
+  }
 
-      .avatar-popup--button {
+  
 
+
+
+.password-modal {
+  
+    
+
+  .password-form {
+    
+    .modal-activate {
+      box-shadow: inset 0 0 1em lightskyblue, 0 0 1.5em lightskyblue;
+    }
+
+    .password-form--input {
+
+
+    }
+
+    .password-form--inputConfirm {
+
+
+    }
+  }
+}
+
+
+.ui.button.modal-activate {
+  margin-top: 1em;
+  box-shadow: inset 0 0 1em lightskyblue, 0 0 1.5em lightskyblue;
+}
+
+.ui.page.modals.dimmer.transition.visible.active {
+  box-shadow: inset 0 0 1.5em lightskyblue, 0 0 2em lightskyblue;
+  border-radius: 4em;
+  
+
+  .ui.modal.transition.visible.active.password-modal {
+    box-shadow: inset 0 0 1.5em lightskyblue, 0 0 2em lightskyblue;
+    
+
+    .header {
+      text-shadow:lightskyblue 3px 0 3px;
+      color:white ;
+      background-color: gray;
+    }
+
+    .ui.form.password-form {
+      text-align: center;
+      background-color: gray;      
+
+      .field {
+        box-shadow: inset 0 0 1.5em lightskyblue, 0 0 2em lightskyblue;
+
+        
+      }
+
+      .required.field {
+
+        
+      }
+
+      .ui.button.modal-save {
+        box-shadow: inset 0 0 1em lightskyblue, 0 0 1.5em lightskyblue;
+      }
+    }
+
+    .actions {
+      background-color: gray;
+
+      .ui.button {
+        box-shadow: inset 0 0 1em lightskyblue, 0 0 1.5em lightskyblue;
       }
     }
   }
+}
 
-  .mainform {
-
-    .mainform-username {
-      
-      .mainform-username--input {
-
-
-      }
-
-    }
-
-    .mainform-email {
-
-      .mainform-email--input {
-
-
-      }
-
-      .mainform-email--inputConfirm {
-
-
-      }
-    }
-  }
-
-  .password-modal {
-
-    .password-form {
-
-      .password-form--input {
-
-
-      }
-    }
-  }
-
-
+.ui.centered.stackable.middle.aligned.two.column.grid.main {
+  padding-top: 5em;
+  padding-bottom: 5em;
 }

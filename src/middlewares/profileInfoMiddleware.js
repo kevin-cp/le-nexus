@@ -9,6 +9,9 @@ import {
   usernamePatchMessage,
   emailPatchMessage,
   passwordPatchMessage,
+  emptyUsernameField,
+  emptyEmailFields,
+  emptyPasswordFields,
 } from 'src/actions/Profilepage';
 
 import { getUserData } from 'src/actions/login';
@@ -43,17 +46,18 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
           if (response.data) {
             const newAction = usernamePatchMessage(true);
             store.dispatch(newAction);
+            store.dispatch(emptyUsernameField());
             store.dispatch(getUserData());
           }
         })
         .catch((error) => {
           console.log(error.response.data);
           store.dispatch(getUserData());
-          if (error.response.data.pseudo.includes('This value is already used.')) {
+          if (error.response.data.pseudo.includes('Cette valeur est déjà utilisée.')) {
             const newAction = usernameError(true);
             store.dispatch(newAction);
           }
-          else if (error.response.data.pseudo.includes('This value is too short. It should have 3 characters or more.')) {
+          else if (error.response.data.pseudo.includes('Cette chaîne est trop courte. Elle doit avoir au minimum 3 caractères.')) {
             const newAction = usernameError(true);
             store.dispatch(newAction);
           }
@@ -86,21 +90,21 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
 
         .then((response) => {
           console.log(response.data);
-          if (response.data) {
-            const newAction = emailPatchMessage(true);
-            store.dispatch(newAction);
-            store.dispatch(getUserData());
-          }
+
+          const newAction = emailPatchMessage(true);
+          store.dispatch(newAction);
+          store.dispatch(emptyEmailFields());
+          store.dispatch(getUserData());
         })
         .catch((error) => {
           console.log(error.response.data);
           store.dispatch(getUserData());
 
-          if (error.response.data.email.includes('This value is already used.')) {
+          if (error.response.data.email.includes('Cette valeur est déjà utilisée.')) {
             const newAction = emailError(true);
             store.dispatch(newAction);
           }
-          else if (error.response.data.email.includes('This value should not be blank.')) {
+          else if (error.response.data.email.includes('Cette valeur ne doit pas être vide.')) {
             const newAction = emailError(true);
             store.dispatch(newAction);
           }
@@ -136,6 +140,7 @@ const profileInfoMiddleware = (store) => (next) => (action) => {
           if (response.data) {
             const newAction = passwordPatchMessage(true);
             store.dispatch(newAction);
+            store.dispatch(emptyPasswordFields());
             store.dispatch(getUserData());
           }
         })

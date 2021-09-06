@@ -16,6 +16,10 @@ export const TOGGLE_PASSWORD_ERROR = 'TOGGLE_PASSWORD_ERROR';
 export const USERNAME_PATCH_MESSAGE = 'USERNAME_PATCH_MESSAGE';
 export const EMAIL_PATCH_MESSAGE = 'EMAIL_PATCH_MESSAGE';
 export const PASSWORD_PATCH_MESSAGE = 'PASSWORD_PATCH_MESSAGE';
+export const EMPTY_USERNAME_FIELD = 'EMPTY_USERNAME_FIELD';
+export const EMPTY_EMAIL_FIELDS = 'EMPTY_EMAIL_FIELDS';
+export const EMPTY_PASSWORD_FIELDS = 'EMPTY_PASSWORD_FIELDS';
+export const RESET_STATE_ON_PATCH = 'RESET_STATE_ON_PATCH';
 
 export const changeUsernameValue = (value) => ({
   type: CHANGE_USERNAME_VALUE,
@@ -93,4 +97,20 @@ export const emailPatchMessage = () => ({
 
 export const passwordPatchMessage = () => ({
   type: PASSWORD_PATCH_MESSAGE,
+});
+
+export const emptyUsernameField = () => ({
+  type: EMPTY_USERNAME_FIELD,
+});
+
+export const emptyEmailFields = () => ({
+  type: EMPTY_EMAIL_FIELDS,
+});
+
+export const emptyPasswordFields = () => ({
+  type: EMPTY_PASSWORD_FIELDS,
+});
+
+export const resetStateOnPatch = () => ({
+  type: RESET_STATE_ON_PATCH,
 });
