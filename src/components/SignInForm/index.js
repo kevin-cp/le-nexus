@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect, Link, NavLink } from 'react-router-dom';
 
 import NexuslogoNav from 'src/assets/images/Nexus-logo-nav.png';
 
@@ -177,7 +177,7 @@ const SignInForm = ({
           {!isLoading && (
           <Button className="button-submit" type="submit"><div>Confirmer</div></Button>
           )}
-          <Button className="button-cancel">Annuler</Button>
+          <NavLink className="button-cancel" to="/">Annuler</NavLink>
           <Message>
             Déjà inscrit ? <a href="/">Connectez-vous</a>
           </Message>

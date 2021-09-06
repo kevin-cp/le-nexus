@@ -9,7 +9,9 @@ import {
   ACCEPT_FRIEND_REQUEST,
   DENY_FRIEND_REQUEST,
   numberOfNotifications,
+  emptySearchbar,
 } from 'src/actions/nav';
+
 import { getUserData } from '../actions/login';
 
 const navMiddleware = (store) => (next) => (action) => {
@@ -77,6 +79,7 @@ const navMiddleware = (store) => (next) => (action) => {
       )
         .then((response) => {
           // console.log(response);
+          store.dispatch(emptySearchbar());
         })
         .catch((error) => {
           console.log(error);

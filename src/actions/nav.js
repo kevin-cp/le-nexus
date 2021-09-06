@@ -16,6 +16,7 @@ export const HAS_NO_NOTIFICATION = 'HAS_NO_NOTIFICATION';
 export const NUMBER_OF_NOTIFICATIONS = 'NUMBER_OF_NOTIFICATIONS';
 export const REQUEST_SENT_MESSAGE = 'REQUEST_SENT_MESSAGE';
 export const SENT_MESSAGE_DISAPPEARS = 'SENT_MESSAGE_DISAPPEARS';
+export const EMPTY_SEARCHBAR = 'EMPTY_SEARCHBAR';
 
 export const changeSearchValue = (value) => ({
   type: CHANGE_SEARCH_VALUE,
@@ -91,4 +92,9 @@ export const requestSentMessage = () => ({
 
 export const SentMessageDisappears = () => ({
   type: SENT_MESSAGE_DISAPPEARS,
+});
+
+// vide la searchbar quand la demande d'ami est envoyée
+export const emptySearchbar = () => ({
+  type: EMPTY_SEARCHBAR,
 });
