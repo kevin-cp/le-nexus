@@ -89,7 +89,7 @@ const Profilepage = ({
 
   setTimeout(() => {
     handleResetState();
-  }, 17000);
+  }, 19000);
 
   return (
 
