@@ -6,7 +6,6 @@ import {
 } from '../actions/contact';
 
 const contactMiddleware = (store) => (next) => (action) => {
-
   switch (action.type) {
     case SUBMIT_CONTACT_FORM: {
       const {
@@ -25,12 +24,7 @@ const contactMiddleware = (store) => (next) => (action) => {
           email: emailInput,
           content: textinput,
         },
-        // options headers
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
+
       )
         .then((response) => {
           console.log(response);
