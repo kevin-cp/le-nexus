@@ -171,7 +171,7 @@ const Nav = ({
       <Menu.Item>
         <a
           className="backOffice-link"
-          href="http://localhost:8000/back/user/"
+          href="http://localhost:8000/login"
           target="_blank"
           rel="noreferrer"
         >

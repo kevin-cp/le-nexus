@@ -160,7 +160,7 @@ const SignInForm = ({
             <Message.Header>Pourquoi nous demandons votre ID Steam ?</Message.Header>
             <p>Cela va nous permettre de récupérer la liste de jeux de votre bibliothèque Steam, votre liste d'amis... Nous vous invitons à consulter notre <Link to='/FAQ'>FAQ</Link> à ce sujet</p>
             <Message.Header>Comment faire ?</Message.Header>
-            <p>Nous avons rédiger un guide complet à ce sujet dans notre <Link to='/FAQ'>FAQ</Link> !
+            <p>Nous avons rédigé un guide complet à ce sujet dans notre <Link to='/FAQ'>FAQ</Link> !
             </p>
           </Message>
           <Form.Field required>

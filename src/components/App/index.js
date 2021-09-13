@@ -12,6 +12,7 @@ import LoginForm from 'src/containers/LoginForm';
 import Contact from 'src/containers/Contact';
 import Team from 'src/components/Team';
 import FAQ from '../FAQ';
+import CGU from '../CGU';
 
 // == Import
 
@@ -44,6 +45,9 @@ const App = ({isLogged, refreshData}) => {
               </Route>
               <Route path="/profile">
                 <Profilepage />
+              </Route>
+              <Route path="/CGU">
+                <CGU />
               </Route>
               <Route path="/contact" exact>
                 <Contact />

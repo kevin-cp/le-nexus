@@ -6,7 +6,7 @@ import './footer.scss';
 const Footer = () => (
   <footer className="footer">
     <ul className="footer-list">
-      <NavLink to="">
+      <NavLink to="/CGU">
         <li className="footer-list-item">CGU</li>
       </NavLink>
       <NavLink to="/team">
